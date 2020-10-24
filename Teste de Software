@@ -4,3 +4,37 @@ São necessários varias as técnicas e não produzi-los demasiadamente.
 Uma vez que os testes são automatizados, as equipes de desenvolvimento de software
 desfrutam de benefícios, como refatoração confiável. 
 Para Java Junit é o padrão de mercado. 
+
+Failure, Fault and Error
+Failure é um componente que não está se comportando conforme o esperado. 
+São visíveis para o usuário final. 
+As failures geralmente são causadas por faults. Faults são defeitos ou bugs.
+Faults são técnicas e geralmente se referem ao código fonte. Uma fault no código
+não leva necessariamente a uma Failure. Se o código que contém a fault não for 
+executado, ele nunca causará uma failure. 
+Temos também o error. Um error é a ação humana que faz com que o sistema não funcione
+conforme o esperado. Por exemplo, um dev não cobriu uma condição obscura porque
+entendeu mal o requisito. 
+Resumindo: Um erro do ved pode levar a uma fault no código que resultará em uma failure
+para o usuário final.
+
+Verification and Validation
+A verificação e a validação se referem à avaliação da qualidade de um sistema.
+A diferença é que:
+Validação - Estamos construindo o software certo? Diz respeito aos recursos que o software
+oferece ao cliente. 
+Verificação - Estamos construindo o sistema certo? Se trata do comportamento do software
+como deveria, de acordo com a especificação.
+
+É importante saber a hora de parar o teste de software. Consomem dinheiro, devs e infraestrutura.
+O objetivo de um teste é maximizar o número de bugs. minimizando a quantidade de recursos gastos
+para encontrar estes bugs.
+
+https://sttp.site/chapters/getting-started/test-automation.html
+
+##########################################################################################
+
+Junit
+
+https://junit.org/junit5/docs/current/user-guide/#writing-tests
+
