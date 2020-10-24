@@ -1,0 +1,6 @@
+Os testes são fundamentais para produzirmos softwares de alta qualidade. 
+Devem ser rigorosos e sistemáticos.
+São necessários varias as técnicas e não produzi-los demasiadamente. 
+Uma vez que os testes são automatizados, as equipes de desenvolvimento de software
+desfrutam de benefícios, como refatoração confiável. 
+Para Java Junit é o padrão de mercado. 
