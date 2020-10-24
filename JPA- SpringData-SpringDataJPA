@@ -1,0 +1,15 @@
+JPA- Java Persistence API- Surgiu da necessidade de solucionar problemas com persistência para programação em Java.
+Hoje proporciona uma interação com bancos de dados relacionais, otimizando o tempo do desenvolvedor, 
+entregando os códigos prontos para manipulação dos dados presentes no banco de dados.
+É um universo de classes e métodos para armazenamento persistentemente em bancos de dados.
+
+Spring Data - É um dos projetos do ecossistema Spring que tem como objetivo unificar e facilitar o acesso de diferentes 
+tecnologias de armazenamento de dados, sendo eles relacionais ou não. O Spring Data possui muitos subprojetos e um desses
+é o Spring Data JPA.
+
+Spring DATA JPA- Uniformiza o acesso ao banco de dados. Surgiu com o objetivo de simplificar o desenvolvimento com JPA, 
+padronizando o uso de funcionalidades de forma objetiva e menos repetitiva. Atua como uma camada de abstração acima do JPA. 
+Enquanto o JPA ajuda a abstrair os dados, as consultas, transformando tudo em objetos relacionais, o Spring Data JPA ajuda com a 
+criação dos repositórios;
+Evita que você faça malabarismos para se conectar com Bancos de dados. É simples, limpo e menos trabalhoso. Quando mais complicado
+for seu modelo de dados, mais benefícios você terá.
