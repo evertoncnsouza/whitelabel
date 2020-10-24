@@ -1,0 +1,64 @@
+Logs são utilizados para encontrar erros.
+
+Trate Logs como fluxos de eventos!
+
+Logs de forma crua são tipicamente um formato de texto com um evento por linha 
+(apesar que pilhas de exceção podem ocupar várias linhas). Logs não tem começos ou términos
+fixos, mas fluem continuamente enquanto o app estiver operante.
+
+Log de dados é um arquivo de texto gerado por um software para descrever eventos
+sobre o seu funcionamento, utilização por usuários ou interação com outros sistemas.
+Após serem gerados, são incrementados ao longo do tempo com informações que permitem 
+identificar possíveis bugs.
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class Exemplo {
+
+    private final Logger logger = LoggerFactory.getLogger(Exemplo.class);
+
+    public void log() {
+        logger.info("Log de informação");
+        logger.warn("Log de aviso, algo está errado ou faltando! cuidado!");
+        logger.error("Log de erro, algo de errado aconteceu!");
+        logger.debug("Log de depuração, contém informações mais refinadas, 
+                     que são mais úteis para depurar um aplicativo");
+        logger.trace("Log de rastreabilidade, contém informações mais refinadas 
+                     do que o DEBUG");
+    }
+
+}
+
+Procure responder os 5W's
+- Who - Quem está executando a operação?
+- What - o que indica aquela operação?
+- When - Quando a operação ocorreu?
+- Where - Onde a operação ocorreu?
+- Why - Porquê da linha do log.
+
+######################################################################
+
+Logs. XI do 12 Factor Apps
+
+Um dos problemas dos Logs é que geralmente são gerados em arquivos e há necessidade 
+de roteamento dos mesmos!
+No FActor Apps nunca se preocupe com o roteamento ou armazenagem do fluxo de saída.
+A aplicação nao deve tentar escrever, ou gerir arquivos de logs. No lugar, cada aplicação
+em execução, escreve seu próprio fluxo de evento, sem buffer, para o stdout.
+Logando no stdout, cada fluxo de logs de cada aplicação seráo capturados pelo ambiente
+de execução e direcionados para um ou mais destinos finais para visualização e arquivamento
+de longo prazo. Estes destinos de arquivamento não são visíveis ou configuráveis pela aplicação,
+e, ao invés disso, são completamente geridos pelo ambiente de execução. Agregadores de logs
+open source(Logstash, Fluentd, Fluenbit) estão disponíveis para este propósito.
+
+###############################################################
+
+Logs documentação Spring
+O Spring usa Commons Logging para todos os logs internos, mas deixa a implementação de log subjacente aberta.
+As configurações padrão são fornecidas para Java Util Logging, Log4j2 e LogBack. Em casa caso,
+os registradores são pré-configurados para usar a saída do console com saída de arquivo opcional também
+disponível. 
+Por padrão, se você usar os Starters, o Logback é usado para registro. O roteamento de Logback
+apropriado também está incluído para garantir que as bibliotecas dependentes que usam Java Util Logging,
+Commins Logging, Log4J ou SLF4J funcionem corretamente.
