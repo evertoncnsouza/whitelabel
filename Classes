@@ -1,0 +1,2 @@
+MethodArgumentNotValidException - Exceção a ser lançada quando a validação de um 
+argumento anotado com @Valid, falha. 
