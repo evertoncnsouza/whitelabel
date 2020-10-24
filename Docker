@@ -1,0 +1,12 @@
+Docker - Um container é uma unidade padrão de software que empacota o código e todas as suas dependências para que o aplicativo seja executado
+de forma rápida e confiável de um ambiente de computação para outro. Uma imagem de container do Docker é um pacote de software leve,
+autônomo e executável que inclui tudo o que é necessário para executar um aplicativo: código, tempo de execução, ferramentas do sistema, 
+bibliotecas do sistema e configurações. 
+Além de aprender sobre containers Docker, aprendi também sobre arquivo Yaml, utilizei o Visual Code que ainda não havia tido contato
+e aprendi comandos no Prompt de comandos do Windows
+
+Comandos - 
+docker-compose version
+docker-compose up -d
+docker-compose ps
+
