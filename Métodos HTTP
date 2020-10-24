@@ -9,3 +9,11 @@ public ResponseEntity<?> Proposta(@RequestBody @Valid ....){
 
 O ResponseEntity permite que você passe todas informações da requisição.
 O created é chamado para retornar 201. 
+
+Tipos de Status Code:
+- 200 - ResponseEntity.ok()
+- 202 - ResponseEntity.accepted()
+- 204 - ResponseEntity.noContent()
+- 400 - ResponseEntity.badRequest()
+- 404 - ResponseEntity.notFound()
+- 409 - ResponseEntity.status(HttpStatus.CONFLICT).body("Já criado");
