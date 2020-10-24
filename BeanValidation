@@ -3,3 +3,42 @@ diferentes camadas na aplicação. A vantagem é que as restrições ficam inser
 classes de modelo.
  - Permite criar restrições por meio de anotações;
  - Permite que você crie anotações personalizadas;
+ 
+ @Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface MinhaAnotacao {
+
+  String message() default "Descreva a mensagem do erro aqui!";
+
+  Class<?>[] groups() default {};
+
+  Class<? extends Payload>[] payload() default {};
+
+}
+
+###################################
+
+public class CpfCnpjValidator implements ConstraintValidator<CpfCnpj, CharSequence> {
+    
+    @Override
+
+    public boolean isValid(CharSequence value, ConstraintValidatorContext constraintValidatorContext) {
+        if (value == null) {
+            return true;
+        }
+
+       @CPF CNPJValidator cnpjValidator = new CNPJValidator();
+       @CNPJ CPFValidator cpfValidator = new CPFValidator();
+
+        cnpjValidator.initialize(null);
+        cpfValidator.initialize(null);
+
+        return cnpjValidator.isValid(value, constraintValidatorContext)
+                || cpfValidator.isValid(value, constraintValidatorContext);
+    }
+}
+ 
+ - Está classe conta com dois tipos parametrizados, o primeiro a anotação e o segundo
+ o tipo do atributo.
+
