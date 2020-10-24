@@ -1,0 +1,22 @@
+Dicas - 
+- Prioridade é funcionar!
+- Código precisa ser entendível;
+- Domine o negócio;
+- Teste o mais rápido possível;
+- Proteja as bordas (Valide!);
+- Isole paramêtros de domínio;
+- Não serialize objetos de domínio para respostas de Api;
+- Utilize o construtor apenas para informação natural;
+- Deixe dicas no código;
+- Use tudo que está pronto;
+- Faça o combinado;
+- Gere obrigações específicas;
+- Não utilize exceptions para controle de fluxo;
+- Deixe regras de negócio explícitas;
+- Favoreça a coesão através do encapsulamento;
+- Testes são para encontrar Bugs!
+- Construa o software certo. Entenda o que precisa ser feito para assim fazer
+as perguntas corretas;
+- Explore o que precisa ser feito antes de implementar a funcionalidade;
+- Pergunte sempre: O que está por trás dessa funcionalidade? Quais são os dados de entrada?
+Pode existir dados repetidos? Quais as saídas esperadas?
