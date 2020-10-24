@@ -1,0 +1,13 @@
+Para não conectar objetos de domínio com a borda mais externa do sistema, precisamos
+sair do objeto do primeiro tipo (Request) para um objeto do segundo tipo (Entity).
+Por isso utilizamos as classes conversoras que o mercado convencionou da seguinte forma:
+Proposta proposta = PropostaRequestToPropostaConverter.converte(request);
+
+Segundo o mercado, o código dessa forma, não seria legal ir no Controller, 
+Proposta proposta = new Proposta(request.getDocumento(),request.getEmail()...)
+
+Porém, mesmo considerando o primeiro modelo, utilizamos Request Value objects, 
+que é meu preferido também.
+Proposta novaProposta = request.toModel();
+
+
