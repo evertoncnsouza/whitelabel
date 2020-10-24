@@ -1,0 +1,12 @@
+Facilita a conversão de dados em objetos e vice-versa. 
+É um framework Java para mapeamento objeto relacional mais conhecido no mercado.
+Sua principal função é abstrair o mapeamento, economizando esforço e preocupações
+concernentes a tal tarefa. 
+Tem uma arquitetura simples, de fácil configuração e com funções de fácil entendimento.
+O Hibernate facilita para o dev. 
+O Hibernate não cuida somente do mapeamento das classes Java para tabelas do banco
+de dados, mas também provê facilidades para consultar e retornar os dados da consulta.
+
+Diferença Hibernate e JPA
+O JPA é uma "interface" muito bem documentada, enquanto o hibernate é a "classe"
+de implementação dessa interface. 
