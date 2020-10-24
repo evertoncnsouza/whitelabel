@@ -18,6 +18,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.Valid;
 
+https://javaee.github.io/javaee-spec/javadocs/javax/validation/constraints/package-summary.html
+
 ###################################################################################
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
