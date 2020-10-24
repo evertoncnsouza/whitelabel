@@ -1,0 +1,5 @@
+Bean Validation é uma especificação que permite validar objetos com facilidade em 
+diferentes camadas na aplicação. A vantagem é que as restrições ficam inseridas nas
+classes de modelo.
+ - Permite criar restrições por meio de anotações;
+ - Permite que você crie anotações personalizadas;
