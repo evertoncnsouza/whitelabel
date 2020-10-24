@@ -1,2 +1,28 @@
-MethodArgumentNotValidException - Exceção a ser lançada quando a validação de um 
+- MethodArgumentNotValidException - Exceção a ser lançada quando a validação de um 
 argumento anotado com @Valid, falha. 
+
+##########################################################################
+
+- ResponseEntity ´É uma classe que é uma abstração completa para o Response. 
+Nela é possível definir os Headers, Body e Status Code de uma resposta HTTP.
+Tipos de Status Code:
+- 200 - ResponseEntity.ok()
+- 202 - ResponseEntity.accepted()
+- 204 - ResponseEntity.noContent()
+- 400 - ResponseEntity.badRequest()
+- 404 - ResponseEntity.notFound()
+- 409 - ResponseEntity.status(HttpStatus.CONFLICT).body("Já criado");
+
+Manipulando o Body da Requisição
+ResponseEntity.ok().body("Body") 
+
+Customizando Status Code
+ResponseEntity.status(HttpStatus.CONFLICT).body("Elemento ja criado");
+
+Configurando Headers
+ResponseEntity.ok().header("x-custom-data", "custom").body("body");
+Header recebe dois parâmetros. O primeiro é header, o segundo o valor da 
+entrada do header. 
+ResponseEntity neste caso provê uma abstração bastante fluída para manipularmos o Response.
+
+############################################################################
