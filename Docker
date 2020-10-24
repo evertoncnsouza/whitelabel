@@ -10,3 +10,5 @@ docker-compose version
 docker-compose up -d
 docker-compose ps
 
+Docker Compose- É uma ferramenta para definir e executar aplicativos Docker de vários contêiners. Com o Compose, usei o arquivo Yaml para configuração
+dos serviços. Com um único comando, consegui criar todos os serviçoes de configuração.
