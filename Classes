@@ -26,3 +26,16 @@ entrada do header.
 ResponseEntity neste caso provê uma abstração bastante fluída para manipularmos o Response.
 
 ############################################################################
+
+UriComponentsBuilder - É uma classe utilitária do Spring que nos ajuda a criar URL's.
+Essa classe nos ajuda a lidar com problemas comuns de encondings presentes nas URIs (identificador
+uniforme de recurso).
+O UriComponetesBuilder é injetado automaticamente nos métodos de um Controller e consegue 
+gerenciar o endereço do servidor baseado nas próprias configuraçoes internas da aplicação.
+
+@PostMapping
+public ResponseEntity<PropostaCriada> novaProposta(@RequestBody @Valid NovaProposta novaProposta, UriComponentsBuilder uriComponentsBuilder) {
+  // Código omitido
+  return ResponseEntity.created(uriComponentsBuilder.path("/propostas/{id}").buildAndExpand(nova.getId()).toUri()).body(nova);
+}
+
