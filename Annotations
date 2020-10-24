@@ -122,9 +122,11 @@ o primary nao.
 
 @UniqueValue	Validador customizado;
 
-@Url 	Mostra que deve ser preenchido com um link;
+@Url- 	Mostra que deve ser preenchido com um link;
 
-@Valid	Valida o argumento anotado. Se o argumento de destino falha, não é validade e é lançado uma exception;
+@Valid-	Valida o argumento anotado. Se o argumento de destino falha, não é validade e é lançado uma exception;
+
+@Validated-
 
 @Value	Pode ser usada para injetar valores em campos beans gerenciados por Spring e pode ser aplicada no nível
 de parâmetro de campo ou construtor;
