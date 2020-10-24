@@ -21,3 +21,6 @@ as perguntas corretas;
 - Pergunte sempre: O que está por trás dessa funcionalidade? Quais são os dados de entrada?
 Pode existir dados repetidos? Quais as saídas esperadas?
 - Facilite as correções;
+- Identificar e dividir responsabilidades no código (separation of concerns) utilizando o CDD;
+
+
