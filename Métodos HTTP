@@ -1,0 +1,11 @@
+HTTP Post- Utilizado para toda criação de um novo recurso e quando realizada com sucesso,
+deve retornar 201.
+@PostMapping
+public ResponseEntity<?> Proposta(@RequestBody @Valid ....){
+    // Código omitido
+    return ResponseEntity.created(uriComponentsBuilder.buildAndExpand
+    ("/resource/{id}", id).toUri()).body(body);
+}
+
+O ResponseEntity permite que você passe todas informações da requisição.
+O created é chamado para retornar 201. 
