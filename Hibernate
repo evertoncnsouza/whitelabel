@@ -1,3 +1,5 @@
+Framework ORM - Hibernate como implementação da especificação JPA
+
 Facilita a conversão de dados em objetos e vice-versa. 
 É um framework Java para mapeamento objeto relacional mais conhecido no mercado.
 Sua principal função é abstrair o mapeamento, economizando esforço e preocupações
