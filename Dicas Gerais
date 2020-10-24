@@ -20,3 +20,4 @@ as perguntas corretas;
 - Explore o que precisa ser feito antes de implementar a funcionalidade;
 - Pergunte sempre: O que está por trás dessa funcionalidade? Quais são os dados de entrada?
 Pode existir dados repetidos? Quais as saídas esperadas?
+- Facilite as correções;
