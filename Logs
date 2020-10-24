@@ -62,3 +62,29 @@ disponível.
 Por padrão, se você usar os Starters, o Logback é usado para registro. O roteamento de Logback
 apropriado também está incluído para garantir que as bibliotecas dependentes que usam Java Util Logging,
 Commins Logging, Log4J ou SLF4J funcionem corretamente.
+
+##############################################################
+
+- Ferramentas de log agregation de código aberto
+ Logs Agregations podem ajudar na solução de problemas.
+ Um sistema de agregação de log é um ótimo lugar para coletar dados de eventos.
+ Essas são atividades irregulares que são significativas. Um exemplo pode ser logs
+ de acesso para um sereviço da web. Eles são importantes porque queremos saber 
+ o que está acessando nossos sistemas e quando. Outro exemplo seria uma condição
+ de erro do aplicativo - por não ser uma condição operacional normal, pode ser
+ valioso durante a solução de problemas.
+ Algumas regras para Logs.
+ - Inclua um carimbo de data/hora;
+ - Formato DO em Json;
+ - Não registre eventos insignificantes;
+ - Registre todos os erros da api;
+ - Avalie se é necessário registrar avisos;
+ - Escreva mensagens em um formato legível;
+ - Não registre dados informativos na produção;
+ - Não registre nada que um humano não possa ler;
+ 
+ 3 principais são:
+ ELK - Abreviação de Elasticsearch. Usado por Netflix, Facebook, Microsoft.
+ Graylog - O mais novo dos três.
+ Fluentd- Recomendado por AWS e Google Cloud.
+ 
