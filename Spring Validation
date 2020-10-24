@@ -1,0 +1,18 @@
+@Component
+public class MeuValidador implements Validator {
+
+    @Override
+    public boolean supports(Class<?> aClass) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object o, Errors errors) {
+
+    }
+
+}
+
+O método "supports", tem como objetivo determinar para qual classe esse validador
+deve ser aplicado. 
+O método "validate" é onde você aplica as validações.
