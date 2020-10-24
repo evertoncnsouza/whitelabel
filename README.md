@@ -1,2 +1,3 @@
-# Entendimentos Cartao Branco
-Diário de entendimentos sobre o desafio Cartão Branco!
+# Entendimentos sobre o Bootcamp!
+Diário de entendimentos do desafio do Cartão Branco, somado aos entendimentos
+dos dois primeiros desafios!
