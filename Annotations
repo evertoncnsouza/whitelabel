@@ -1,0 +1,130 @@
+@Autowired- Utilizado para injeção automáticas de dependências;
+
+@Bean- Objeto que é instaciado, montado e gerenciado pelo Spring IoC container.
+
+@Column-	Usado para especificar a coluna mapeada para uma propriedade ou campo persistente. 
+Se nenhuma Column for especificada, os valores padrão serão aplicados.
+
+@Component-	Representa um bean que é detectado automaticamente quando trabalhamos com configurações 
+baseadas em annotations e busca de caminhos de classes. @Repository, @Service e @Controller, implementar @Component.
+
+@Configuration-	Anotado em classes de configuração para ser lida em tempo de runtime.
+
+@Constraint-	Definimos a classa que irá validar nosso campo. 
+
+@Controller-	Cria um Map do model object e encontra uma view.
+
+@ControllerAdvice- Especialização de @Componentpara classes que declaram @ExceptionHandler, @InitBinder 
+ou @ModelAttributemétodos para ser compartilhado entre vários @Controllerclasses.
+
+@Cpf-	Verifica se foi passado um CPF válido;
+
+@Delete-	Deleta um ou vários recursos;
+
+@Deprecated-	Mostra que o construtor esta depreciado;
+
+@ElementCollection-	Cria uma coleção de itens associados a uma classe;
+
+@Email-	Pede um formato de email valido;
+
+@Embeddable-	Diz que a classe está habilitada a compor uma entidade.
+
+@Embedded-	Notifica a JPA, que este é um elemento a ser mapeado na mesma tabela;
+
+@entity-	Mostra que a classe representa uma entidade;
+
+@Enumerated-	Mapeia o Enum para um tipo de coluna String do Banco de dados;
+
+@ExceptionHandler-	Para lidar com exceções, podemos definir um método na classe do controlador 
+com essa anotação. O Spring detecta a anotação e registra o método manipulador de exceção 
+para a classe de exceção do argumento e suas subclasses;
+
+@Future-	Mostra que uma informação precisa ter data no futuro.
+
+@GeneratedValue-	Informa que a geração do valor identificador únido da entidade será gerenciado 
+pelo provedor de persistência.
+
+@GetMapping-	Mappeia solicitações HTTP Get para métodos de tratamentos especificos;
+
+@Id-	Informa ao JPA qual campo/atributo esta relacionado a chave primaria da respectiva tabela no banco de dados.
+
+@InitBinder-	Anotação que identifica os métodos que inicializar o WebDataBinder que será usado pra 
+preencher os argumentos do objeto de comando e formulário de metodos manipuladores anotados.
+
+@JsonFormat-	Permite especificar como formatar os valores de data e calendário.
+
+@JsonIgnore-	Para excluir membros da classe dos processos de serialização e desserialização JSON;
+
+@LazyCollection- Quando se está mapeando com JPA, a annotation LAzy indica quando não carregar um objeto,
+carregando apenas o necessário;
+
+@Lenght-	Versão especifica do hibernate de @Size;
+
+@ManyToOne-	Relacionamento muitos para um. O lado one é o da classe que você esta;
+
+@ModelAtributte- Anotação que vincula um parâmetro de método ou valor de retorno de método a um atributo 
+de modelo nomeado e o expõe a uma visualização da web.
+
+@NotBlank	Não deve ser nulo e comprimento aparado maior que zero;
+
+@NotEmpty	Não deve ser nulo e seu tamanho deve ser maior que zero;
+
+@NotNull	Não permite valores nulos e pode estar vazio;
+
+@OnetoOne	Relacionamento um para um;
+
+@Override	Mostra que você está sobrescrevendo um método e não criando um novo;
+
+@PastorPresent	Deve ser um instante data ou hora, no passado ou presente;
+
+@PatchMapping	Atualiza, mas so determinado trecho;
+
+@PathVariable	Usado quando o valor da variavel é passado diretamente pela URL, não quando você passa 
+após o final da interrogação(?), mas sim, quando o valor faz parte da url.
+
+@PersistenceContext	Onde ficam armazenados os objetos(entidades) que estão sendo manipulados pelo EntityManager.
+É um @Autowired, pensado para EntityManager
+@Positive	Informação deve ser maior que zero;
+
+@PostMapping	Tratam das solicitações de Post (criar);
+
+@Primary	Quando registramos mais de um Bean de um mesmo tipo, anotamos com @Primary para que seja dado preferência 
+a determinado Bean;
+
+@PutMapping	Trata das solicitações de Put(atualizar);
+
+@Qualfier	Usado para decidir qual bean injetar quando houver ambiguidade. O qualifier requer um nome, para saber quando usar, 
+o primary nao. 
+
+@Repository	Indica que é um repositorio;
+
+@RequestBody	Vincula o corpo da solicitação aos parâmetros do método;
+
+@RequestMapping	Usada para mapear solicitações web para métodos Spring Controller;
+
+@ResponseStatus	Para especificar o Status da resposta;
+
+@RestController	Combinação de @Controller e @ResponseBody;
+
+@Retention	Significa que a anotação pode ser acessada por reflexão em tempo de execução;
+
+@Service	Mostra que o Bean está mantendo a logica de negocios, alem do uso na camada de serviço;
+
+@Size	Comunica o tamanho padrão de um campo. Anotação do Java;
+
+@SpringBootApplication	Mostrar que a API utiliza SpringBoot;
+
+@Table	Podemos especificar detalhes da tabela;
+
+@Target	Especifica se é um campo nos validadores customizados, detectado em tempo de runtime;
+
+@Transactional	Mostra que é uma transação e so deve ser persistida se der tudo certo;
+
+@UniqueValue	Validador customizado;
+
+@Url 	Mostra que deve ser preenchido com um link;
+
+@Valid	Valida o argumento anotado. Se o argumento de destino falha, não é validade e é lançado uma exception;
+
+@Value	Pode ser usada para injetar valores em campos beans gerenciados por Spring e pode ser aplicada no nível
+de parâmetro de campo ou construtor;
