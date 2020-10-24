@@ -6,6 +6,8 @@ Tem uma arquitetura simples, de fácil configuração e com funções de fácil 
 O Hibernate facilita para o dev. 
 O Hibernate não cuida somente do mapeamento das classes Java para tabelas do banco
 de dados, mas também provê facilidades para consultar e retornar os dados da consulta.
+O Hibernate oferece validações específicas de acordo com cada país, como CNPJ, CPF, 
+título de eleitor, etc...
 
 Diferença Hibernate e JPA
 O JPA é uma "interface" muito bem documentada, enquanto o hibernate é a "classe"
