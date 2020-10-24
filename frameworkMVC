@@ -1,0 +1,17 @@
+Spring MVC - Model View Controller
+
+Todo Framework MVC precisa:
+
+- Ter um jeito de linkar um endereço com um método ou função.
+Que é, se eu acesso o endereço @RequestMapping ("/api") através de um @PostMapping, 
+eu entrarei em um método "save".
+
+- Deve fornecer mecanismos de validação de dados de entrada, @Valid.
+
+- Tratar diferentes tipos de dados, Json, MultpartFile, etc...
+
+- Ser capaz de pegar objetos e escrever para outros tipos.
+
+- Receber parâmetros que venham no header da requisição ou algo do genero.
+
+
