@@ -16,7 +16,6 @@ public @interface MinhaAnotacao {
   Class<? extends Payload>[] payload() default {};
 
 }
-
 ###################################
 
 public class CpfCnpjValidator implements ConstraintValidator<CpfCnpj, CharSequence> {
@@ -40,5 +39,5 @@ public class CpfCnpjValidator implements ConstraintValidator<CpfCnpj, CharSequen
 }
  
  - Está classe conta com dois tipos parametrizados, o primeiro a anotação e o segundo
- o tipo do atributo.
+ o tipo do atributo. É necessário implementar os métodos, initialize e isValid.
 
