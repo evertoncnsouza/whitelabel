@@ -8,6 +8,6 @@ Proposta proposta = new Proposta(request.getDocumento(),request.getEmail()...)
 
 Porém, mesmo considerando o primeiro modelo, utilizamos Request Value objects, 
 que é meu preferido também.
-Proposta novaProposta = request.toModel();
+Proposta proposta = request.toModel();
 
 
