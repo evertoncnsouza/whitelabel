@@ -1,7 +1,7 @@
 Na hora de testar começar sempre pensando no cenário, ação e verificação! 
 Um teste deve ser First!
 Fast - Rápido
-Independent - Não deve repetir de outro
+Independent - Não deve repetir de outro / Isolado;
 Repeteable - Deve funcionar quando quiser;
 Self-Verifying - Alto verificável;
 Timely - Oportuno! Deve ser criado no momento correto.
@@ -29,11 +29,30 @@ Import JUnit Maven
 Utilize as assertivas corretamente, sendo as do pacote org.junit.
 
 Quanto a testes, seja sempre rigoroso e tenha 100% de aproveitamento.
+
 Não teste na classe, crie outra, acrescente a palavra teste e jogue dentro de
 outra Source Foulder dentro da pasta teste. Mantenha a mesma estrutura de pastas
 para o Java entender que estão dentro da mesma pasta em tempo de execução.
 
 Utilize o minimo de negações possíveis. Prefira AssertTrue.
+
+Assert.assertEquals - Aceita margem de erro e também pode comparar Strings.
+Porém se fosse para comparar Maiusculas e minisculas, seria usado o True.
+Assert.assertTrue("bola".equalsIgnoreCase("Bola"));
+
+Crie os equals nas classes!
+
+Quando você chama os Asserts, preste atenção nos tipos parametrizados que eles pedem,
+valor passado, valor esperado. Caso você passe os valores trocados, o método irá 
+funcionar, porém, será mais difícil rastrear o erro.
+
+AssertThat - "Verifique que". Deixa o método mais fluido.
+
+Crie um teste para cada assertiva, pois o teste deve ser isolado.
+
+
+
+
 
 
 
