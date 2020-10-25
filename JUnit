@@ -1,0 +1,39 @@
+Na hora de testar começar sempre pensando no cenário, ação e verificação! 
+Um teste deve ser First!
+Fast - Rápido
+Independent - Não deve repetir de outro
+Repeteable - Deve funcionar quando quiser;
+Self-Verifying - Alto verificável;
+Timely - Oportuno! Deve ser criado no momento correto.
+
+Os pontos que o Framework JUnit devem definir:
+- Testerunner, que diz quem executará o teste e colherá os resultados;
+- TesteFixture, que são as pré condições necessárias para os testes;
+- TestSuites, que diz quais testes podem ser executados;
+- TestResultFormatter, que é quem vai padronizar o resultado dos testes;
+- Assertion, que verificam o comportamento ou estado do que está sendo testado, 
+se uma condição de Assertion não for satisfeita, o teste será interrompido.
+
+Import JUnit Maven
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.1</version>
+</dependency>
+
+<dependency>
+   <groupId>org.junit.jupiter</groupId>
+   <artifactId>junit-jupiter</artifactId>
+</dependency>
+
+Utilize as assertivas corretamente, sendo as do pacote org.junit.
+
+Quanto a testes, seja sempre rigoroso e tenha 100% de aproveitamento.
+Não teste na classe, crie outra, acrescente a palavra teste e jogue dentro de
+outra Source Foulder dentro da pasta teste. Mantenha a mesma estrutura de pastas
+para o Java entender que estão dentro da mesma pasta em tempo de execução.
+
+Utilize o minimo de negações possíveis. Prefira AssertTrue.
+
+
+
