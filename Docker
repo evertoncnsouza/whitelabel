@@ -12,3 +12,88 @@ docker-compose ps
 
 Docker Compose- É uma ferramenta para definir e executar aplicativos Docker de vários contêiners. Com o Compose, usei o arquivo Yaml para configuração
 dos serviços. Com um único comando, consegui criar todos os serviçoes de configuração.
+
+Comando para iniciar Docker 
+- docker run -d -p 80:80 docker/getting-started
+###############################################
+Comandos Curso "Docker: Ferramenta essencial para Devs" 
+
+ - docker container run hello-word
+ Comando run é a concatenação de 4 comandos. Ele faz o docker Image Pull que 
+ é justamente para baixar a imagem, faz o docker container create que é a criação
+ do container e o docker container start e o docker container exec que é a execução 
+ do container em modo interativo.
+ 
+ - docker image pull = Puxa a imagem;
+ - docker container create = Cria um container; 
+ - docker container exec = Executa o container;
+ - docker container start = Inicia  o container;
+ - bash --version = Saber a versão do Bash 
+ - docker container run debian bash --version = Não faz sentido rodar Bash no Windows.
+ - docker container ps = Ver quais containers estão ativos;
+ - docker container ps -a = Mostra todos containers que foram executados, independentes
+ de estarem em uso ou não.
+ - docker container run --rm debian bash --version = Manda executar e remover do Cash o comando;
+ - docker container run = Sempre cria um novo container quando você chama ele. 
+ - docker container run -it debian bash = Vai entrar no terminal do container. 
+ - ls nomedoarquivocriado+extensao = Para ver se o arquivo foi criado;
+ - exit = Sai do container;
+ - docker container run --name nomedocontainer -it debianbash = nomear um container;
+ - docker container ls = Listaa os containers criados;
+ - docker container ls -a - = Lista todos independente do status;
+ - docker container start -ai nomeDoContainerQueVoceQuerAcessar = A de Attach, ter acesso 
+ ao terminal e i é do modo interativo;
+ - touch nomeDoArquivoQueQuerCriar = Nomeia um container;
+ - docker container run -p 8080:80 = Mapear portas;
+ - clear = Limpa o terminal;
+ - docker container run -p 8080:80 -v aPastaDoHostQueQuerMapear : aPAstaDentroDoContainer
+ QueVoceQuerFazerMapeamento = Mapear volume usando a flag -v;
+ 
+ #####################################
+ Existem dois modos basicos para executar container, 
+ - Diamond que você  executa o container e ele fica rodando em background. É um modo 
+ primordial porque você vai startar o processo e ficar rodando o software que instalou dentro do container.
+ - Modo interativo - O modo que serve para fazer experimentos, ver se deu certo.
+ 
+ ####################################
+ Importante:
+ - Containers devem ter nome únicos!
+ - Uma vez que tem o nome do container, chame o Start, que ele será executado no modo
+ interativo;
+ - Não faz sentido ter o container completamente isolado. O que você quer é o isolamento
+ controlado. É necessário compartilhar alguma porta ou uma pasta ou copiar arquivos, etc..;
+ 
+ #####################################
+ Mapear Portas dos Containers
+ - docker container run -p 8080:80 nginx = 8080 é a porta que será exposta, ou seja, irei acessar
+ a partir da porta 8080. A porta 80 é a porta interna que o nginx(imagem) será startado. As pessoas
+ acessarão os serviços da porta 80, atraves da porta 8080.
+ 
+ #####################################
+ Mapear Diretórios para o Container
+ - docker container run -p 8080:80 -v aPastaDoHostQueQuerMapear : aPAstaDentroDoContainer
+ QueVoceQuerFazerMapeamento = Mapear volume usando a flag -v;
+  
+ #########################################
+ 
+ NGINX o que é? 
+ É um famoso software de servidor web de código aberto. Em sua versão inicial, funcionava
+ para veiculação da Web HTTP. Hoje, no entanto, também serve como proxy reverson, balanceador
+ de carta HTTP e proxy de e-mail para IMAP, POP3 e SMTP.
+ Ele gera processos de trabalho, nos quais é possível manipular milhares de conexões. 
+ Esses processos, por sua vez, implementam um mecanismo de loop rápido, que faz uma verificação 
+ contínua e processa eventos.
+
+Cada uma das conexões é colocada no loop de eventos no qual elas existem com outras conexões. 
+Dentro do loop, os eventos são processados de forma assíncrona, permitindo que o trabalho seja 
+tratado de maneira não bloqueante. Quando a conexão é fechada, ela é removida do loop.
+
+Esse estilo de processamento de conexão permite que o NGINX seja extremamente eficaz, mesmo
+com recursos limitados. Como o servidor é de encadeamento único e os processos não são gerados 
+para lidar com cada nova conexão, a memória e o uso da CPU tendem a permanecer relativamente 
+consistentes, mesmo em momentos de carga pesada.
+ 
+ 
+
+
+
