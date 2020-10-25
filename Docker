@@ -66,6 +66,18 @@ Comandos Curso "Docker: Ferramenta essencial para Devs"
  - docker command --help - Ver a documentação;
  - docker image --help - lista os sub-comandos de imagem que você pode usar;
  - docker volume --help - lista os sub-comandos de volume que você pode usar;
+ 
+ ###################################################
+ Comandos basicos gerenciamento de containers
+ Todos comandos começam com docker image.
+ - docker image ls = Listar
+ - docker image rm = Remover
+ - docker image pull = Baixar 
+ - docker image push = Enviar
+ - docker image inspect = Inspenciona;
+ - docker image tag = Você passa dois parametros. A imagem de origem que você quer 
+ aplicar a nova tag. Ai depois dessa imagem, coloca de fato, a tag que quer colocar.
+ - docker image build = Construir a imagem;
 
  #####################################
 
@@ -120,6 +132,11 @@ Rodar um servidor web em background
  
 ##############################################
 Docker Hub tem repositórios para imagens prontas;
+
+####################################
+Docker Hub x Docker Registry
+Docker Registry - É um serviço para registro de imagens;
+Docker Hub - SaS. É um produto na nuvem, tem o registry dentro dele.
 
 
 
