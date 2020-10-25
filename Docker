@@ -5,6 +5,11 @@ bibliotecas do sistema e configurações.
 Além de aprender sobre containers Docker, aprendi também sobre arquivo Yaml, utilizei o Visual Code que ainda não havia tido contato
 e aprendi comandos no Prompt de comandos do Windows
 
+Imagem é a "classe", container é o "objeto"!
+Container é o processo e a imagem é o modelo de sistemas de arquivos.
+
+Tags são ponteiros para imagens (Hashs) especificos;
+
 Comandos - 
 docker-compose version
 docker-compose up -d
@@ -48,9 +53,23 @@ Comandos Curso "Docker: Ferramenta essencial para Devs"
  - clear = Limpa o terminal;
  - docker container run -p 8080:80 -v aPastaDoHostQueQuerMapear : aPAstaDentroDoContainer
  QueVoceQuerFazerMapeamento = Mapear volume usando a flag -v;
- 
+ - docker container run -d --name ex-daemon-basic -p 8080:80 -v $(pwd)html:
+ /usr/share/nginx/html = Executar o container em background;
+ - docker container stop ex-daemon-basic = Parar o container. No caso ex-daemon-basic é 
+ o nome do container a ser parado.
+ - docker container restart - Reestartar o container, é nessario passar o nome do container;
+ - docker container logs NomeDoContainer - Mostra os logs que foram executados até agora;
+ - docker container inspect NomeDoContainer - Aparece um Json para inspecionar o container;
+ - docker image ls - Lista as imagens;
+ - docker volume ls - Lista os volumes;
+ - docker image rm - apagar imagem. 
+ - docker command --help - Ver a documentação;
+ - docker image --help - lista os sub-comandos de imagem que você pode usar;
+ - docker volume --help - lista os sub-comandos de volume que você pode usar;
+
  #####################################
- Existem dois modos basicos para executar container, 
+
+Existem dois modos basicos para executar container, 
  - Diamond que você  executa o container e ele fica rodando em background. É um modo 
  primordial porque você vai startar o processo e ficar rodando o software que instalou dentro do container.
  - Modo interativo - O modo que serve para fazer experimentos, ver se deu certo.
@@ -92,8 +111,15 @@ Esse estilo de processamento de conexão permite que o NGINX seja extremamente e
 com recursos limitados. Como o servidor é de encadeamento único e os processos não são gerados 
 para lidar com cada nova conexão, a memória e o uso da CPU tendem a permanecer relativamente 
 consistentes, mesmo em momentos de carga pesada.
+
+################################################
+Rodar um servidor web em background
+ - docker container run -d --name ex-daemon-basic -p 8080:80 -v $(pwd)html:
+ /usr/share/nginx/html
+ Vai te dar um id do container que está rodando.
  
- 
+##############################################
+Docker Hub tem repositórios para imagens prontas;
 
 
 
