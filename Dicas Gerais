@@ -22,5 +22,6 @@ as perguntas corretas;
 Pode existir dados repetidos? Quais as saídas esperadas?
 - Facilite as correções;
 - Identificar e dividir responsabilidades no código (separation of concerns) utilizando o CDD;
-
+- Se tratando de Docker, não baixe últimas versões de imagens, pois a API pode quebrar.
+É importante se preocupar com a sincronicidade entre versões.
 
