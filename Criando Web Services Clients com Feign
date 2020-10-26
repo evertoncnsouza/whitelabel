@@ -1,0 +1,16 @@
+Precisamos com certa frequência criar diferentes web service clients, nosso serviço, 
+na maioria das vezes necessitam se comunicar entre eles.
+
+Podemos encontrar alguns padrões no processo de criação desses clientes, envolvem 
+mapeamento de objetos de entrada, saída e configurações de URI como Path Params e 
+Query Params. O projeto OpenFeign pode nos ajudar nessa geração, já que podemos
+identificar um padrão na escrita desses clientes.
+
+Integrando com OpenFeign
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+<version>2.2.5.RELEASE</version>
+</dependency>
+
+
