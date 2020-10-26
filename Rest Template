@@ -1,0 +1,5 @@
+liente síncrono para executar solicitações HTTP, expondo uma API de método de modelo 
+simples sobre bibliotecas de cliente HTTP subjacentes, como JDK HttpURLConnection, 
+Apache HttpComponents e outros.
+O RestTemplate oferece templates para cenários comuns pelo método HTTP, além dos métodos 
+generalizados exchangee executeque suportam casos menos frequentes.
