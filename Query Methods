@@ -40,4 +40,7 @@ Neste caso não é um método de consulta.
 É necessário uma transação para deletar no banco de dados. 
 Então por isso a Annotation @Modifyng, para avisar que a tabela estará sendo atualizada. 
 
+ https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods
+ 
+ ############################################################################
 
