@@ -1,0 +1,7 @@
+Mock - É um objeto simulado que imita o comportamento de objetos reais de maneiras controladas,
+na maioria das vezes em teste de software. Mocks são criados para testar o comportamento de
+objetos.
+Obs: Não são stubs
+#######################################################################
+
+Mockito - É um framework de simples utilização, sintaxe clean e open Source.
