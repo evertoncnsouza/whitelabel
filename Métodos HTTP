@@ -11,9 +11,29 @@ O ResponseEntity permite que você passe todas informações da requisição.
 O created é chamado para retornar 201. 
 
 Tipos de Status Code:
-- 200 - ResponseEntity.ok()
-- 202 - ResponseEntity.accepted()
-- 204 - ResponseEntity.noContent()
-- 400 - ResponseEntity.badRequest()
-- 404 - ResponseEntity.notFound()
+- 200 - ResponseEntity.ok() = Status genéricco de sucesso;
+- 201 - ResponseEntity.CREATED = Criado com sucesso;
+- 202 - ResponseEntity.accepted() = Aceita para determinado processamento, sendo utilizado
+para requisições assíncronas;
+- 204 - ResponseEntity.noContent() = Sucesso e não retornará nenhuma informação;
+
+- 301 - Indica que a URI solicitada mudou e não será especificada na resposta;
+- 302 - Indica que a URI foi alterada temporariamente;
+- 304 - Utilizada quando há cache envolvido na requisção. Indica que não houve alteração na 
+requisição e ele pode utilizar a versão em cache da resposta;
+
+- 400 - ResponseEntity.badRequest() = Uri solicitada mudou. Nesses casos a URI é especificada na resposta;
+- 401 - O servidor não reconheceu suas credenciais para o recurso solicitado;
+- 403 - Credencial não tem os privilégios suficientes para acessar o recurso solicitado;
+- 404 - ResponseEntity.notFound() = URI informada não existe;
+- 405 - Método HTTP utilizado não é permitido na URI solicitada;
 - 409 - ResponseEntity.status(HttpStatus.CONFLICT).body("Já criado");
+- 415 - Erro ocasionado pela falta do Header Content. Verifique o Header Content-Type ou Content Enconding.
+- 422 - ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(body);
+Unprocessable Entity é usado para representar todo erro de negócio, pois as 
+informações obrigatórias foram preenchidas com alguma regra de negócio violada. 
+
+- 500 - Indica que o servidor não soube tratar a requisição ou ocorreu erro interno da aplicação;
+- 502 - O Proxy ou API Gateway não conseguiu identificar o erro reportado pela aplicação,
+normalmente um backend.
+- 503 - O servidor não pode processar a requisição devido alguma indisponibilidade;
