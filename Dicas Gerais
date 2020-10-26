@@ -24,4 +24,7 @@ Pode existir dados repetidos? Quais as saídas esperadas?
 - Identificar e dividir responsabilidades no código (separation of concerns) utilizando o CDD;
 - Se tratando de Docker, não baixe últimas versões de imagens, pois a API pode quebrar.
 É importante se preocupar com a sincronicidade entre versões.
+- O banco de dados também é uma borda. Todo banco relacional madura suporta a adição de
+constraints em relação a sua coluna. 
+- Não confie em nenhum dado que chega de uma camada superior, eles sempre podem estar errados!
 
