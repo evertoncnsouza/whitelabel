@@ -1,0 +1,73 @@
+Restrições mais comuns que podem ser adicionadas, suportadas por todos Bancos
+de dados relacionais:
+
+- Char e Varchar
+Char e Varchar são semelhantes, mais diferem na maneira como são armazenados e recuperados.
+Diferem também no comprimento máximo e em se os espações à direita são mantidos.
+
+Ambos são declarados com um cumprimento que indica o número máximo de caracteres que você
+deseja armazenar. Se Char(30), podem conter até 30 caracteres.
+O comprimento pode ir de 0 a 255. Quando armazenados, preenchem com espaço a direita, quando
+são recuperados, os espaçoes finais são removidos.
+
+Varchar tem comprimento variavel, variando de 0 a 65.535. O comprimento máximo está sujeito ao 
+tamanho máximo da linha (65.535 bytes) e ao conjunto de caracteres usados.
+
+Diferente do char, os valores são armazenados com um prefixo de comprimento de 1 byte ou 2 bytes.
+O prefixo de cumprimento indica o número de bytes no valor. Uma coluna usa um byte de comprimento
+se os valores não exigirem mais de 255 bytes, e dois bytes de comprimento se os valores exigirem mais
+de 255 bytes.
+
+Se o modo SQL estrito não estiver ativado e você atribuir um valor a uma coluna CHAR ou VARCHARque exceda
+o comprimento máximo da coluna, o valor será truncado para caber e um aviso será gerado. Para truncamento
+de caracteres sem espaço, você pode causar a ocorrência de um erro (em vez de um aviso) e suprimir a 
+inserção do valor usando o modo SQL estrito.
+
+Para colunas VARCHAR, os espaços à direita em excesso do comprimento da coluna são truncados antes da 
+inserção e um aviso é gerado, independentemente do modo SQL em uso. Para colunas CHAR, o truncamento de
+espaços à direita em excesso dos valores inseridos é executado silenciosamente, independentemente do modo SQL.
+
+VARCHARos valores não são preenchidos quando são armazenados. Os espaços finais são retidos quando os valores
+são armazenados e recuperados, em conformidade com o SQL padrão.
+
+Char - '    ' = 4 bytes
+Varchar- '  ' = 1 bytes
+Char - 'ab  ' = 4 bytes
+Varchar- 'ab' = 3 bytes
+Char - 'abc ' = 4 bytes
+Varchar - 'abc' = 5 bytes
+Char - 'abcd' = 4 bytes
+Varchar - 'abcd' = 5 bytes
+
+
+############################################################################################################
+
+ ENUM
+Enum é um objeto de string com um valor escolhido em uma lista de valores permitidos que são enumerados
+explicitamente na especificação da coluna no momento de criação da tabela.
+
+Vantagens ENUM
+- Armazenamento compacto de dados.
+- Consultas e saídas legíveis. 
+
+Problemas
+- Se você criar valores de enumeração que se pareçam com números, será fácil misturar os valores literais com
+seus números de índice internos.
+
+#########################################################################################
+
+Not Null
+
+Por padrão, uma coluna pode conter valores NULL. 
+A restrição NotNull força a coluna não aceitar valores nulos. 
+O campo é forçado a sempre conter um valor, o que significar que você não pode inserir um novo registro
+ou atualizar, sem adicionar um valor a este campo.
+
+##############################################################################################
+
+Foreign Key
+
+A Foreign key é uma chave usada para ligar duas tabelas.
+É um campo, que se refere a primary key em outra tabela.
+
+######################################################################################
