@@ -3,3 +3,63 @@ simples sobre bibliotecas de cliente HTTP subjacentes, como JDK HttpURLConnectio
 Apache HttpComponents e outros.
 O RestTemplate oferece templates para cenários comuns pelo método HTTP, além dos métodos 
 generalizados exchangee executeque suportam casos menos frequentes.
+
+Verbo GET
+
+// Método
+restTemplate.getForObject(url, resposta);
+
+// Exemplo
+restTemplate.getForObject("http://localhost:8080/v1/propostas/5951feee-9901-4111-83af-38cbe2895ffc, GetProposta.class);
+Verbo POST
+
+// Método
+restTemplate.postForObject(url, body, resposta);
+
+// Exemplo
+restTemplate.postForObject("http://localhost:8080/v1/propostas, novaProposta, PostProposta.class);
+Verbo PUT
+
+// Método
+restTemplate.putForObject(url, body, resposta);
+
+// Exemplo
+restTemplate.putForObject("http://localhost:8080/v1/propostas/5951feee-9901-4111-83af-38cbe2895ffc, atualizarProposta, PostProposta.class);
+Verbo PATCH
+
+// Método
+restTemplate.patchForObject(url, body, resposta);
+
+// Exemplo
+restTemplate.patchForObject("http://localhost:8080/v1/propostas/5951feee-9901-4111-83af-38cbe2895ffc,
+atualizarProposta, PostProposta.class);
+Verbo DELETE
+
+// Método
+restTemplate.delete(url);
+
+// Exemplo
+restTemplate.delete("http://localhost:8080/v1/propostas/5951feee-9901-4111-83af-38cbe2895ffc");
+
+####################################################################################################
+
+Exceptions 
+Exceptions casa do 400 -
+HttpClientErrorException.BadRequest , HttpClientErrorException.Conflict , HttpClientErrorException.Forbidden ,
+HttpClientErrorException.Gone , HttpClientErrorException.MethodNotAllowed , HttpClientErrorException.NotAcceptable ,
+HttpClientErrorException.NotFound , HttpClientErrorException.TooManyRequests , HttpClientErrorException.Unauthorized ,
+HttpClientErrorException.UnprocessableEntity , HttpClientErrorException.UnsupportedMediaType
+
+Exceptions casa do 500 -
+HttpServerErrorException.BadGateway, HttpServerErrorException.GatewayTimeout, HttpServerErrorException.InternalServerError,
+HttpServerErrorException.NotImplemented, HttpServerErrorException.ServiceUnavailable
+#######################################
+Se preferir tratar a exceção para não segmentar
+
+HttpStatusCodeException
+https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/HttpStatusCodeException.html
+
+###########################################################################
+Se quiser obter a resposta do erro, como body, faça assim:
+public  String  getResponseBodyAsString ()
+Retorne o corpo da resposta convertido em String. O conjunto de caracteres usado é o da resposta "Tipo de conteúdo" ou outro "UTF-8".
