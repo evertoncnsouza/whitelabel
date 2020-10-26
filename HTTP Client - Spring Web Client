@@ -1,0 +1,21 @@
+Essa nova API suporta chamadas assíncronas ou síncronas, .
+
+WebClient client = WebClient.create();
+Cartao cartao = client.get().uri("http://localhost:9999/api/cartoes/1111").retrieve().bodyToMono(Cartao.class).
+block()
+
+O block torna esse código 100% síncrono.
+Essa versão mais recente, permite que consigamos identificar as características
+de uma chamada HTTP nas próprias chamadas de métodos.
+
+########################
+
+Já quando utilizamos a versão reativa do Spring, utilizamos a versão do WebClient,
+capaz de ligar com todas características reativas.
+Durante a construção do código não há mudanças significativas, porém na execução
+mudamos nosso  modo de pensar e utilizamos um modelo de programação funcional. 
+
+WebClient client = WebClient.create();
+Mono<Cartao> cartao = client.get().uri("http://localhost:9999/api/cartoes/1111")
+.retrieve().bodyToMono(Cartao.class)
+
