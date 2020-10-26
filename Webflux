@@ -20,4 +20,22 @@ tempo de execução sem bloqueio. Isso é importante por causa dos servidores
 
 https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web-reactive.html#webflux
 
+###############################################
+
+Mais informações - 
+
+Biblioteca que o SpringWebClient usa por padrão
+https://github.com/reactor/reactor-netty
+
+Implementando uma aplicação utilizando a stack reativa do spring
+https://spring.io/guides/gs/reactive-rest-service/
+
+Documentação Stack Reative 
+https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web-reactive.html#spring-webflux
+
+
+
+
+
+
 
