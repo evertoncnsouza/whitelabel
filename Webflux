@@ -1,0 +1,23 @@
+A estrutura original incluída no Spring Framework, Spring Web MCV, foi 
+desenvolvida especificamente para a Servlet API e Servlet Conteiners.
+A estrutura da web de reactive-stack, Spring WebFlux, foi adicionada posteriormente na 
+versão 5.0. É totalmente não non-blocking, suporta Reactive Streams e é executada 
+em servidores como Netty, Undertow e Servlet 3.1+.
+Ambos os frameworks da web espelham os nomes de seus módulos de origem 
+( spring-webmvc e spring-webflux ) e coexistem lado a lado no Spring Framework.
+Cada módulo é opcional. Os aplicativos podem usar um ou outro módulo ou, 
+em alguns casos, ambos - por exemplo, controladores Spring MVC com o reativo 
+WebClient.
+
+O Spring Webflux foi criado parte da resposta é a necessidade de uma web stack non-blocking
+para lidar com a simultaneidade com um pequeno número de threads e escalar com menos
+recursos de hardware. O Servlet 3.1 forneceu uma API para E / S sem bloqueio. 
+No entanto, usá-lo afasta o resto da API Servlet, onde os contratos são síncronos 
+( Filter, Servlet) ou de bloqueio ( getParameter, getPart). 
+Essa foi a motivação para uma nova API comum para servir como base em qualquer 
+tempo de execução sem bloqueio. Isso é importante por causa dos servidores
+(como o Netty) que estão bem estabelecidos no espaço assíncrono e sem bloqueio.
+
+https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web-reactive.html#webflux
+
+
