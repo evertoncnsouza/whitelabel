@@ -1,0 +1,43 @@
+São uma funcionalidade onde declaramos a operação no Bando de dados, de acordo com o nome 
+do método. 
+
+Alguns tipos:
+List<Candidato> findByNomeLike(String nome) - Utilizado para fazer uma busca no código. 
+Podemos personalizar esta Query. 
+
+Para isso precisamos de duas Annotations @Query e @Param que faz referência a parâmetros. 
+- Primeiro no modelo SQL:
+
+@Query(value = "select c from candidato c where c.nome like :nome")
+   List<Candidato> EncontrarPorNome( @Param("nome") String nome);
+  
+- Agora com SQL nativo
+@Query(value = "select * from candidato c where c.nome like ‘%:nome%’ "), nativeQuery = true
+   List<Candidato> EncontrarPorNome( @Param("nome") String nome);
+
+- Com dialeto HQL
+List<Candidato> findByNomeOrId(String nome, Integer id);
+
+- Ordenação com Order by
+List<Candidato> findByOrderbyOrId(String nome, Integer id);
+
+- Obter apenas um candidato.
+Candidato findOneByNome(String nome);
+
+- Boolean
+boolean existsByNome(String Nome);
+
+
+- Deletar sem @Query
+void deleteByNome (String nome)- 
+
+- Deletar com @Query
+@Query(“ delete from Candidato c where c.nome =:nome “)
+@Modifying
+void deleteByNome (String nome)
+
+Neste caso não é um método de consulta.
+É necessário uma transação para deletar no banco de dados. 
+Então por isso a Annotation @Modifyng, para avisar que a tabela estará sendo atualizada. 
+
+
