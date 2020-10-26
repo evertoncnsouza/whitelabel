@@ -1,3 +1,5 @@
+Observação: Utilizado pela Zup
+
 Precisamos com certa frequência criar diferentes web service clients, nosso serviço, 
 na maioria das vezes necessitam se comunicar entre eles.
 
