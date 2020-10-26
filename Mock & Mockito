@@ -5,3 +5,42 @@ Obs: Não são stubs
 #######################################################################
 
 Mockito - É um framework de simples utilização, sintaxe clean e open Source.
+O Mockito faz uso forte de uma funcionalidade da linguagem Java que é chamada de 
+Proxy dinâmico. Tal funcionalidade é super utilizada em frameworks importantes como 
+Spring e Hibernate.
+Utilize Mocks sempre pensando em minimizar sua utilização por mais contraditório que isso
+pareça. 
+
+Método AnyString - É o que chamamos de matcher. Você ensina o Mockito que ele só precisa
+verificar que uma String foi passada para o método findByAtributo, pouco importa qual.
+Ou seja, se outro valor for passado ali como argumento em vez da informação do objeto da classe
+ClasseRequest, o código pode continuar funcionando e é chamado de teste falso positivo.
+
+
+################################################
+Importante - 
+Proxy dinâmicos para tempos de execução -
+Dynamic Proxy API - Uma classe de proxy dinâmica é uma classe que implementa uma
+lista de interfaces especificadas em tempo de execução de forma que uma invocação
+de método por meio de uma das interfaces em uma instância da classe seja codificada
+e enviada para outro objeto por meio de uma interface uniforme.
+https://docs.oracle.com/javase/8/docs/technotes/guides/reflection/proxy.html
+
+Os mais famosos são:
+cglib - Biblioteca de geração de código de byte é uma API de alto nível para gerar 
+e transformar o código de byte Java. É usado por AOP, testes, estruturas de acesso
+a dados para gerar objetos proxy dinâmicos e interceptar o acesso ao campo.
+https://github.com/cglib/cglib
+
+Byte Buddy- É uma biblioteca de geração e manipulação de código para criar e
+modificar classes Java durante o tempo de execução de um aplicativo Java e sem a
+ajuda de um compilador.
+https://bytebuddy.net/#/
+##################################################################
+
+
+
+
+
+
+
