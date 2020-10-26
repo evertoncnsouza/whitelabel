@@ -1,0 +1,27 @@
+Spring Cloud fornece ferramentas para que os desenvolvedores criem rapidamente
+alguns dos padrões comuns em sistemas distribuídos (por exemplo, gerenciamento de 
+configuração, descoberta de serviço, disjuntores, roteamento inteligente, micro-proxy,
+barramento de controle, tokens únicos, bloqueios globais, eleição de liderança, 
+distribuído sessões, estado do cluster). A coordenação de sistemas distribuídos leva 
+a padrões padronizados e, usando o Spring Cloud, os desenvolvedores podem criar 
+rapidamente serviços e aplicativos que implementam esses padrões. Eles funcionarão 
+bem em qualquer ambiente distribuído, incluindo o próprio laptop do desenvolvedor,
+data centers bare metal e plataformas gerenciadas, como Cloud Foundry.
+
+Recursos
+Spring Cloud se concentra em fornecer uma boa experiência pronta para uso para casos 
+de uso típicos e mecanismo de extensibilidade para cobrir outros.
+
+-Configuração distribuída / com versão
+-Registro e descoberta de serviço
+-Encaminhamento
+-Chamadas serviço a serviço
+-Balanceamento de carga
+-Disjuntores
+-Bloqueios globais
+-Eleição da liderança e estado do agrupamento
+-Mensagens distribuídas
+
+https://spring.io/projects/spring-cloud
+
+###########################################################################
