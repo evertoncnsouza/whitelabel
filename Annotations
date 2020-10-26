@@ -31,6 +31,9 @@ ou @ModelAttributemétodos para ser compartilhado entre vários @Controllerclass
 
 @Embedded-	Notifica a JPA, que este é um elemento a ser mapeado na mesma tabela;
 
+@EnableFeignClients - Essa anotação indica para o Spring Framework que nosso projeto
+vai utilizar a configuração de clientes web services dinâmicas.
+
 @entity-	Mostra que a classe representa uma entidade;
 
 @Enumerated-	Mapeia o Enum para um tipo de coluna String do Banco de dados;
