@@ -32,6 +32,8 @@ requisição e ele pode utilizar a versão em cache da resposta;
 - 422 - ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(body);
 Unprocessable Entity é usado para representar todo erro de negócio, pois as 
 informações obrigatórias foram preenchidas com alguma regra de negócio violada. 
+- 423 - Código de status bloqueado, significa que o recurso de origem ou destino de um método
+está bloqueado. 
 
 - 500 - Indica que o servidor não soube tratar a requisição ou ocorreu erro interno da aplicação;
 - 502 - O Proxy ou API Gateway não conseguiu identificar o erro reportado pela aplicação,
