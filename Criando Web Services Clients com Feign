@@ -15,4 +15,32 @@ Integrando com OpenFeign
 <version>2.2.5.RELEASE</version>
 </dependency>
 
+- @EnableFeignClients no Application
+
+- @FeignClient("cartoes")
+public interface CartoesClient {
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/cartoes")
+    List<Cartao> cartoes();
+    
+}
+
+Onde @FeignClient define o nome do cliente que estamos criando. 
+Quando chamamos a operação, necessitamos saber a Uri dessa operação no servidor 
+e também precisamos saber o método HTTP que essa operação chama. Com @RequestMapping, 
+resolvemos isso.
+
+##########################################################
+
+FeignClientException na casa do 400 -
+FeignException.BadRequest , FeignException.Conflict , FeignException.Forbidden , 
+FeignException.Gone , FeignException.MethodNotAllowed , FeignException.NotAcceptable , 
+FeignException.NotFound , FeignException.Gone , FeignException.MethodNotAllowed ,
+FeignException.NotAcceptable , FeignException.NotFound , FeignExignception.TooManyExceptionRequests,
+FeignExignception.TooMExocessUnitRequests , FeignExignception.TooManyRequests
+
+FeignClientException na casa do 500 -
+FeignException.BadGateway, FeignException.GatewayTimeout, FeignException.InternalServerError, 
+FeignException.NotImplemented, FeignException.ServiceUnavailable
+
 
