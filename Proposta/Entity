@@ -1,1 +1,8 @@
 - Proposta 
+A entidade proposta recebe os dados da proposta: documento, email, nome, endereço
+e salario. Posteriormente, receberá também o statusAvaliação.
+Esta classe, além de construtores, getters necessários e hashcode e equals para o
+documento, conta com um metodo atualizaStatus, onde este método tem a classe 
+Assert que compara se o status da avaliação é igual a enum status Avaliação proposta, 
+no formato não elegível. Se sim, é impossível trocar. 
+Se não, recebe o status da Avaliação.
