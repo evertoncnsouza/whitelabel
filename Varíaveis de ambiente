@@ -177,3 +177,14 @@ o que um aplicativo precisa para funcionar sem problemas. Para entradas gerais, 
 do seu shell é o lugar lógico para procurar. Se você escrever scripts ou aplicativos que requerem
 novas variáveis de ambiente, certifique-se de definir essas variáveis em sua própria documentação.
 
+##################################################################################
+Pilar 3 do manifesto, fala sobre configuração
+https://12factor.net/pt_br/config
+
+Todos os pilares The Twelve-factor app
+https://12factor.net/pt_br/
+
+
+
+##################################################################
+
