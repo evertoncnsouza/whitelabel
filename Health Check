@@ -24,6 +24,39 @@ podemos expor uma funcionalidade via linha de comando, seguindo os mesmo princí
 ou seja, validando conexões externas da nossas aplicações.
 ######################################################################
 
+Readiness Check ou Liveness Check
+Nossas aplicações normalmente rodam em um ambiente gerenciado, ou seja uma plataforma 
+que é capaz de detectar se alguma coisa não está funcionando conforme o esperado, 
+um crash de aplicação ou carga demasiada.
+
+Nossas aplicações consomem um determinado tempo para estarem aptas a receber fluxo de trabalho,
+durante esse intervalo de tempo é recomendado que nenhuma requisição seja redirecionada para
+a nossa aplicação em processo de preparação.
+
+Esse processo de preparação pode compreender a configuração de uma fila, conexão com um banco 
+de dados ou um determinado pré-processamento.
+
+Temos algumas alternativas para realizar esta tarefa, quando nossa aplicação expõe uma API REST
+podemos usar um endpoint HTTP GET para esse fim, esse endpoint deve verificar se a aplicação está 
+preparada para começar a receber fluxo de trabalho, ou requisições. Uma vez que a plataforma nota
+que esse endpoint retorna uma status de sucesso as requisições começam à ser redirecionadas para 
+esta nova instância de serviço.
+
+Processamentos em lote também podem implementar este conceito expondo operações de linha de comando,
+dessa forma a plataforma, cujo serviço está instalado é capaz de identificar se realmente o serviço 
+está apto a começar o trabalho.
+
+Dicas de Claudio Eduardo Oliveira
+Tente minimizar o tempo de preparação da sua aplicação sempre que possível, esse tempo pode impactar
+sua regra de auto-scaling e alta-disponibilidade da sua aplicação, pois durante essa fase sua aplicação
+não pode receber fluxo de trabalho.
+
+É importante termos um trabalho de ajuste fino nessas configurações, pois elas impactam diretamente
+suas regras de alta-disponibilidade e auto-scaling
+
+
+#######################################################################
+
 Health Checks no Spring
 https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html
 
