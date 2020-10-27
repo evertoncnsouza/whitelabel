@@ -1,1 +1,21 @@
 - AvaliaProposta
+
+Este é um service que além de injetar a interface integrações, trás também o 
+StatusAvaliacaoPropota, responsável por receber uma proposta válida e não nula. 
+
+@Service
+@Validated
+public class AvaliaProposta {
+
+    @Autowired
+    private Integracoes integracoes;
+
+    public StatusAvaliacaoProposta executa(@NotNull @Validated Proposta proposta) {
+
+        String resultadoAvaliacao = integracoes
+                .avalia(new DocumentoRequest(proposta));
+
+        return RespostaStatusAvaliacao.valueOf(resultadoAvaliacao).getStatusAvaliacao();
+    }
+
+}
