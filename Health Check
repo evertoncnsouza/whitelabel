@@ -1,0 +1,30 @@
+As aplicações devem implementar Health Check.
+Health Check é uma análise do ambiente que visa apontas falhas e pontos de 
+melhorias.
+
+Por que Health Check?
+Nossas aplicações normalmente rodam em um ambiente gerenciado, ou seja, uma
+plataforma que é capaz de detectar se alguma coisa não está funcionando conforme o
+esperado, um crash de aplicação ou carga demasiada.
+
+Depois de notar essas falhas essas plataformas são capazes de tomar algumas ações 
+para tentar remediar a aplicação, reiniciar ou mesmo desligar a aplicação e lançá-la
+novamente em outro servidor.
+
+Para que isso funcione precisamos expor alguma operação em nossa aplicação para que
+a plataforma possa chamar e verificar se tudo está funcionando perfeitamente.
+
+Temos algumas alternativas, quando nossa aplicação expõe uma API REST podemos usar
+um endpoint HTTP GET para esse fim, esse endpoint deve verificar se o que a aplicação
+precisa para funcionar está 100% operacional. Isso pode incluir banco de dados e 
+serviços de mensageria por exemplo.
+
+Entretanto, se nossa aplicação é uma aplicação de processamento em lote ou batch, 
+podemos expor uma funcionalidade via linha de comando, seguindo os mesmo princípios,
+ou seja, validando conexões externas da nossas aplicações.
+
+
+
+
+
+
