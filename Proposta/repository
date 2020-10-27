@@ -1,1 +1,10 @@
 - Integrações
+
+Aqui começa a atuação com o FeignCliente, onde consumiremos a API já disponibilizada
+pelo Docker. 
+A annotation @FeignClient, recebe o endereço que consumiremos e passamos um nome. 
+Dentro da classe, declaramos também o método post, onde passamos o endereço,
+podendo inclusive consumir esta API no Postman.
+
+O endereço que deveriámos acessar na url, foi passado na especificação do projeto.
+
