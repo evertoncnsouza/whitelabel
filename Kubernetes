@@ -1,0 +1,38 @@
+O Kubernetes, ou “kube”, para aqueles que gostam de ser concisos, é uma plataforma open
+source que automatiza as operações dos containers Linux. Essa plataforma elimina grande
+parte dos processos manuais necessários para implantar e escalar as aplicações em containers.
+Em outras palavras, se você desejar agrupar em clusters os hosts executados nos containers Linux,
+o Kubernetes ajudará a gerenciar esses clusters com facilidade e eficiência. Esses clusters podem 
+incluir hosts em nuvem pública, nuvem privada ou nuvem híbrida. Por isso, o Kubernetes é a plataforma 
+ideal para hospedar aplicações nativas em nuvem que exigem escalabilidade rápida, como a transmissão 
+de dados em tempo real por meio do Apache Kafka.
+
+Por que o Kubernetes é essencial?
+Aplicações de produção abrangem múltiplos containers. Eles devem ser implantados em vários hosts do 
+servidor. A segurança dos containers tem várias camadas e pode ser complexa. É aí que o Kubernetes 
+entra em cena. Ele oferece os recursos de orquestração e gerenciamento necessários para implantar
+containers em escala para essas cargas de trabalho. Com a orquestração do Kubernetes, é possível
+criar serviços de aplicações que abrangem múltiplos containers, programar o uso deles no cluster,
+escalá-los e gerenciar a integridade deles com o passar do tempo. Com o Kubernetes, você toma medidas
+reais para aprimorar a segurança da TI.
+
+Também é necessário integrar o Kubernetes com os serviços de rede, armazenamento, segurança, 
+telemetria e outros para oferecer uma infraestrutura de containers global.
+
+https://www.redhat.com/pt-br/topics/containers/what-is-kubernetes
+
+##################################################################################
+
+Definir variáveis de ambiente para um contêiner
+https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
+
+#################################################################################
+
+Como usamos varíaveis de ambiente de uma maneira mais eficiente
+https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables
+
+###################################################################################
+
+Váriavel de ambiente segura, que não pode ser armazenada aberta no Kubernetes
+
+https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/#define-container-environment-variables-using-secret-data
