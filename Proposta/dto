@@ -1,5 +1,9 @@
 - DocumentoRequest
+Essa classe recebe um @JsonAutoDetect usado para especificar regras de visibilidade 
+de acesso para campos ou métodos.  a Visibilidade foi Any  para que todos os 
+modificadores de acesso (incluindo privado) dos 'campos' possam ser detectáveis.
 
 ##########################################################
 
 - PropostaRequest
+Utilizamos para isolar os parâmetros de domínio de proposta.
