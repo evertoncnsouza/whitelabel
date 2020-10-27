@@ -1,1 +1,6 @@
 - ExecutorTransacao 
+Este arquivo é anotado com @Component, tem EntityManager injetado com o @PersistenceContext.
+Ele tem dois métodos. O primeiro SalvaEComita, onde é passado um Objeto T, e o entity manager é
+responsável por persistir este objeto. A annotação @Transactional, garante que esta 
+operação seja executada. 
+O segundo método é para atualizar, utilizando o EntityManager.
