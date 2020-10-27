@@ -1,0 +1,37 @@
+Spring Boot - Actuator
+Spring Boot Actuator inclui vários recursos adicionais para ajudá-lo a
+monitorar e gerenciar seu aplicativo quando ele for colocado em produção. 
+Você pode escolher gerenciar e monitorar seu aplicativo usando terminais HTTP ou JMX.
+A auditoria, a saúde e a coleta de métricas podem ser aplicadas automaticamente 
+ao seu aplicativo.
+
+Os pontos de extremidade do atuador permitem monitorar e interagir com seu 
+aplicativo. Spring Boot inclui vários endpoints integrados e permite que você
+adicione os seus próprios. Por exemplo, o healthterminal fornece informações básicas
+sobre a integridade do aplicativo.
+
+Cada terminal individual pode ser habilitado ou desabilitado e exposto (tornado
+acessível remotamente) por HTTP ou JMX . Um ponto de extremidade é considerado 
+disponível quando está habilitado e exposto. Os endpoints integrados serão 
+configurados automaticamente apenas quando estiverem disponíveis. A maioria dos 
+aplicativos escolhe a exposição via HTTP, onde o ID do endpoint junto com um prefixo
+de /actuatoré mapeado para uma URL. Por exemplo, por padrão, o healthterminal é 
+mapeado para /actuator/health.
+
+<dependencies>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
+</dependencies>
+
+#########################################
+
+http://localhost:8080/actuator
+
+############################################
+
+http://localhost:8080/actuator/health
+
+
+
