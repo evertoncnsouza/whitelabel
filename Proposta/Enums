@@ -1,5 +1,10 @@
 - RespostaStatusAvaliacao
+Enum que busca no enum StatusAvaliacaoProposta e trás Com restrição, deixando a 
+proposta não elegível e
+Sem restrição, que deixa a proposta elegível;
 
 ######################################################
 
 -StatusAvaliacaoProposta
+Enum que atua dentro do Enum acima. Daqui sai os valores constantes nao_elegivel e
+elegivel.
