@@ -33,5 +33,23 @@ http://localhost:8080/actuator
 
 http://localhost:8080/actuator/health
 
+##############################################
+
+
+@Component
+    public class MyHealthIndicator implements HealthIndicator {
+
+        @Override
+        public Health health() {
+            Map<String, Object> details = new HashMap<>();
+            details.put("versão", "1.2.3");
+            details.put("descrição", "Meu primeiro Health Check customizado!");
+            details.put("endereço", "127.0.0.1");
+
+            return Health.status(Status.UP).withDetails(details).build();
+        }
+    }
+
+
 
 
