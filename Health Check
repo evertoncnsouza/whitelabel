@@ -22,6 +22,40 @@ serviços de mensageria por exemplo.
 Entretanto, se nossa aplicação é uma aplicação de processamento em lote ou batch, 
 podemos expor uma funcionalidade via linha de comando, seguindo os mesmo princípios,
 ou seja, validando conexões externas da nossas aplicações.
+######################################################################
+
+Health Checks no Spring
+https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html
+
+#######################################################################
+
+Heath Check Kubernets
+
+Configure as sondas de vivacidade, prontidão e inicialização
+Esta página mostra como configurar probes de ativação, prontidão e inicialização para contêineres.
+
+O kubelet usa sondagens de atividade para saber quando reiniciar um contêiner. Por exemplo, 
+as análises de atividade podem detectar um conflito, em que um aplicativo está em execução, 
+mas não consegue fazer progresso. Reiniciar um contêiner em tal estado pode ajudar a tornar 
+o aplicativo mais disponível, apesar dos bugs.
+
+O kubelet usa sondagens de prontidão para saber quando um contêiner está pronto para começar
+a aceitar tráfego. Um pod é considerado pronto quando todos os seus contêineres estão prontos. 
+Um uso desse sinal é controlar quais pods são usados como back-ends para serviços.
+Quando um pod não está pronto, ele é removido dos balanceadores de carga do serviço.
+
+O kubelet usa testes de inicialização para saber quando um aplicativo de contêiner foi iniciado.
+Se tal teste for configurado, ele desativa as verificações de atividade e prontidão até que tenha sucesso, 
+garantindo que esses testes não interfiram na inicialização do aplicativo. Isso pode ser usado para adotar
+verificações de atividade em contêineres de inicialização lenta, evitando que sejam eliminados pelo kubelet
+antes de começarem a funcionar.
+
+############################################################################################
+
+Health Check na arquitetura de microsserviçoes
+
+https://microservices.io/patterns/observability/health-check-api.html
+
 
 
 
