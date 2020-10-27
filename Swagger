@@ -1,0 +1,6 @@
+Swagger é uma ótima opção para documentar e permite que a documentação possa evoluir
+no mesmo ritmo da implementação, já que pode ser gerada automaticamente com base
+em annotations do código.
+
+Documentação oficial
+https://swagger.io/
