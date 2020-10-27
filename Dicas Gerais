@@ -27,6 +27,8 @@ Pode existir dados repetidos? Quais as saídas esperadas?
 - O banco de dados também é uma borda. Todo banco relacional madura suporta a adição de
 constraints em relação a sua coluna. 
 - Não confie em nenhum dado que chega de uma camada superior, eles sempre podem estar errados!
+- Toda execução externa, deve ter um tempo máximo de resposta. Isto gera um pouco mais de 
+previsibilidade na execução do código necessário para atender determinada requisição. 
 
 
 #########################################################################################
