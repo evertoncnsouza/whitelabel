@@ -1,0 +1,179 @@
+Variáveis de ambiente contêm informações sobre sua sessão de login, armazenadas para
+o shell do sistema usar ao executar comandos. Eles existem quer você esteja usando 
+Linux, Mac ou Windows. Muitas dessas variáveis são definidas por padrão durante a 
+instalação ou criação do usuário.
+
+
+Compreendendo as variáveis de ambiente
+Variáveis de ambiente não são diferentes, tecnicamente, de variáveis. Eles podem 
+ser configurados, recuperados e limpos com exatamente a mesma sintaxe usada para variáveis.
+Se você não está acostumado a usar variáveis no Bash, leia minhas variáveis no artigo 
+do Bash antes de continuar.
+
+Muitas vezes você não usa variáveis de ambiente diretamente. Eles são referenciados 
+por aplicativos e daemons individuais, conforme necessário. Por exemplo, seu diretório 
+inicial é definido como uma variável de ambiente quando você faz login. Por exemplo, 
+no Linux, você pode ver o conteúdo de sua variável de ambiente HOME assim:
+
+$ echo $ HOME
+HOME = / home / seth
+Em um Mac:
+
+$ echo $ HOME
+HOME = / Users / bogus
+No Windows:
+
+C:\Users\bogus
+Você pode visualizar todas as variáveis de ambiente definidas em seu sistema com o 
+comando env . A lista é longa, então canalize a saída por mais para torná-la mais fácil de ler:
+
+$ env | mais
+TERM = xterm-256color
+LESSOPEN = || / usr / bin / lesspipe.sh % s
+USER = seth
+SUDO_EDITOR = emacs
+WWW_HOME = http: // mirror.lagoon.nc / pub / slackware / slackware64-current / ChangeLog.txt
+VISUAL = emacs
+DISPLAY =: 0
+PS1 = $
+XDG_DATA_DIRS = / home / seth / .local /share / flatpak / exports / share / : / var / lib / 
+flatpak / exports / share / : / usr / local / share / : / usr / share /
+PATH = / usr / local / bin: / usr / local / sbin: / usr / bin: / usr /sbin: / snap / bin: / 
+home / seth / bin: / home / seth / .local / bin: / snap / bin
+GDMSESSION = gnome
+MAIL = / var / spool / mail / seth
+[ ... ]
+As variáveis de ambiente podem ser úteis quando você deseja substituir as configurações padrão
+ou quando precisa gerenciar novas configurações que seu sistema não tem razão para criar por 
+conta própria. Por exemplo, quando você digita um comando, o único motivo pelo qual seu 
+computador sabe como encontrar o aplicativo correspondente a esse comando é que a variável de
+ambiente PATH diz a ele onde procurar. Esta variável lista diretórios válidos para o seu sistema
+operacional pesquisar comandos, seja esse comando ls ou cp , ou um aplicativo gráfico como Firefox
+ou Lutris , ou qualquer outro.
+
+Diferentes variáveis de ambiente são usadas por diferentes sistemas. Sua variável PATH é vital 
+para seu emulador de terminal, por exemplo, mas muito menos significativa para, digamos, Java 
+(que tem seus próprios caminhos, que apontam para bibliotecas Java importantes). Porém, a variável 
+USER é utilizada por diversos sistemas como forma de identificar quem está solicitando um serviço.
+Por exemplo, se você estiver em um sistema multiusuário e precisar verificar sua caixa de correio local, 
+seu comando mail sabe qual spool de correio deve ser recuperado com base nas variáveis MAIL e USER .
+
+Definir uma variável de ambiente
+Normalmente, o programa de instalação, seja dnf no Fedora, apt no Ubuntu, brew no Mac ou um instalador
+personalizado, atualiza suas variáveis de ambiente para um novo aplicativo. Às vezes, entretanto, 
+quando você está instalando algo fora do conjunto de ferramentas pretendido para sua distribuição, 
+você pode ter que gerenciar uma variável de ambiente sozinho. Ou você pode optar por adicionar uma
+variável de ambiente para atender às suas preferências. Se decidir que deseja manter alguns aplicativos 
+em uma pasta bin localizada em seu diretório inicial, você deve adicionar esse diretório ao seu PATH para
+que seu sistema operacional saiba onde procurar aplicativos para serem executados quando você emitir um comando.
+
+Variáveis de ambiente temporárias
+Você pode adicionar um local ao seu caminho da mesma forma que cria variáveis descartáveis. Funciona, 
+mas apenas enquanto o shell que você usou para modificar o caminho do sistema permanecer aberto. Por exemplo, 
+abra um shell Bash e modifique o caminho do sistema:
+
+$ export PATH = $ PATH : / home / seth / bin
+Confirme o resultado:
+
+$ echo $ PATH
+PATH = / usr / local / bin: / usr / local / sbin: / usr / bin: / usr / sbin: / snap / bin: / home / seth / bin: 
+/ home / seth / .local / bin: / snap / bin: / home / seth / bin
+Feche a sessão:
+
+$ exit
+Abra um novo e dê uma olhada na variável PATH :
+
+$ echo $ PATH
+PATH = / usr / local / bin: / usr / local / sbin: / usr / bin: / usr / sbin: / snap / bin: / home / seth / bin: /
+home / seth / .local / bin: / snap / bin
+Esta variável foi revertida para seu estado padrão porque PATH não está sendo definido com cada novo shell. 
+Para isso, você deve configurar suas variáveis para carregar sempre que um shell for iniciado.
+
+Variáveis de ambiente permanentes
+Você pode definir suas próprias variáveis de ambiente persistentes em seu arquivo de configuração do shell,
+o mais comum dos quais é ~ / .bashrc . Se você for um administrador de sistema gerenciando vários usuários,
+também pode definir variáveis de ambiente em um script colocado no diretório /etc/profile.d .
+
+A sintaxe para definir uma variável por arquivo de configuração é a mesma que definir uma variável em seu shell:
+
+export PATH = $ PATH : / snap / bin: / home / seth / bin
+Feche o shell atual ou force-o a carregar a configuração atualizada:
+
+$ . ~ / .bashrc
+Finalmente, dê uma outra olhada no caminho do sistema:
+
+$ echo $ PATH
+PATH = / usr / local / bin: / usr / local / sbin: / usr / bin: / usr / sbin: / snap / bin: / home / seth 
+/ bin: / home / seth / .local / bin: / snap / bin: / home / seth / bin
+Agora ele está configurado corretamente para incluir seu diretório personalizado adicional.
+
+Descobrindo outras variáveis de ambiente
+Você pode criar e manipular variáveis de ambiente à vontade, e alguns aplicativos fazem exatamente isso.
+Esse fato significa que muitas de suas variáveis de ambiente não são usadas pela maioria de seus aplicativos e,
+se você adicionar suas próprias variáveis arbitrárias, algumas não poderão ser usadas por nada. Portanto, 
+a pergunta é: como você descobre quais variáveis de ambiente são significativas?
+
+A resposta está na documentação do aplicativo. Por exemplo, para descobrir quais opções estão disponíveis 
+para seu ambiente Bash geral, você pode ler a documentação do Bash. Enquanto a página do manual do Bash 
+menciona muitas variáveis importantes, a página de informações do GNU para o Bash apresenta duas listas exaustivas 
+de variáveis de ambiente Bourne Shell e Bash úteis e como cada uma é usada.
+
+Por exemplo, na lista da página de informações:
+
+'HISTCONTROL'
+     Uma lista de valores separados por dois pontos controlando como os comandos são salvos
+     na lista de histórico. Se a lista de valores incluir 'ignorespace', as
+     linhas que começam com um caractere de espaço não são salvas na
+     lista de histórico. Um valor de 'ignoreups' faz com que as linhas que correspondem à
+     entrada anterior do histórico não sejam salvas. Um valor de 'ignoreboth' é uma
+     abreviação para 'ignorespace' e 'ignoreups'.
+     [...]
+Esta saída informa que a variável de ambiente HISTCONTROL controla como seu histórico do Bash é 
+apresentado e quais valores você pode usar para personalizar essa experiência. Neste exemplo, 
+o valor ignoreups informa a saída do comando history para ignorar linhas duplicadas.
+
+Você pode testar este facilmente. Primeiro, emita o mesmo comando duas vezes seguidas:
+
+$ echo "hello world"
+hello world
+$ echo "hello world"
+hello world
+Visualize seu histórico ou, pelo menos, as entradas mais recentes:
+
+$ história | tail -5
+ 996  man bash
+ 997  info bash
+ 998  echo "hello world"
+ 999  echo "hello world"
+ 1000 history
+Você pode ver que as entradas duplicadas estão realmente listadas agora.
+
+Defina uma nova variável de ambiente em seu arquivo .bashrc com base no que você leu na página de informações:
+
+export HISTCONTROL = $ HISTCONTROL : ignorespace: ignoreups
+Salve e carregue sua nova configuração:
+
+$ source ~ / .bashrc
+Emita dois comandos duas vezes seguidas:
+
+$ echo "olá uma vez"
+olá uma vez
+$ echo "olá uma vez"
+olá uma vez
+Visualize as entradas mais recentes em seu histórico:
+
+$ história | tail -5
+ 1000 history
+ 1001 emacs ~ / .bashrc
+ 1002 source ~ / .bashrc
+ 1003 echo "hello once"
+ 1004 history
+Entradas duplicadas agora são reduzidas a uma entrada por causa de sua nova variável de ambiente,
+assim como a página de informações especificada.
+
+Encontrar variáveis de ambiente relevantes geralmente é uma questão de ler a documentação
+do aplicativo que você deseja afetar. A maioria das variáveis de ambiente são específicas para 
+o que um aplicativo precisa para funcionar sem problemas. Para entradas gerais, a documentação 
+do seu shell é o lugar lógico para procurar. Se você escrever scripts ou aplicativos que requerem
+novas variáveis de ambiente, certifique-se de definir essas variáveis em sua própria documentação.
+
