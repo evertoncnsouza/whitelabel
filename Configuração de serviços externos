@@ -1,0 +1,38 @@
+Nossa aplicação precisa acessar alguns serviços externos, esses serviços externos 
+estão instalados em algum lugar que pode ser identificado em uma rede de computadores.
+
+Não podemos deixar essas configurações de endereços em arquivos de configurações 
+dentro do nosso código fonte e também não podemos deixá-las fixas no código fonte.
+Temos alguns problemas nessa abordagem
+
+Segurança: algumas informações não podem ser armazenadas dentro do repositório do 
+código fonte
+
+Imutabilidade: Nossa aplicação é instalada em múltiplos ambientes e provavelmente
+esses endereços vão variar de ambiente para ambiente.
+
+Configurações deve ser providas pelo ambiente no qual a aplicação roda, ou seja, 
+sua aplicação deve sempre perguntar ao ambiente a informação que ela precisa.
+
+Essas configurações podem variar de ambiente para ambiente, porém se o ambiente
+estiver essas informações não teremos problemas ao promover nossas aplicações entre 
+eles.
+
+Resolvendo com o Spring
+O Spring suporta a configuração das aplicações usando os arquivos *properties ou *yaml.
+Nestes arquivos podemos fazer referências as varíaveis do ambiente.
+cartoes.host=${CARTOES_URL}
+
+cartoes:
+  host: ${CARTOES_URL}    
+
+É possível definir um valor padrão
+
+cartoes.host=${CARTOES_URL:http://localhost:9999/api/cartoes}
+
+cartoes:
+  host: ${CARTOES_URL:http://localhost:9999/api/cartoes}    
+  
+  Importante:
+  Utilize valores default somente em contexto de desenvolvimento. Essa prática não é
+  recomenda para ambientes produtivos.
