@@ -19,3 +19,8 @@ public class MinhaTarefa {
     }
 }
 
+periodicidade.minha-tarefa=${PERIODICIDADE_MINHA_TAREFA:1000}
+
+
+
+
