@@ -1,0 +1,25 @@
+Síncrono - Fluxo onde esperamos o término do mesmo.
+Segue os passos:
+- Requisição chega no Servidor;
+- Servidor processa a requisição;
+- Servidor processa as regras de negócio;
+- Servidor salva no banco de dados a nova loja cadastradas;
+- Servidor responde a requisição;
+
+##########################################
+
+Assíncrono - Não guarda os passos a serem executados, pois são executados em segundo
+plano
+- Requisição chega no Servidor;
+- Servidor responde a requisição;
+- Servidor processa a requisição;
+- Servidor processa as regras de negócio;
+- Servidor salva no banco de dados a nova loja cadastradas;
+
+É possível processar assíncronamente de tempos em tempos, uma operação agendada.
+
+###################################################
+
+Polling- Técnica utilizada para ficar de tempos em tempos executando uma operação.
+
+
