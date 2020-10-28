@@ -1,0 +1,21 @@
+Anotação que marca um método a ser agendado. Exatamente um dos cron(), fixedDelay()
+ou fixedRate()atributos devem ser especificados.
+
+O método anotado não deve esperar argumentos. Normalmente terá um voidtipo de retorno;
+caso contrário, o valor retornado será ignorado quando chamado por meio do planejador.
+
+O processamento das @Scheduledanotações é realizado registrando a ScheduledAnnotationBeanPostProcessor. 
+Isso pode ser feito manualmente ou, mais convenientemente, por meio do 
+<task:annotation-driven/> elemento ou @ EnableSchedulingannotation.
+
+Esta anotação pode ser usada como uma meta-anotação para criar anotações compostas 
+personalizadas com substituições de atributos.
+
+@Component
+public class MinhaTarefa {
+
+    @Scheduled(fixedDelayString = "${periodicidade.executa-operacao}")
+    private void executaOperacao() {
+    }
+}
+
