@@ -1,0 +1,14 @@
+A especificação OpenAPI (OAS) define uma descrição de interface agnóstica de 
+linguagem de programação padrão para APIs REST, que permite que humanos e 
+computadores descubram e entendam os recursos de um serviço sem exigir acesso ao 
+código-fonte, documentação adicional ou inspeção do tráfego de rede . Quando definido
+corretamente por meio do OpenAPI, um consumidor pode entender e interagir com o 
+serviço remoto com uma quantidade mínima de lógica de implementação. Semelhante ao 
+que as descrições de interface fizeram para a programação de nível inferior, 
+a especificação OpenAPI remove as suposições ao chamar um serviço.
+
+############################################################################
+
+Documentação 
+
+http://spec.openapis.org/oas/v3.0.3
