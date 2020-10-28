@@ -1,0 +1,16 @@
+Quarkus é um framework Java nativo em Kubernetes e de stack completo que foi
+desenvolvido para máquinas virtuais Java (JVMs) e compilação nativa. Ele otimiza
+essa linguagem especificamente para containers, fazendo com que essa tecnologia 
+seja uma plataforma eficaz para ambientes serverless, nuvem e Kubernetes.
+
+A solução de injeção de dependência do Quarkus é baseada em Contexts and Dependency
+Injection (CDI). Além disso, ela inclui um framework de extensão para ampliar a
+funcionalidade e configurar, inicializar e integrar frameworks na sua aplicação.
+Adicionar uma extensão é tão fácil quanto adicionar uma dependência. Se preferir,
+você também pode usar as ferramentas do Quarkus.
+
+Ele também fornece as informações corretas ao GraalVM (uma máquina virtual universal 
+para executar aplicações escritas em diversas linguagens, incluindo Java e JavaScript) 
+para compilação nativa da sua aplicação.
+
+#TheDevConference
