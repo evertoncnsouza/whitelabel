@@ -22,4 +22,12 @@ plano
 
 Polling- Técnica utilizada para ficar de tempos em tempos executando uma operação.
 
+#####################################################
+
+Documentação importante sobre segundo plano!
+https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#scheduling-enable-annotation-support
+
+
+
+
 
