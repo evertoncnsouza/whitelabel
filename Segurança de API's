@@ -1,0 +1,20 @@
+Autenticação - Atestar alguém ou algo como autêntico!
+
+3 tipos de autennticação:
+- Conhecimento (úsuario e senha), certificado digital. É o que você sabe;
+- O que você tem - Token, código via app;
+- O que você é - Autorização!
+
+Protocolo oAuth é um protocolo de autorização.
+
+Para ter tokens seguros:
+- Utilize algoritmos de criptografia seguros e com assinatura;
+- Não faça commit de chaves e outros segredos, nem deixe-os hardcoded na aplicação;
+(Melhor colocar em variaveis de ambiente);
+- Não guarde informações sensíveis;
+- Se precisar armazenar do lado do cliente, utilize cookis seguros(flags httpOnly e secure)
+ao invés do LocalStorage;
+- Não trafegue token na URL (Sempre em cabeçalho ou corpo da requisição);
+- 
+
+
