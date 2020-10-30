@@ -1,0 +1,15 @@
+O software Apache Tomcat é uma implementação de código aberto das tecnologias Java
+Servlet, JavaServer Pages, Java Expression Language e Java WebSocket.
+As especificações Java Servlet, JavaServer Pages, Java Expression Language e 
+Java WebSocket são desenvolvidas sob o Java Community Process .
+
+O Tomcat é um servidor web Java, mais especificamente, um container de servlets. 
+O Tomcat implementa, dentre outras de menor relevância, as tecnologias Java Servlet
+e JavaServer Pages (JSP) e não é um container Enterprise JavaBeans (EJB).
+
+Ele cobre parte da especificação Java EE com tecnologias como servlet e JSP,
+e tecnologias de apoio relacionadas como Realms e segurança, JNDI Resources e 
+JDBC DataSources. Ele tem a capacidade de atuar também como servidor web, ou pode 
+funcionar integrado a um servidor web dedicado como o Apache ou o IIS. Como servidor
+web, ele provê um servidor web HTTP puramente em Java.
+
