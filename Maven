@@ -1,0 +1,54 @@
+Apache Maven é uma ferramenta de gerenciamento e compreensão de projetos de software.
+Com base no conceito de modelo de objeto de projeto (POM), o Maven pode gerenciar a construção,
+o relatório e a documentação de um projeto a partir de uma informação central.
+##########################################################################################
+Plugins disponíveis - 
+
+Plugins de construção- Serão executados durante a construção e devem ser configurados no 
+<build/>elemento do POM.
+
+Plugins de relatórios- Serão executados durante a geração do site e devem ser configurados no 
+<reporting/>elemento do POM. Como o resultado de um plug-in de Relatório é parte do site gerado,
+os plug-ins de Relatório devem ser internacionalizados e localizados.
+Você pode ler mais sobre a localização de nossos plug - ins e como você pode ajudar.
+
+https://maven.apache.org/plugins/index.html
+
+#########################################################################################
+
+Plugins do Spring Boot para o Maven
+spring-boot: build-image = Empacote um aplicativo em uma imagem OCI usando um buildpack.
+
+spring-boot: build-info = Gere um build-info.properties com base no conteúdo do atual MavenProject.
+
+spring-boot: help = Exibe informações de ajuda sobre spring-boot-maven-plugin. 
+Chame mvn spring-boot:help -Ddetail=true -Dgoal=<goal-name> para exibir detalhes do parâmetro.
+
+spring-boot: reembalagem = Reempacote os arquivos JAR e WAR existentes para que possam ser
+executados a partir da linha de comando usando java -jar. 
+Com layout=NONE também pode ser usado simplesmente para empacotar um JAR com dependências 
+aninhadas (e nenhuma classe principal, portanto não executável).
+
+spring-boot: run = Execute um aplicativo no local.
+
+spring-boot: start = Inicie uma aplicação de primavera. Ao contrário do run objetivo,
+isso não bloqueia e permite que outros objetivos operem no aplicativo. 
+Esse objetivo é normalmente usado no cenário de teste de integração em que o aplicativo é 
+iniciado antes de um conjunto de testes e interrompido depois.
+
+spring-boot:stop = Interrompe um aplicativo que foi iniciado pela meta "iniciar".
+Normalmente invocado assim que um conjunto de testes é concluído.
+
+5. Empacotando Arquivos
+
+
+
+https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/html/
+
+############################################################################################
+
+Dica: Esta não é a melhor maneira de rodar aplicações em ambiente produtivo, sendo usada
+somente em ciclo de desenvolvimento.
+
+
+
