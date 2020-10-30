@@ -1,0 +1,20 @@
+Um padrão que ajuda a resolver um problema no quesito Processos, o item VI do 
+Twelve Factor.
+
+Uma arquitetura de nada compartilhado ( SN ) é uma arquitetura de computação
+distribuída na qual cada solicitação de atualização é satisfeita por um único nó 
+(processador / memória / unidade de armazenamento). A intenção é eliminar a contenção
+entre os nós. Os nós não compartilham (acesso independente) memória ou armazenamento.
+Uma arquitetura alternativa é tudo compartilhado, em que as solicitações são 
+satisfeitas por combinações arbitrárias de nós. Isso pode introduzir contenção,
+pois vários nós podem buscar atualizar os mesmos dados ao mesmo tempo.
+
+SN elimina pontos únicos de falha , permitindo que o sistema geral continue 
+operando apesar das falhas em nós individuais e permitindo que nós individuais 
+sejam atualizados sem um desligamento de todo o sistema.
+
+Um sistema SN pode ser escalado simplesmente adicionando nós, uma vez que nenhum 
+recurso central obstrui o sistema. [2] Em bancos de dados, outro termo para SN é 
+fragmentação . Um sistema SN normalmente particiona seus dados entre vários nós.
+Um refinamento é replicar os dados comumente usados, mas raramente modificados,
+em muitos nós, permitindo que mais solicitações sejam resolvidas em um único nó.
