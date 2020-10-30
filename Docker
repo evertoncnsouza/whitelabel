@@ -33,6 +33,8 @@ Comandos Curso "Docker: Ferramenta essencial para Devs"
  - docker container create = Cria um container; 
  - docker container exec = Executa o container;
  - docker container start = Inicia  o container;
+ 
+ ##################################################
  - bash --version = Saber a versão do Bash 
  - docker container run debian bash --version = Não faz sentido rodar Bash no Windows.
  - docker container ps = Ver quais containers estão ativos;
@@ -164,6 +166,12 @@ flag -d - Instrui a engine para rodar em background e liberar a linha de comando
 possamos chamar nossos container usando localhost.
 zupacademy/proposta= indica o nome da imagem do container.
 Nesse caso estamos usando um repositório público por isso é prefixado pelo usuário
+
+##############################################
+
+Pesquisar os comandos:
+
+Docker, From, Arg, Copy, Entrypoint
 
 
 
