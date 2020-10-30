@@ -1,0 +1,43 @@
+Se tratando de imagens docker, é bom minimizar o tamanho delas.
+
+Sua aplicação precisa estar apta a rodar o mais rápido possível, 
+considerando que algum servidor precisa realizar o download da imagem e iniciar o processo de subida
+da aplicação. Agora se sua imagem tiver 1GB de tamanho, isso com certeza vai degradar o funcionamento 
+adequado da sua aplicação.
+
+Multi-stage build é um caminho para reduzir imagens.
+
+E mais legal ainda, podemos rodar nossa build dentro do Docker, não precisamos nenhuma
+dependência na nossa máquina porque a produção do artefato é feita dentro do container...muito massa!!!
+
+## Builder Image
+FROM maven:3.6.3-jdk-11 AS builder
+COPY src /usr/src/app/src
+COPY pom.xml /usr/src/app
+RUN mvn -f /usr/src/app/pom.xml clean package
+
+## Runner Image
+FROM openjdk:11
+COPY --from=builder /usr/src/app/target/docker-hands-on-0.0.1-SNAPSHOT.jar /usr/app/app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/usr/app/app.jar"]
+
+
+Acima, temos dois estágios na nossa build, podemos notar que no primeiro estágio utilizamos o maven como base. 
+O maven é utilizado para realizar a build da nossa aplicação e produzir nosso artefato, 
+dentro desse estágio é artefato produzido.
+
+Podemos criar um alias para esse estágio, no caso usamos o nome builder.
+
+Nossa aplicação não precisa de maven para rodar em produção, para nossa aplicação rodar precisamos
+somente do JRE, note que o maven na fase de runtime se torna um overhead no sistema de arquivos,
+não precisamos dele para rodar. Com isso introduzimos nosso segundo FROM que contém somente openjdk.
+
+Note que no comando COPY usando a flag --from e indicamos o caminho de qual arquivos queremos copiar,
+no nosso caso queremos copiar o artefato produzido no primeiro estágio. Indicamos um caminho que desejamos ser mais adequado.
+
+Por fim, declare a aplicação expõe nossos serviços na porta 8080.
+
+Esta técnica reduz consideravelmente o tamanho da sua imagem, é atualmente é o modelo mais adequado para adotarmos.
+
+
