@@ -34,3 +34,12 @@ previsibilidade na execução do código necessário para atender determinada re
 #########################################################################################
 Tutorial de Rest - https://restfulapi.net/
 
+#########################################################################################
+
+- Crie recursos com nome no plural que tenham sentido para o négocio.
+- Utilize UUIDs. Isto adiciona camada de segurança, evitando que seja possível
+prever o próximo elemento da coleção.
+- Usar o sub recurso com identificador sequencial não tem problema.
+
+
+
