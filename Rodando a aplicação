@@ -1,4 +1,4 @@
-Quando pensamos em ambiente distribuído, nossas aplicações precisam ser auto-contidas, 
+Ambiente distribuído - Quando pensamos em ambiente distribuído, nossas aplicações precisam ser auto-contidas, 
 que é expor serviços via HTTP, ou porta de serviço web. Isso faz com que a aplicação 
 seja escalavel usando o modelo "escalabilidade horizontar", adicionando novas instâncias
 desses serviços.
