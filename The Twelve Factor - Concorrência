@@ -1,0 +1,51 @@
+
+Adicionar mais CPU e memória que seu processo suporta, chamada de escabilidade
+vertical, não é uma prática recomendada por aplicações de nuvem. 
+Essa prática tem um limitante (não suportar mais que 64 gb de ram), e esse limite
+impacta diretamente nossa capacidade de escalar aplicações.
+
+O Recomendado é escalar processos ou escalabilidade horizontal.
+Que ao contrário da escalabilidade vertical, onde procuramos adicionar mais recursos
+como cPU e memória, buscamos criar múltilos processos com menor consumo de memória e CPU,
+distribuindo a carga entre eles.
+
+Exemplo: Adicionar duas instâncias para atender mais requisições.
+A prática VI do Twelve Factor, executar a aplicação com o mínimo de estado possível, 
+é muito importante aqui, pois impacta diretamente este pilar.
+
+
+####################################################################################
+Escale através do processo modelo
+Qualquer programa de computador, uma vez executado, está representado por um ou 
+mais processos. Aplicações web têm tomado uma variedade de formas de processo de 
+execução. Por exemplo, processos PHP rodam como processos filhos do Apache, 
+iniciados sob demanda conforme necessário por volume de requisições.
+Processos Java tomam o caminho inverso, com a JVM proporcionando um processo uber 
+maciço que reserva um grande bloco de recursos do sistema (CPU e memória) na 
+inicialização, com concorrência gerenciada internamente via threads. 
+Em ambos os casos, o(s) processo(os) em execução são apenas minimamente visível para
+os desenvolvedores da aplicação.
+
+Na aplicação doze-fatores, processos são cidadãos de primeira classe. Processos na aplicação 
+doze-fatores utilizam fortes sugestões do modelo de processos UNIX para execução de serviços daemon,
+o desenvolvedor pode arquitetar a aplicação dele para lidar com diversas cargas de trabalho,
+atribuindo a cada tipo de trabalho a um tipo de processo. Por exemplo, solicitações HTTP podem
+ser manipuladas para um processo web, e tarefas background de longa duração podem ser manipuladas
+por um processo trabalhador.
+
+Isto não exclui processos individuais da manipulação de sua própria multiplexação interna, 
+por threads dentro do runtime da VM, ou o modelo async/evented encontrado em ferramentas como 
+EventMachine, Twisted, ou Node.js. Mas uma VM individual pode aumentar (escala vertical), 
+de modo que a aplicação deve ser capaz de abranger processos em execução em várias máquinas físicas.
+
+O modelo de processo realmente brilha quando chega a hora de escalar. O compartilhar-nada,
+natureza horizontal particionada de um processo da aplicação doze-fatores significa que a adição 
+de mais simultaneidade é uma operação simples e de confiança. A matriz de tipos de processo e 
+número de processos de cada tipo é conhecida como o processo de formação.
+
+Processos de uma app doze-fatores nunca deveriam daemonizar ou escrever arquivos PID. Em vez disso, 
+confiar no gerente de processo do sistema operacional (como systemd, um gerenciador de processos
+distribuídos em uma plataforma de nuvem, ou uma ferramenta como Foreman em desenvolvimento) para
+gerenciar fluxos de saída, responder a processos travados, e lidar com reinícios e desligamentos 
+iniciados pelo usuário.
+
