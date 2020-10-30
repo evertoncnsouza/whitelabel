@@ -39,3 +39,14 @@ public ResponseEntity<PropostaCriada> novaProposta(@RequestBody @Valid NovaPropo
   return ResponseEntity.created(uriComponentsBuilder.path("/propostas/{id}").buildAndExpand(nova.getId()).toUri()).body(nova);
 }
 
+###########################################################################
+
+IncorrectResultSizeDataAccessException
+
+Exceção de acesso a dados lançada quando um resultado não era do tamanho esperado, 
+por exemplo, ao esperar uma única linha, mas obtendo 0 ou mais de 1 linha.
+
+#########################################################################
+
+
+
