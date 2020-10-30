@@ -10,6 +10,18 @@ public ResponseEntity<?> Proposta(@RequestBody @Valid ....){
 O ResponseEntity permite que você passe todas informações da requisição.
 O created é chamado para retornar 201. 
 
+###################################################################################
+HTTP Get - Existem duas formas de receber dados em uma requisição HTTP do tipo GET:
+
+- Via Path Parameter, como por exemplo https://localhost:8080/proposta/0e5d2c91-f987-4f84-ba85-d0a5edb48225
+o identificador do recurso é passado no Path Parameter 0e5d2c91-f987-4f84-ba85-d0a5edb48225
+* Obrigatório passar a variável
+
+Via Query Parameter, como por exemplo https://localhost:8080/proposta?status=ATIVO
+o filtro por status ATIVO é passado no Query Parameter
+* Utilizado para opcional!
+###################################################################################
+
 Tipos de Status Code:
 - 200 - ResponseEntity.ok() = Status genéricco de sucesso;
 - 201 - ResponseEntity.CREATED = Criado com sucesso;
