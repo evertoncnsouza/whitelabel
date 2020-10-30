@@ -1,0 +1,18 @@
+Infrasctruture as a Code - Você deveria ser capaz de criar a infraestrutura a partir
+de um código fonte versionado em algum repositório de código.
+Já fazemos isso armazenando no git.
+Quando aplicamos conceito de IaC (Infrastructure as a Code) automaticamente já
+aplicamos uma prática bastante recomendada quando pensamos em ambiente de nuvem,
+a prática chamada Immutable Infrastructure (infra-estrutura imutável), indica que
+uma vez que criamos um elemento de infraestrutura não podemos modificá-lo.
+
+Quando precisamos alterar nosso elemento de infraestrutura, devemos destruí-lo, 
+alterar a receita e criá-lo novamente. Isso nos traz um benefício bastante 
+interessante que é a capacidade de replicar o ambiente quando quisermos.
+
+https://www.hashicorp.com/resources/what-is-infrastructure-as-code
+
+https://www.ibm.com/cloud/learn/infrastructure-as-code
+
+
+
