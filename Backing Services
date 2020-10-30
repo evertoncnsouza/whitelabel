@@ -1,0 +1,99 @@
+Segundo o Twelve Factor
+
+Trate serviços de apoio como recursos anexados
+Um serviço de apoio é qualquer serviço que o app consuma via rede como parte de sua operação normal.
+Exemplos incluem armazenamentos de dados (como MySQL ou CouchDB), sistemas de mensagens/filas
+(tais como RabbitMQ ou Beanstalkd), serviços SMTP para emails externos (tais como Postfix),
+e sistemas de cache (tais como Memcached).
+
+Serviços de apoio como o banco de dados são tradicionalmente gerenciados pelos mesmos 
+administradores de sistema do servidor de deploy de tempo de execução do app. Adicionalmente à esses
+serviços localmente gerenciados, o app pode ter serviços providos e gerenciados por terceiros. 
+Exemplos incluem serviços SMTP (tais como Postmark), serviços de colheita de métricas (tais como 
+New Relic ou Loggly), serviços de ativos binários (tais como Amazon S3), e até serviços de
+consumidores acessíveis via API (tais como Twitter, Google Maps, ou Last.fm).
+
+O código para um app doze-fatores não faz distinção entre serviços locais e de terceiros. 
+Para o app, ambos são recursos anexados, acessíveis via uma URL ou outro localizador/credenciais 
+na config. Um deploy do app doze-fatores deve ser capaz de trocar um banco de dados MySQL por um 
+gerenciado por terceiros (tais como Amazon RDS) sem realizar quaisquer mudanças no código do app. 
+Da mesma forma, um servidor local SMTP poderia ser trocado por um serviço de terceiros (tais como 
+Postmark) sem as mudanças em código. Em ambos os casos, apenas o identificador de recurso precisa
+mudar.
+
+Cada serviço de apoio distinto é um recurso. Por exemplo, um banco MySQL é um recurso; dois
+bancos MySQL (usados para sharding na camada da aplicação) qualificam como dois recursos distintos.
+O app doze-fatores trata tais bancos como recursos anexados, o que indica seu baixo acoplamento ao
+deploy que ele está anexado.
+
+Recursos podem ser anexados e desanexados a deploys à vontade. Por exemplo, se o banco de dados
+do app não está funcionando corretamente devido a um problema de hardware, o administrador do app
+pode subir um novo servidor de banco de dados restaurado de um backup recente. O atual banco de 
+produção pode ser desanexado, e o novo banco anexado – tudo sem nenhuma mudança no código.
+
+##################################################################################
+
+Lembre-se: 
+Executamos nossa aplicação de maneira que ela tenha o mínimo de estado possível.
+
+O Banco de dados é como um "Backing Service", ou seja, um serviço externo, que nossa aplicação
+consome via rede.
+A configuração dos serviços normalmente fazemos via Config, apontado para um endereço, onde 
+realmente está instalado.
+
+Cada Backing Service pode ser chamado de um recurso, por exemplo um recurso de Mensageria RabbitMQ.
+
+############################################################################
+
+Como configurar Backing Services- The Twelve Factor
+
+
+Armazenar configuração no ambiente
+A configuração de um aplicativo é tudo o que pode variar entre as implantações (teste, produção,
+ambientes de desenvolvedor, etc). Isso inclui:
+
+- Recursos para lidar com o banco de dados, Memcached e outros serviços de apoio
+- Credenciais para serviços externos, como Amazon S3 ou Twitter
+- Valores por implantação, como o nome do host canônico para a implantação
+Os aplicativos às vezes armazenam configuração como constantes no código. Isso é uma violação do
+fator doze, que requer a separação estrita da configuração do código . A configuração varia 
+substancialmente entre as implantações, o código não.
+
+Um teste decisivo para saber se um aplicativo tem todas as configurações fatoradas corretamente fora
+do código é se a base de código pode se tornar um código aberto a qualquer momento, sem comprometer 
+as credenciais.
+
+Observe que esta definição de “config” não inclui configuração de aplicativo interno, como config/routes.rbno
+Rails, ou como os módulos de código são conectados no Spring . Esse tipo de configuração não varia entre as
+implantações e, portanto, é melhor executado no código.
+
+Outra abordagem para config é o uso de arquivos de configuração que não são verificados no controle de revisão,
+como config/database.ymlno Rails. Esta é uma grande melhoria em relação ao uso de constantes que são verificadas
+no repositório de código, mas ainda tem pontos fracos: é fácil verificar erroneamente um arquivo de configuração 
+no repo; há uma tendência de os arquivos de configuração ficarem espalhados em diferentes lugares e formatos,
+tornando difícil ver e gerenciar toda a configuração em um só lugar. Além disso, esses formatos tendem a ser
+específicos de linguagem ou estrutura.
+
+O aplicativo de doze fatores armazena configuração em variáveis de ambiente (geralmente abreviado para env vars ou env ).
+Vars de ambiente são fáceis de alterar entre implantações sem alterar nenhum código; ao contrário dos arquivos de configuração,
+há pouca chance deles serem verificados no repositório de código acidentalmente; e, ao contrário dos arquivos de 
+configuração personalizados ou de outros mecanismos de configuração, como Propriedades do sistema Java, eles são um
+padrão independente de linguagem e SO.
+
+Outro aspecto do gerenciamento de configuração é o agrupamento. Às vezes, aplicativos de configuração de lote em grupos
+nomeados (muitas vezes chamado de “ambientes”) em homenagem implanta específicos, como o development, teste productionambientes
+em Rails. Este método não é escalonado de forma limpa: conforme mais implantações do aplicativo são criadas, novos nomes
+de ambiente são necessários, como stagingou qa. Conforme o projeto cresce, os desenvolvedores podem adicionar seus próprios
+ambientes especiais, como joes-staging, resultando em uma explosão combinatória de configuração, o que torna o gerenciamento
+de implantações do aplicativo muito frágil.
+
+Em um aplicativo de doze fatores, env vars são controles granulares, cada um totalmente ortogonal a outros env vars. 
+Eles nunca são agrupados como “ambientes”, mas, em vez disso, são gerenciados de forma independente para cada implantação. 
+Este é um modelo que aumenta suavemente conforme o aplicativo se expande naturalmente para mais implantações ao longo
+de sua vida útil.
+
+
+
+
+
+
