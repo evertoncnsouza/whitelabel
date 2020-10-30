@@ -1,0 +1,17 @@
+Quando pensamos em ambiente distribuído, nossas aplicações precisam ser auto-contidas, 
+que é expor serviços via HTTP, ou porta de serviço web. Isso faz com que a aplicação 
+seja escalavel usando o modelo "escalabilidade horizontar", adicionando novas instâncias
+desses serviços.
+
+Aplicação distribuída reagem de maneira eficiente com aumento de carga e conseguem "ficarem prontas"
+de maneira rápida, adicionando novas instâncias ao pool de instâncias que atendem as requisições.
+
+O Twelve Factor, garante que nossa aplicação seja portável e rode eficientemente em ambientes
+cloud.
+
+Para rodar a aplicação: 
+
+<plugin>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-maven-plugin</artifactId>
+</plugin>
