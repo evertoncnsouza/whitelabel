@@ -1,0 +1,137 @@
+Um dos aspectos-chave do The Tao of HashiCorp é a noção de imutabilidade, a ideia de que uma vez que criamos
+uma coisa, não a mudamos após a criação. Uma coisa que frequentemente nos perguntam é: "Qual é a diferença 
+entre uma abordagem mutável e uma abordagem imutável? Quais são as vantagens ou compensações entre elas?"
+
+Uma abordagem de infraestrutura mutável
+Quando falamos sobre uma abordagem mutável, o que realmente estamos falando é, digamos que estou criando
+um servidor. Talvez seja uma VM, talvez seja bare metal, realmente não importa. Vamos chamá-lo de servidor da web.
+
+Vou implantar algo como o Apache 2.4 como meu servidor web e depois implantarei meu aplicativo também. 
+Vamos chamá-lo de versão 1 do servidor web. Tenho tráfego chegando, usuários fazendo solicitações para isso.
+
+Mas, com o tempo, quero fazer mudanças. Eu quero atualizar a versão do servidor web, talvez eu queira 
+atualizar para uma versão mais moderna do Apache, ou talvez eu queira mudar para um servidor web diferente
+como o NGINX. A maneira de pensar sobre o que estamos fazendo é, aqui definimos a versão 1 do nosso servidor web.
+
+
+O que vamos fazer é voltar e definir como queremos a versão 2. Vamos atualizar nosso servidor web,
+digamos apenas para a versão 2, e em vez do Apache, vamos usar o NGINX.
+
+Temos o NGINX, e esta é nossa versão 2 do mundo, e pode ser um servidor ou VM ou sei lá o quê. 
+Em um mundo mutável, o que vamos fazer é tentar atualizar este servidor existente para esta nova
+configuração da versão 2. Vamos transformá-lo, modificá-lo no lugar, para entrar nesta nova configuração.
+
+Normalmente, isso será feito com algo como gerenciamento de configuração. Temos uma ferramenta de 
+gerenciamento de configuração, que pode ser Chef, Puppet, Ansible, algo assim. Vamos executar o
+gerenciamento de configuração pela primeira vez para fazer o mundo parecer assim e, em seguida,
+vamos executá-lo novamente quando tivermos atualizado nossa definição para ir da versão 1 para a versão 2.
+
+O que é bom nisso é que já temos esse servidor existente. Talvez tenhamos dados que gravamos 
+localmente e que nosso servidor da web esteja consumindo. Quando atualizamos no local, não precisamos
+nos preocupar em mover os dados para outras máquinas, criando uma nova máquina, toda a infraestrutura
+já existe. Tudo o que vamos fazer é realizar esta atualização.
+
+Tudo o que vamos fazer é realizar esta atualização. O desafio da mutabilidade, e uma espécie de 
+compensação com ela, é o que acontece se isso não for atualizado perfeitamente? No mundo real, as 
+coisas dão errado. Talvez, quando acionarmos essa atualização, a primeira coisa que procuraremos fazer
+seja dizer: "Precisamos instalar esta nova versão do NGINX porque não usamos o NGINX aqui."
+
+Tentaremos executar um apt-get install do NGINX e queremos que ele seja instalado, mas pode falhar.
+Pode ser que, no momento em que rodamos a ferramenta, nossa rede esteja flakey, talvez o DNS esteja
+fora do ar, talvez nossos repos APT não estejam respondendo. Quem sabe, há um milhão de razões para 
+ele falhar.
+
+Acabamos nesse estado desagradável em que o NGINX não foi instalado, mas conseguimos implantar a versão 
+2 do nosso servidor web. Agora estamos nesta situação interessante onde testamos a aparência da versão 2.
+Entendemos que a versão 2 do nosso aplicativo, com NGINX, funciona. Nós testamos, validamos. E a versão 1
+com Apache e nosso servidor web, nós entendemos, validamos, testamos.
+
+Mas agora não estamos em nenhuma dessas coisas. Estamos em uma versão estranha 1.56. Não é bem compreendido. 
+Temos o Apache ainda em execução, não temos o NGINX, além disso, temos uma nova versão do nosso servidor web.
+
+Você chamaria isso de atualização parcial, certo? Se pensarmos em termos de banco de dados, é uma transação
+parcialmente confirmada. Parte das mudanças ocorreu, parte das mudanças não aconteceu.
+
+Compromissos de mutabilidade
+O que isso nos apresenta? Este processo de atualização tem a desvantagem de introduzir riscos. O risco é 
+que agora estamos em um cenário de meia falha e o outro lado disso, isso adiciona complexidade. Se eu
+estivesse fazendo o controle de qualidade, entendi como era a versão 1. Eu testei, validei. Mesmo com 
+a versão 2. Eu testei, validei.
+
+Nunca testei ou validei 1,56. Não entendo o que é a versão 1.56, porque nunca imaginei estar neste estado.
+Mas aqui estou eu, e tenho a complexidade de descobrir, há um caminho de atualização possível da versão 
+1.56 para a versão 2 e qual é a experiência dos usuários quando o tráfego está chegando à versão 1.56?
+
+O site funciona, eles estão recebendo erros, o que está acontecendo? Portanto, isso é complexo, mesmo
+com a única máquina, mas agora imagine que tenho uma frota de muitas centenas ou milhares de máquinas
+e todas elas falham de maneiras ligeiramente diferentes. Talvez um deles tenha falhado ao instalar o NGINX,
+mas o outro instalou o NGINX, mas falhou ao instalar o servidor web. Talvez uma terceira máquina falhou
+ao desinstalar o Apache, então você acaba com uma proliferação de "Bem, há 1,56, mas 1,54, isso é 1,78."
+
+Você tem que começar a pensar em seu versionamento não como uma versão discreta 1 e 2, mas como um espectro
+contínuo onde tudo no meio também é possível. Este se torna um cenário complexo.
+
+Você pode dizer que isso parece pouco prático. Na prática, 99% das vezes, essa coisa simplesmente funciona.
+Isso é verdade. O problema é que, 99% das vezes, algo que funciona com base em mil máquinas significa que
+, em boa parte do tempo, não está funcionando. Você acaba tendo estes problemas complexos para depurar: 
+uma em cada dez solicitações obtém um erro ou uma em cada dez solicitações é um pouco mais lenta do que deveria.
+
+E eles se tornam incrivelmente difíceis de depurar porque seu sistema está em um estado mal compreendido.
+
+Isso nos leva à maneira alternativa de pensar sobre isso, que é, se isso é mutável, então como pensamos
+em termos de um mundo imutável?
+
+Uma abordagem de infraestrutura imutável
+A diferença é que, quando nos tornamos imutáveis, não queremos atualizar no local. Uma vez que o servidor 
+existe, nunca tentamos atualizá-lo para V2. Vamos criar nosso servidor, chamá-lo de versão 1 novamente, 
+instalaremos o Apache, instalaremos nosso servidor web e tiraremos um instantâneo dessa imagem. 
+Chamaremos esta versão 1 do nosso servidor.
+
+Então, vamos inicializar isso, vamos criar, digamos uma VM, e então vamos permitir que o tráfego do usuário 
+comece a entrar nela. Ótimo, implantamos a versão 1 de nossa VM, assim como fizemos em nossa configuração mutável.
+Mas quando formos para a versão 2, o que faremos é criar um servidor totalmente novo. Este terá o servidor web V2, mais o NGINX, e este é o V2. Isso está em uma nova VM. Se era VM1, é VM2, então é uma máquina distinta. Não estamos tentando atualizar a infraestrutura existente.
+
+Se houver algum erro, vamos abortar isso, jogar fora isso e tentar novamente. Mas se tivermos criado a V2
+com sucesso, não houve erros, tudo foi instalado, então o que faremos é transferir o tráfego. Nosso usuário
+agora começa a acertar V2 em vez de acertar V1. Então, vamos apenas encerrar a versão 1. Vamos tirar essa VM 
+da produção ou destruí-la ou reciclá-la para algum outro propósito, e assim por diante. Mas o objetivo é,
+nunca tentamos modificar esse sistema no local.
+
+O que vamos fazer é ter uma noção de controle de versão discreto. Havia a versão 1 em execução e era para
+onde o tráfego ia, ou a versão 2 em execução e era para onde o tráfego ia. Esta zona intermediária não existe.
+Não havia versão 1.5 entre essas coisas. A vantagem disso é que, ao pensarmos em risco e complexidade, existe
+um risco muito menor, porque não temos esses estados indefinidos que não são validados, mas também reduzimos
+a complexidade de nossa infraestrutura.
+
+Agora posso falar em termos de histogramas. Posso dizer que tenho 50 máquinas na versão 1 e 20 máquinas na
+versão 2, ao contrário de ter alguma distribuição de máquinas e versões diferentes. Portanto, é uma complexidade
+muito menor quando penso sobre a aparência dessa infraestrutura.
+
+Compromissos de imutabilidade
+Não é sem compromissos. E se este aplicativo tivesse estado? E se este aplicativo estivesse gravando em seu
+disco local e tivesse dados importantes para o aplicativo. Aqui o que dissemos é, criamos uma nova máquina,
+excluímos essa máquina, incluindo seus dados, incluindo seu disco. Isso claramente não funciona.
+
+Para tornar isso eficaz, o que geralmente você precisa fazer é externalizar os dados. Em vez de estar pronto
+com o mesmo aplicativo, talvez eu use um banco de dados externo compartilhado. Minha primeira VM está gravando
+no banco de dados, mas é a mesma que a segunda está usando.
+
+Ao fazer essa transição, não preciso me preocupar se estou destruindo os dados desta caixa, porque os externalizei. 
+Isso se torna a chave. A externalização de dados permite que o padrão imutável seja aplicado aqui. Em geral,
+sistemas semelhantes a bancos de dados tendem a ser atualizados com muito menos frequência do que coisas como 
+nossos aplicativos, então podemos dizer: "Sabe de uma coisa, vamos usar uma abordagem mutável para gerenciar 
+bancos de dados porque é muito raro e não tem que se preocupar com a migração de dados. "
+
+Ou se você estiver em um ambiente de nuvem e tiver coisas como Elastic Block Store ou armazenamento externo
+definido por software, talvez o disco subjacente seja mutável, mas mesmo a máquina que executa nosso banco 
+de dados ainda é imutável.
+
+O que podemos fazer é desligar a VM que está executando, quem sabe, o MySQL versão 7, vamos desligá-lo, 
+abriremos um novo executando o MySQL versão 8 e reconectá-lo ao mesmo disco. Desta forma, os dados em si 
+não estão sendo perdidos, é apenas a máquina, o computador está sendo movido de uma versão para a outra.
+
+Existem diferentes abordagens em termos de como faríamos a imutabilidade funcionar. Esta é fundamentalmente
+a distinção: pegamos a infraestrutura existente e tentamos atualizá-la, ou pegamos a infraestrutura existente,
+criamos uma nova infraestrutura e destruímos a existente?
+
+Essa é a principal distinção entre infraestrutura mutável e imutável.
