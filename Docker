@@ -138,5 +138,43 @@ Docker Hub x Docker Registry
 Docker Registry - É um serviço para registro de imagens;
 Docker Hub - SaS. É um produto na nuvem, tem o registry dentro dele.
 
+####################################################################
+Criação de uma imagem Docker
+Crie o arquivo Dockerfile
+
+FROM openjdk:11
+ARG JAR_FILE=target/Desafiotwo-1.0-SNAPSHOT.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+- comando no Prompt
+mvn clean package
+
+- comando para criar uma nova imagem
+docker image build -t zupacademy/proposta:latest .
+docker image = Significa que utilizaremos a API de imagem;
+flag -t = Nome e tag. O ponto no final indica o contexto da build.
+
+Rodar a imagem 
+docker container run -d -p 8080:8080 zupacademy/proposta --name proposta
+docker container run= estamos chamando a docker engine para rodar o container.
+flag -d - Instrui a engine para rodar em background e liberar a linha de comando.
+-p 8080:8008 = Indica que gostariamos que a porta 8080 do container seja "atachada" a porta
+8080 da nossa máquina. Isso é bastante comum em ambientes de desenvolvimento para que
+possamos chamar nossos container usando localhost.
+zupacademy/proposta= indica o nome da imagem do container.
+Nesse caso estamos usando um repositório público por isso é prefixado pelo usuário
+
+
+
+
+
+
+
+
+
+
+
+
 
 
