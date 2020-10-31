@@ -1,0 +1,9 @@
+O princípio do menor privilégio é a ideia de que qualquer usuário, programa ou 
+processo deve ter apenas os privilégios mínimos necessários para executar sua função.
+Por exemplo, uma conta de usuário criada para extrair registros de um banco de dados
+não precisa de direitos de administrador, enquanto um programador cuja função principal
+é atualizar linhas de código legado não precisa de acesso a registros financeiros.
+O princípio do mínimo privilégio também pode ser referido como o princípio do 
+privilégio mínimo (POMP) ou o princípio da autoridade mínima (POLA). Seguir o
+princípio do menor privilégio é considerado uma prática recomendada em segurança da
+informação.
