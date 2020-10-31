@@ -1,0 +1,61 @@
+Base64 é um método para codificação de dados para transferência na Internet 
+(codificação MIME para transferência de conteúdo). É utilizado frequentemente para
+transmitir dados binários por meios de transmissão que lidam apenas com texto, como 
+por exemplo para enviar arquivos anexos por e-mail.
+
+É constituído por 64 caracteres ([A-Z],[a-z],[0-9], "/" e "+") que deram origem ao 
+seu nome. O carácter "=" é utilizado como um sufixo especial e a especificação 
+original (RFC 989) definiu que o símbolo "*" pode ser utilizado para delimitar dados
+convertidos, mas não criptografados, dentro de um stream.
+
+Exemplo de codificação:
+
+Texto original: Olá, mundo!
+Texto convertido para Base64: T2zDoSwgbXVuZG8h
+A codificação Base64 é frequentemente utilizada quando existe uma necessidade de 
+transferência e armazenamento de dados binários para um dispositivo designado para
+trabalhar com dados textuais. Esta codificação é amplamente utilizada por aplicações
+em conjunto com a linguagem de marcação XML, possibilitando o armazenamento de dados 
+binários em forma de texto.
+
+#################################################################
+
+Utilizando Base64
+
+Base64 é um algoritmo de codificação que permite transformar qualquer caractere de 
+qualquer idioma em um alfabeto que consiste em letras latinas, dígitos e sinais.
+Com isso podemos converter caracteres especiais como os logogramas chineses, emoji
+e até imagens em uma sequência “legível” (para qualquer computador), que pode ser 
+salvo e/ou transferido para qualquer outro lugar. É utilizado frequentemente para 
+transmitir dados binários por meios de transmissões que lidam apenas com texto, 
+como por exemplo HTTP.
+
+ - Codificando a mensagem
+String mensagem = "Testando Base64";
+String mensagemCodificada = Base64.getEncoder().encodeToString(mensagem.getBytes());
+System.out.println(mensagemCodificada);
+Muito intuitivo a classe e os métodos, como por exemplo:
+
+getEncoder: Estou obtendo um codificador do Base64.
+getDecoder: Estou obtendo um decodificador do Base64.
+
+- Decodificando a mensagem
+byte[] decode = Base64.getDecoder().decode(mensagemCodificada.getBytes());
+String mensagemDecodificada = new String(decode);
+System.out.println(mensagemDecodificada);
+
+########################################################################
+
+Dica:
+Não utilize Base64 como uma camada de segurança, pois é utilizado apenas para transferir
+dados com caracteres especiais, como por exemplo uma chave RSA, etc.
+
+Como é um algoritmo de codificação, a mensagem sempre será THVYSFEFFDCWERGRTG, ou seja,
+ela pode ser aberta por qualquer pessoa que use ou utilize ferramentas que suportem
+Base64.
+
+
+
+
+
+
