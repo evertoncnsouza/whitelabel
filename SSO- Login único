@@ -1,0 +1,86 @@
+O logon único é um esquema de autenticação que permite ao usuário fazer logon 
+com um único ID e senha em qualquer um dos vários sistemas de software relacionados, 
+mas independentes.
+
+O logon único (SSO) é uma tecnologia que combina várias telas de login de aplicativos
+diferentes em uma. Com o SSO, um usuário só precisa inserir suas credenciais de login
+(nome de usuário, senha, etc.) uma vez em uma única página para acessar todos os seus
+aplicativos SaaS . O SSO costuma ser usado em um contexto de negócios, quando os
+aplicativos do usuário são atribuídos e gerenciados por uma equipe de TI interna.
+Trabalhadores remotos que usam aplicativos SaaS também se beneficiam do uso de SSO.
+
+Imagine se clientes que já foram admitidos em um bar fossem solicitados a mostrar sua
+carteira de identidade para comprovar sua idade cada vez que tentassem comprar outras
+bebidas alcoólicas. Alguns clientes ficariam frustrados rapidamente com as verificações
+contínuas e poderiam até tentar contornar essas medidas roubando suas próprias 
+bebidas.
+
+No entanto, a maioria dos estabelecimentos verifica a identificação do cliente apenas
+uma vez e, em seguida, serve várias bebidas ao cliente ao longo de uma noite. 
+É mais ou menos como um sistema SSO: em vez de estabelecer sua identidade
+repetidamente, um usuário estabelece sua identidade uma vez e pode acessar vários 
+serviços diferentes.
+
+O SSO é um aspecto importante de muitas soluções de gerenciamento de identidade e
+acesso (IAM) ou controle de acesso . A verificação da identidade do usuário é crucial
+para saber quais permissões cada usuário deve ter. O Cloudflare Access é um exemplo
+de solução de controle de acesso que se integra com soluções SSO para gerenciar
+identidades de usuários.
+
+Quais são as vantagens do SSO?
+Além de ser muito mais simples e conveniente para os usuários, o SSO é amplamente 
+considerado mais seguro. Isso pode parecer contra-intuitivo: como fazer login uma vez
+com uma senha, em vez de várias vezes com várias senhas, pode ser mais seguro? Os
+proponentes do SSO citam as seguintes razões:
+
+Senhas mais fortes: como os usuários precisam usar apenas uma senha, o SSO torna
+mais fácil para eles criar, lembrar e usar senhas mais fortes. * Na prática, 
+normalmente é o caso: a maioria dos usuários usa senhas mais fortes com SSO.
+
+* O que torna uma senha "forte"? Uma senha forte não é facilmente adivinhada e é 
+aleatória o suficiente para que um ataque de força bruta não tenha sucesso. w7: g "5h
+$ G @ é uma senha bastante forte; a senha123 não é.
+Sem senhas repetidas: quando os usuários precisam se lembrar de senhas para vários
+aplicativos e serviços diferentes, uma condição conhecida como "fadiga de senha"
+provavelmente se instalará: os usuários reutilizarão as senhas nos serviços. Usar a
+mesma senha em vários serviços é um grande risco de segurança porque significa que 
+todos os serviços são tão seguros quanto o serviço com a proteção de senha mais 
+fraca: se o banco de dados de senha do serviço for comprometido, os invasores podem
+usar a senha para hackear todos os usuários outros serviços também. O SSO elimina 
+esse cenário, reduzindo todos os logins para um único logon.
+Melhor aplicação da política de senha: com um único local para entrada de senha,
+o SSO fornece uma maneira para as equipes de TI aplicarem facilmente as regras de
+segurança de senha. Por exemplo, algumas empresas exigem que os usuários redefinam
+suas senhas periodicamente. Com o SSO, redefinições de senha são mais fáceis de 
+implementar: em vez de redefinições de senha constantes em vários aplicativos e 
+serviços diferentes, os usuários têm apenas uma senha para redefinir. (Embora o valor
+das redefinições regulares de senha tenha sido questionado , algumas equipes de TI 
+ainda as consideram uma parte importante de sua estratégia de segurança.)
+Autenticação multifator: a autenticação multifator, ou MFA, refere-se ao uso de mais
+de um fator de identidade para autenticar um usuário (consulte O que é MFA?). 
+Por exemplo, além de inserir um nome de usuário e senha, um usuário pode ter que
+conectar um dispositivo USB ou inserir um código que aparece em seu smartphone. 
+A posse desse objeto físico é um segundo "fator" que estabelece que o usuário é 
+quem diz ser. O MFA é muito mais seguro do que confiar apenas em uma senha. O SSO 
+torna possível ativar o MFA em um único ponto, em vez de ter que ativá-lo para três, 
+quatro ou várias dezenas de aplicativos, o que pode não ser viável.
+Ponto único para forçar a reinserção da senha: Os administradores podem forçar a 
+reinserção das credenciais após um determinado período de tempo para garantir que o
+mesmo usuário ainda esteja ativo no dispositivo conectado. Com o SSO, eles têm um 
+local central de onde fazer isso para todos os aplicativos internos, em vez de ter 
+que aplicá-lo em vários aplicativos diferentes, que alguns aplicativos podem não 
+suportar.
+Gerenciamento de credenciais internas em vez de armazenamento externo: Normalmente,
+as senhas dos usuários são armazenadas remotamente de forma não gerenciada por
+aplicativos e serviços que podem ou não seguir as melhores práticas de segurança.
+Com o SSO, no entanto, eles são armazenados internamente em um ambiente sobre o qual
+uma equipe de TI tem mais controle.
+Menos tempo perdido na recuperação de senha: além dos benefícios de segurança acima,
+o SSO também reduz o tempo perdido para equipes internas. A TI tem que gastar menos
+tempo ajudando os usuários a recuperar ou redefinir suas senhas para dezenas de 
+aplicativos, e os usuários gastam menos tempo entrando em vários aplicativos para
+realizar seus trabalhos. Isso tem o potencial de aumentar a produtividade dos 
+negócios.
+
+
+
