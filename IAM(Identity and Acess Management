@@ -1,0 +1,38 @@
+Ele aborda controles do acesso apropriado aos recursos em ambientes tecnológicos 
+cada vez mais heterogêneos e atender aos requisitos de conformidade cada vez mais
+rigorosos.
+
+Dentre esses controles, estão as informações que autenticam a identidade de um usuário
+e informações que descrevem informações e ações que estão autorizadas a acessar e /
+ou executar.
+
+Também inclui o gerenciamento de informações descritivas sobre o usuário e como e por
+quem essas informações podem ser acessadas e modificadas.
+
+As entidades gerenciadas geralmente incluem usuários, recursos de hardware, de rede e
+aplicações.
+
+Um modelo geral de identidade pode ser construído a partir de um pequeno conjunto de
+axiomas. Em geral, uma entidade (real ou virtual) pode ter várias identidades e cada
+identidade pode abranger vários atributos, alguns dos quais são exclusivos dentro 
+de um determinado conjunto.
+
+########################################################################################
+
+Uma categoria de sistemas que lidam especificamente com gerenciamento e perfis de usuário.
+Nessa categoria, esses sistemas implementas de maneira bastante efetiva controles 
+de segurança, criptografia da informação, proteção contra ataques comuns no mundo virtual.
+Eles contam com uma vasta variedades de features que você pode gradualmente aumentando ou reduzindo 
+a segurança de controle de seus usuários.
+
+Na nossa solução, vamos usar a implementação do keycloak, uma aplicação que pode nos
+ajudar a manter os dados dos nossos usuários seguros, além de prover uma maneira
+bem simples de integração com o Spring Framewoerk.
+
+É um produto open-source, então podemos usá-lo sem nenhum problema de licenciamento. 
+
+Dica: Utilize software  sempre de acordo com a regulamentação da licença.
+####################################################################################
+
+AuthenticationBasic
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication
