@@ -48,5 +48,34 @@ por exemplo, ao esperar uma única linha, mas obtendo 0 ou mais de 1 linha.
 
 #########################################################################
 
+Base 64
+
+Esta classe consiste exclusivamente em métodos estáticos para obter codificadores e
+decodificadores para o esquema de codificação Base64. 
+A implementação dessa classe oferece suporte aos seguintes tipos de Base64, conforme 
+especificado no RFC 4648 e no RFC 2045 .
+Básico
+Usa "The Base64 Alphabet" conforme especificado na Tabela 1 do RFC 4648 e do 
+RFC 2045 para a operação de codificação e decodificação. O codificador não adiciona
+nenhum caractere de avanço de linha (separador de linha). O decodificador rejeita
+dados que contenham caracteres fora do alfabeto base64.
+
+URL e nome de arquivo seguros
+Usa o "Alfabeto Base64 seguro para URL e nome de arquivo" conforme especificado na 
+Tabela 2 de RFC 4648 para codificação e decodificação. O codificador não adiciona 
+nenhum caractere de avanço de linha (separador de linha). O decodificador rejeita 
+dados que contenham caracteres fora do alfabeto base64.
+
+MIME
+Usa o "Alfabeto Base64" conforme especificado na Tabela 1 do RFC 2045 para operação
+de codificação e decodificação. A saída codificada deve ser representada em linhas 
+de no máximo 76 caracteres cada e usa um retorno de carro '\r'seguido imediatamente 
+por um avanço de linha '\n'como separador de linha. Nenhum separador de linha é 
+adicionado ao final da saída codificada. Todos os separadores de linha ou outros
+caracteres não encontrados na tabela do alfabeto base64 são ignorados na operação 
+de decodificação.
+
+
+
 
 
