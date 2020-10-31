@@ -1,0 +1,90 @@
+Não queremos que qualquer usuário acesse nossa aplicação, por isso, protegemos com OAuth2.
+Há algumas maneiras de fazer isso, como usuário e senha, o problema é que este modelo não
+oferece seguranã tão efetiva, porque em todos os requests informamos nossas credenciais, 
+caso alguem consiga um acesso não autorizado à esses headers, nosso usuário e senha serão 
+comprometidos.
+
+Poderiamos delegar o acesso, podemos usar nossas credenciais de Google, Facebook e Github,
+porém não queremos informar nossa senha para um site terceiro. Este site terceiro deve requisitar
+ao provedor e então podemos continuar com nossa autenticação. Todo processo de autenticação
+acontece no nosso provedor de autenticação. Não há em nenhum momento troca de informação
+de credenciais entre site terceiro e provedor de autenticação.
+###########################################################################
+Entidades do OAUTH2
+São 4:
+- Resource Owner (dono do recurso)
+      Uma entidade capaz de conceder acesso a um recurso protegido.
+      Quando o proprietário do recurso é uma pessoa, é referido como um
+      usuário final.
+      O Resource Owner também pode ser definido como usuário final da nossa aplicação
+      Um detalhe importante é que algumas vezes esse usuário final pode ser um sistema.
+      É importante ressaltar que Resource Owner não se limita à ser uma pessoa.
+      Ex: Flickr, um popular serviço de armazenamento e compartilhamento de fotos. 
+      O Resource Owner, neste caso é o dono das fotos que ele decidiu publicar no serviço.
+      https://tools.ietf.org/html/rfc6749#section-1      
+      https://tools.ietf.org/html/draft-ietf-oauth-v2-16#section-1.1
+
+- Resource Server (Servidor de recursos)
+      O servidor que hospeda os recursos protegidos, capaz de aceitar
+      e responder a solicitações de recursos protegidos usando tokens de acesso.
+ { O servidor de recursos é o termo OAuth 2.0 para seu servidor de API.
+ O servidor de recursos trata as solicitações autenticadas depois que o aplicativo
+ obtém um token de acesso.
+As implantações em grande escala podem ter mais de um servidor de recursos.
+Os serviços do Google, por exemplo, possuem dezenas de servidores de recursos, 
+como a plataforma Google Cloud, Google Maps, Google Drive, Youtube, Google+ e
+muitos outros. Cada um desses servidores de recursos são distintamente separados, 
+mas todos compartilham o mesmo servidor de autorização.
+}
+
+Resource Server no Spring - https://docs.spring.io/autorepo/docs/spring-security-oauth2-boot/2.0.0.RC2/reference/html/boot-features-security-oauth2-resource-server.html
+
+
+- Client
+      Um aplicativo que faz solicitações de recursos protegidos em nome do
+      proprietário do recurso e com a sua autorização. O termo "cliente" faz
+      não implica nenhuma característica de implementação particular (por exemplo,
+      se o aplicativo é executado em um servidor, desktop ou outro
+      dispositivos).
+
+- Authorization Server (Servidor de autorização)
+      O servidor emitindo tokens de acesso ao cliente após com sucesso
+      autenticar o proprietário do recurso e obter autorização.
+
+   A interação entre o servidor de autorização e o servidor de recursos
+   está além do escopo desta especificação. O servidor de autorização
+   pode ser o mesmo servidor que o servidor de recursos ou uma entidade separada.
+   Um único servidor de autorização pode emitir tokens de acesso aceitos por
+   vários servidores de recursos.
+   
+Authorization Server no Spring
+https://github.com/spring-projects-experimental/spring-authorization-server
+
+Serviços que o Authorization Server expõe para utilização.
+https://tools.ietf.org/html/rfc8414
+
+- Authorization Server e a integração com OpenID Connect.
+https://tools.ietf.org/html/rfc8414#section-1
+
+  
+###############################################################################
+
+Como utilizamos nosso IAM para gerar tokens, o que faz com que ele atue como Authorization
+Server, você encontra os metadados do servidor no keycloak, que cria uma separação
+de usúarios, credenciais, grupos e permissões por Realm. Então cada Realm, tem metadados.
+
+Para ver os metadados 
+http://localhost:18080/auth/realms/nosso-cartao/.well-known/openid-configuration
+
+####################################################################################
+Guia para iniciantes OAUTH2
+https://medium.com/google-cloud/understanding-oauth2-and-building-a-basic-authorization-server-of-your-own-a-beginners-guide-cf7451a16f66
+
+########################################################
+
+Well - Know = Identificadores uniformes de recursos, reconhecidos como Uris.
+https://tools.ietf.org/html/rfc8615
+
+
+
+
