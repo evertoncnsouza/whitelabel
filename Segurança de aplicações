@@ -1,0 +1,60 @@
+- Cloud-native
+Aplicações com características cloud-native, estão aptas a rodar em múltiplos ambientes,
+fazendo com que não tenhamos certeza de quais níveis de segurança estão aplicados em
+determinados ambientes. Por isso, nos preocupamos ainda mais com segurança, nesse contexto.
+
+Provedores de nuvem pública possuem um elevado nível de segurança, porém, pouco adianta
+se nossas aplicações não seguirem boas práticas de segurança.
+
+A adição de segurança, deve ser iniciada no momento da criação do projeto e continuamente
+sendo trabalhado junto com cada nova feature. 
+Para criar um mindset de segurança, é preciso incorporar segurança no design do projeto.
+
+Existem técnicas que nos ajudam, podemos ofuscar dados sensíveis, durante os processos da 
+aplicação. 
+Uma dessas técnicas é o ofuscamento.
+
+##########################################################################################
+
+Ofuscamento - Nós, desenvolvedores usamos os logs da nossa aplicação, como uma ferramenta
+para encontrar problemas. Normalmente logs, indicam passos ou informação que nos ajudam
+a direcionar e encontrar a solução para esses problemas. 
+Sempre que você precisar "logar" uma informação que seja passível de identificação 
+de uma pessoa, é necessário realizar o ofuscamento do dado. O ofuscamento é uma prática que
+"embaralha" os caracteres para proteger nossa informação, de maneira que se a informação
+for analisada por qualquer fonte, não seja possível identificar o dado. O termo adequado
+para dados que permitam identificar uma pessoa é PII Personal Identifiable Information
+
+################################################################################
+
+Exemplos de ofuscação:
+
+Informação
+Aberta - 123455678 / Ofuscada- ******678
+
+###########################################################################
+
+Dica: Sempre ofusque logs de aplicação, logs de API no API Manager.
+
+############################################################################
+
+Encriptando dados em trânsito
+
+Outra prática utilizada para evitar ataques ou roubo de dados nas nossas aplicações
+é encriptar os dados em trânsito, utilizando um canal seguro, sendo um modelo que nos
+permita nos autenticar e realizar a encriptação de mensagem antes do envio. Neste caso
+quando o atacante obter acesso às informações, essas informações vão estar criptografadas
+de maneira que a informação não tenha serventia ao atacante.
+
+###########################################################
+
+Faça que sua aplicação utilize somente o conjunto de permissões que necessita.
+Ex: Se sua aplicação precisa de acesso de leitura no banco de dados, crie uma conta
+que permita somente leitura, não conceda privilégio de escrita sem a real necessidade.
+Esse tópico garante que nossa aplicação reduza o espaço ou brechas de segurança.
+
+
+
+
+
+
