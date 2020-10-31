@@ -1,0 +1,37 @@
+Controlar a autenticação e autorização é uma tarefa complicada e que na maioria das vezes
+envolve um conhecimento profundo em segurança, como por exemplo se preocupar com vulnerabilidade
+de segurança, trazer essa responsabilidade para nossa solução pode trazer muitas 
+complicações.
+
+Integrando nosso sistema com o keycloak, protegemos nossas API's.
+Para isso, precisamos configurar o sistema para se comunicar com o servidor de autenticação.
+
+Para logar no keycloak, pegamos o user e senha no arquivo docker compose.
+
+A porta padrão do keycloak é 8080. 
+
+Site keycloak - http://localhost:18080/auth/
+
+Após estar no site, clique em Administration Console e forneça user e senha.
+
+Com isso, é feita a interação com o keycloak.
+#################################################################################
+REALM
+É um espaço que criamos, para colocar permissões. 
+Para criar um Realm, que na prática é um grupo de divisão lógico. Neste grupo contém
+usuários, credenciais, perfis e grupos. 
+Uma parte bastante importante é que um Realm é totalmente isolado de outro Realm,
+então dessa maneira, você só consegue gerenciar usuários que o próprio Realm controla.
+
+Para criar um Realm, é necessário clicar em "Add Realm", você da um nome e clica em create.
+
+Verifique se a opção Enabled esta marcada e nos endpoints esteja selecionado a opção
+OpenID Endpoint Configuration
+
+#################################################################################
+
+
+Caso queira criar usuarios, basta ir em Users.
+
+
+
