@@ -1,0 +1,102 @@
+A superfície de ataque de um ambiente de software é a soma dos diferentes pontos em 
+que um usuário não autorizado pode tentar inserir dados ou extrair dados de um 
+ambiente. Manter a superfície de ataque o menor possível é uma medida básica de
+segurança.
+
+#######################################################
+
+Análise de Attack Surface
+https://cheatsheetseries.owasp.org/cheatsheets/Attack_Surface_Analysis_Cheat_Sheet.html
+
+A Análise da Superfície de Ataque é sobre o mapeamento de quais partes de um sistema precisam ser revisadas e testadas quanto a vulnerabilidades de segurança. O objetivo da Análise da Superfície de Ataque é entender as áreas de risco em um aplicativo, conscientizar os desenvolvedores e especialistas em segurança sobre quais partes do aplicativo estão abertas a ataques, encontrar maneiras de minimizar isso e perceber quando e como a Superfície de Ataque mudanças e o que isso significa de uma perspectiva de risco.
+
+A Análise da Superfície de Ataque geralmente é feita por arquitetos de segurança e pen testers. Mas os desenvolvedores devem entender e monitorar a Superfície de Ataque enquanto projetam, constroem e alteram um sistema.
+
+A Análise da Superfície de Ataque ajuda você a:
+
+identificar quais funções e quais partes do sistema você precisa revisar / testar as vulnerabilidades de segurança
+identificar áreas de código de alto risco que exigem proteção de defesa em profundidade - quais partes do sistema você precisa defender
+identificar quando você alterou a superfície de ataque e precisa fazer algum tipo de avaliação de ameaça
+Definindo a superfície de ataque de um aplicativo
+A superfície de ataque descreve todos os diferentes pontos em que um invasor pode entrar em um sistema e de onde pode obter dados.
+
+A superfície de ataque de um aplicativo é:
+
+a soma de todos os caminhos para dados / comandos dentro e fora do aplicativo, e
+o código que protege esses caminhos (incluindo conexão de recursos e autenticação, autorização, registro de atividades, validação de dados e codificação)
+todos os dados valiosos usados no aplicativo, incluindo segredos e chaves, propriedade intelectual, dados comerciais críticos, dados pessoais e PII, e
+o código que protege esses dados (incluindo criptografia e somas de verificação, auditoria de acesso e integridade de dados e controles de segurança operacional).
+Você sobrepõe este modelo com os diferentes tipos de usuários - funções, níveis de privilégio - que podem acessar o sistema (sejam autorizados ou não). A complexidade aumenta com o número de diferentes tipos de usuários. Mas é importante focar especialmente nos dois extremos: usuários anônimos não autenticados e usuários administradores altamente privilegiados (por exemplo, administradores de banco de dados, administradores de sistema).
+
+Agrupe cada tipo de ponto de ataque em grupos com base no risco (externo ou interno), finalidade, implementação, design e tecnologia. Você pode então contar o número de pontos de ataque de cada tipo e, em seguida, escolher alguns casos para cada tipo e concentrar sua revisão / avaliação nesses casos.
+
+Com essa abordagem, você não precisa entender cada endpoint para entender a superfície de ataque e o perfil de risco potencial de um sistema. Em vez disso, você pode contar os diferentes tipos gerais de terminais e o número de pontos de cada tipo. Com isso, você pode orçar o que será necessário para avaliar o risco em escala e saber quando o perfil de risco de um aplicativo mudou significativamente.
+
+Identificando e Mapeando a Superfície de Ataque
+Você pode começar a construir uma descrição de linha de base da Superfície de Ataque em uma imagem e notas. Passe algumas horas revisando documentos de design e arquitetura da perspectiva de um invasor. Leia o código-fonte e identifique os diferentes pontos de entrada / saída:
+
+Formulários e campos da interface do usuário (IU)
+Cabeçalhos HTTP e cookies
+APIs
+arquivos
+Bancos de dados
+Outro armazenamento local
+Email ou outros tipos de mensagens
+Argumentos de tempo de execução
+... Seus pontos de entrada / saída
+O número total de pontos de ataque diferentes pode facilmente chegar a milhares ou mais. Para tornar isso gerenciável, divida o modelo em diferentes tipos com base na função, design e tecnologia:
+
+Pontos de entrada de login / autenticação
+Interfaces de administração
+Consultas e funções de pesquisa
+Formulários de entrada de dados (CRUD)
+Fluxos de trabalho de negócios
+Interfaces transacionais / APIs
+Comando operacional e interfaces / APIs de monitoramento
+Interfaces com outros aplicativos / sistemas
+... Seus tipos
+Você também precisa identificar os dados valiosos (por exemplo, confidenciais, sensíveis, regulamentados) no aplicativo, entrevistando desenvolvedores e usuários do sistema e, novamente, revisando o código-fonte.
+
+Você também pode construir uma imagem da Superfície de Ataque escaneando o aplicativo. Para aplicativos da web, você pode usar uma ferramenta como o OWASP ZAP ou Arachni ou Skipfish ou w3af ou um dos muitos testes dinâmicos comerciais e ferramentas ou serviços de varredura de vulnerabilidade para rastrear seu aplicativo e mapear as partes do aplicativo que são acessíveis pela web. Alguns firewalls de aplicativo da web (WAFs) também podem exportar um modelo dos pontos de entrada do aplicativo.
+
+Valide e preencha sua compreensão da Superfície de Ataque percorrendo alguns dos principais casos de uso no sistema: inscrever-se e criar um perfil de usuário, efetuar login, pesquisar um item, fazer um pedido, alterar um pedido e assim por diante . Acompanhe o fluxo de controle e dados pelo sistema, veja como a informação é validada e onde está armazenada, quais recursos são tocados e quais outros sistemas estão envolvidos. Há uma relação recursiva entre a Análise da Superfície de Ataque e a Modelagem de Ameaças do Aplicativo : as alterações na Superfície de Ataque devem acionar a modelagem de ameaças, e a modelagem de ameaças ajuda a entender a Superfície de Ataque do aplicativo.
+
+O modelo de superfície de ataque pode ser áspero e incompleto para começar, especialmente se você não tiver feito nenhum trabalho de segurança no aplicativo antes. Preencha as lacunas conforme você se aprofunda em uma análise de segurança ou trabalha mais com o aplicativo e percebe que sua compreensão da Superfície de Ataque melhorou.
+
+Medindo e avaliando a superfície de ataque
+Assim que tiver um mapa da Superfície de Ataque, identifique as áreas de alto risco. Foco em pontos de entrada remotos - interfaces com sistemas externos e para a Internet - e especialmente onde o sistema permite acesso público anônimo.
+
+Voltado para a rede, especialmente código voltado para a Internet
+Formulários da web
+Arquivos de fora da rede
+Interfaces compatíveis com versões anteriores com outros sistemas - protocolos antigos, às vezes código e bibliotecas antigos, difíceis de manter e testar várias versões
+APIs personalizadas - protocolos etc. - com probabilidade de haver erros no design e na implementação
+Código de segurança: qualquer coisa a ver com criptografia, autenticação, autorização (controle de acesso) e gerenciamento de sessão
+É nesses locais que você está mais exposto a ataques. Em seguida, entenda quais controles de compensação você possui, controles operacionais como firewalls de rede e firewalls de aplicativos e sistemas de detecção ou prevenção de intrusão para ajudar a proteger seu aplicativo.
+
+Michael Howard, da Microsoft, e outros pesquisadores desenvolveram um método para medir a Superfície de Ataque de um aplicativo e para rastrear mudanças na Superfície de Ataque ao longo do tempo, chamado Quociente de Superfície de Ataque Relativo (RSQ) . Usando este método, você calcula uma pontuação geral da superfície de ataque para o sistema e mede essa pontuação conforme as alterações são feitas no sistema e em como ele é implantado. Pesquisadores da Carnegie Mellon desenvolveram neste trabalho uma maneira formal de calcular uma Métrica de Superfície de Ataquepara grandes sistemas como SAP. Eles calculam a Superfície de Ataque como a soma de todos os pontos de entrada e saída, canais (as diferentes maneiras que os clientes ou sistemas externos se conectam ao sistema, incluindo portas TCP / UDP, pontos de extremidade RPC, canais nomeados ...) e elementos de dados não confiáveis . Em seguida, eles aplicam uma relação potencial de dano / esforço a esses elementos da Superfície de Ataque para identificar áreas de alto risco.
+
+Observe que implantar várias versões de um aplicativo, deixando recursos que não são mais usados ​​apenas no caso de serem necessários no futuro, ou deixando cópias de backup antigas e código não utilizado aumenta a superfície de ataque. O controle do código-fonte e práticas robustas de gerenciamento / configuração de mudança devem ser usados ​​para garantir que a superfície de ataque real implantada corresponda ao teórico o mais próximo possível.
+
+Backups de código e dados - online e em mídia offline - são uma parte importante, mas frequentemente ignorada, da superfície de ataque de um sistema. Proteger seus dados e IP escrevendo software seguro e fortalecendo a infraestrutura será um desperdício se você entregar tudo para os bandidos ao não proteger seus backups.
+
+Gerenciando a superfície de ataque
+Depois de ter uma compreensão básica da Superfície de Ataque, você pode usá-la para identificar e gerenciar os riscos de forma incremental à medida que faz alterações no aplicativo. Pergunte a si mesmo:
+
+O que mudou?
+O que você está fazendo diferente? (tecnologia, nova abordagem, ...)
+Que buracos você poderia ter aberto?
+A primeira página da web que você cria abre significativamente a Superfície de Ataque do sistema e apresenta todos os tipos de novos riscos. Se você adicionar outro campo a essa página, ou outra página da web semelhante, embora tecnicamente tenha tornado a Superfície de Ataque maior, você não aumentou o perfil de risco do aplicativo de maneira significativa. Cada uma dessas mudanças incrementais é mais do mesmo, a menos que você siga um novo design ou use uma nova estrutura.
+
+Se você adicionar outra página da web que segue o mesmo design e usando a mesma tecnologia das páginas da web existentes, é fácil entender quanto teste de segurança e revisão são necessários. Se você adicionar uma nova API de serviços da web ou arquivo que pode ser carregado da Internet, cada uma dessas mudanças tem um perfil de risco diferente novamente - veja se a mudança se encaixa em um intervalo existente, veja se os controles e proteções existentes se aplicam. Se você está adicionando algo que não se enquadra em um balde existente, isso significa que você deve passar por uma avaliação de risco mais completa para entender que tipo de brechas de segurança você pode abrir e quais proteções você precisa implementar.
+
+Mudanças no gerenciamento de sessão, autenticação e gerenciamento de senha afetam diretamente a superfície de ataque e precisam ser revisadas. O mesmo ocorre com as alterações na autorização e na lógica de controle de acesso, especialmente adicionando ou alterando as definições de função, adicionando usuários ou funções administrativas com altos privilégios. Da mesma forma, para alterações no código que lida com criptografia e segredos. Mudanças fundamentais em como a validação de dados é feita. E grandes mudanças arquitetônicas nas camadas e relações de confiança, ou mudanças fundamentais na arquitetura técnica - trocando seu servidor web ou plataforma de banco de dados, ou mudando o sistema operacional de tempo de execução.
+
+Ao adicionar novos tipos de usuários ou funções ou níveis de privilégio, você faz o mesmo tipo de análise e avaliação de risco. Sobreponha o tipo de acesso aos dados e funções e procure problemas e inconsistências. É importante entender o modelo de acesso do aplicativo, se é positivo (o acesso é negado por padrão) ou negativo (o acesso é permitido por padrão). Em um modelo de acesso positivo, quaisquer erros na definição de quais dados ou funções são permitidos para um novo tipo de usuário ou função são fáceis de ver. Em um modelo de acesso negativo, você deve ser muito mais cuidadoso para garantir que um usuário não obtenha acesso a dados / funções para os quais ele não deveria ter permissão.
+
+Esse tipo de avaliação de risco ou ameaça pode ser feito periodicamente ou como parte do trabalho de design em projetos de desenvolvimento em série / em fases / em espiral / em cascata, ou contínua e incrementalmente no desenvolvimento ágil / iterativo.
+
+Normalmente, a superfície de ataque de um aplicativo aumentará com o tempo conforme você adiciona mais interfaces e tipos de usuário e se integra a outros sistemas. Você também deseja procurar maneiras de reduzir o tamanho da superfície de ataque quando puder, simplificando o modelo (reduzindo o número de níveis de usuário, por exemplo, ou não armazenando dados confidenciais que você absolutamente não precisa), desligando recursos e interfaces que não estão sendo usadas, introduzindo controles operacionais, como um Web Application Firewall (WAF) e detecção de ataques específicos de aplicativos em tempo real.
+
+
+
