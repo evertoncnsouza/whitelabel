@@ -1,0 +1,12 @@
+JSON Web Token (JWT) é um padrão aberto ( RFC 7519 ) que define uma maneira compacta 
+e independente para transmitir informações com segurança entre as partes como um 
+objeto JSON. Essas informações podem ser verificadas e confiáveis porque são assinadas
+digitalmente. Os JWTs podem ser assinados usando um segredo (com o algoritmo HMAC ) 
+ou um par de chaves pública / privada usando RSA ou ECDSA .
+
+Embora os JWTs possam ser criptografados para fornecer sigilo entre as partes, nos 
+concentraremos nos tokens assinados . Os tokens assinados podem verificar a 
+integridade das declarações contidas nele, enquanto os tokens criptografados ocultam 
+essas declarações de outras partes. Quando os tokens são assinados usando pares de 
+chaves pública / privada, a assinatura também certifica que apenas a parte que possui
+a chave privada é quem a assinou.
