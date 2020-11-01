@@ -1,0 +1,31 @@
+Keycloak- 
+É uma ferramenta que permite que possamos gerenciar aplicações (clientes), desta maneira
+garantmos essas aplicações, como browser, aplicativos e serviçoes que estejam configuradas
+e seguras.
+As aplicações podem ter inúmeros escopos, que são utilizados para permitir, habilitar, bloquear
+determinadas ações no sitema. 
+Ex: Somente quem tem o escopo Admin, pode ver X, Y, Z.
+
+.... após cliar o cliente...
+- Vá na aba Client Scopes, depois clique em CREATE.
+
+Depois será direcionado a uma aba, add Client escopo, dê um nome ao escopo, 
+e certifique-se que 
+- Protocol, esteja com openid-connect
+- Diplay on consent screen, esteja on.
+- Include in token Scope, esteja on.
+e clique em salvar.
+
+Agora é hora de relacionar com o client.
+
+Vá no Client criado, clique na aba Client Scopes. 
+Nela você verá duas opções:
+- Default Client Scopes, que são os escopos padrões que a aplicação irá ter
+- Optional Client Scopes, que são os escopos opcionais que sua aplicação poderá prover.
+
+Encontre e seleciona o escopo criado na seção Default Client Scopes e clique em Add selected.
+
+Assim, está tudo configurado.
+
+
+
