@@ -1,0 +1,13 @@
+O escopo é um mecanismo do OAuth 2.0 para limitar o acesso de um aplicativo à conta de
+um usuário. Um aplicativo pode solicitar um ou mais escopos, essas informações são 
+apresentadas ao usuário na tela de consentimento e o token de acesso emitido para o
+aplicativo será limitado aos escopos concedidos.
+
+A especificação OAuth permite que o servidor de autorização ou usuário modifique os
+escopos concedidos ao aplicativo em comparação com o que é solicitado, embora não haja
+muitos exemplos de serviços fazendo isso na prática.
+
+OAuth não define nenhum valor específico para escopos, pois é altamente dependente
+da arquitetura interna e das necessidades do serviço.
+
+Exemplo: GitHub
