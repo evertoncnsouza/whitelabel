@@ -1,0 +1,43 @@
+Embora muitas vezes usadas de forma intercambiável, a autenticação e a autorização 
+representam funções fundamentalmente diferentes.
+
+Em termos simples, a autenticação é o processo de verificar quem é um usuário, 
+enquanto a autorização é o processo de verificar a que ele tem acesso.
+
+Comparando esses processos com um exemplo do mundo real, quando você passa pela 
+segurança de um aeroporto, mostra sua identidade para autenticar sua identidade.
+Então, ao chegar no portão, você apresenta seu cartão de embarque ao comissário,
+para que ele autorize você a embarcar e dê acesso ao avião.
+
+Autenticação
+- Determina se os usuários são quem afirmam ser
+- Desafia o usuário a validar credenciais (por exemplo, por meio de senhas, respostas
+a perguntas de segurança ou reconhecimento facial)
+- Normalmente feito antes da autorização
+- Geralmente, transmite informações por meio de um token de ID
+- Geralmente regido pelo protocolo OpenID Connect (OIDC)
+- Exemplo: os funcionários de uma empresa são obrigados a se autenticar por meio da 
+rede antes de acessar o e-mail da empresa
+
+Autorização
+- Determina o que os usuários podem e não podem acessar
+- Verifica se o acesso é permitido por meio de políticas e regras
+- Normalmente feito após autenticação bem-sucedida
+- Geralmente, transmite informações por meio de um token de acesso
+- Geralmente regido pela estrutura OAuth 2.0
+- Exemplo: depois que um funcionário é autenticado com sucesso, o sistema determina
+quais informações os funcionários têm permissão para acessar
+
+
+Resumindo, o acesso a um recurso é protegido por autenticação e autorização. 
+Se você não puder provar sua identidade, não terá permissão para entrar em um recurso.
+E mesmo se você puder provar sua identidade, se você não estiver autorizado para esse
+recurso, seu acesso ainda será negado.
+
+
+
+
+
+
+
+
