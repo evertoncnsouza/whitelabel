@@ -6,6 +6,17 @@ do contexto do sistema.
 As métricas a serem expostas, devem ser exclusivamente da única instância em questão. É necessário apenas adicionar
 um identificador do nosso sistema, que é o provedor da métrica.
 
+Métricas
+Métricas são muito importantes para o desenvolvimento de software, especialmente quando trabalhamos com sistemas
+distribuídos. Quando nossas funções são executadas em diversas máquinas, entender o comportamento do ecossistema é
+muito importante para troubleshooting!
+
+Utilizamos métricas para troubleshooting e também para tomada de decisões, como por exemplo:
+
+Métricas de utilização de recurso computacional (CPU, Memória, Rede)
+Métricas de tempo de processamento de uma determinada funcionalidade
+Métricas de utilização de um determinado produto, como por exemplo: vendas onlines, físicas ou por terceiros.
+
 ########################################################################################
 
 Método Red
