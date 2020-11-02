@@ -50,6 +50,17 @@ http://localhost:8080/actuator/health
         }
     }
 
+###################################################################################################
+
+Configurando métricas no Spring Boot Actuator
+
+O Spring Boot Actuator fornece gerenciamento de dependência e configuração automática para o Micrometer, uma biblioteca
+de métricas de aplicativos que suporta vários sistemas de monitoramento, como, Prometheus, Datadog e Dynatrace.
+
+Micrometer = permite que você instrumentalize seu código com métricas dimensionais com uma interface neutra do
+fornecedor e decida sobre o sistema de monitoramento como uma última etapa. Instrumentar o código de sua biblioteca
+central com Micrometer permite que as bibliotecas sejam incluídas em aplicativos que enviam métricas para diferentes
+back-ends.
 
 
 
