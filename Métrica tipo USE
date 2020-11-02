@@ -1,0 +1,8 @@
+Métricas de infraestrutura, como por exemplo: CPU, memória, rede, etc.
+Métricas de negócio, como por exemplo: Quantidade de usuário, compras, vendas, conversão, etc.
+E quando falamos de arquitetura distribuída, como por exemplo Microsserviços, existe uma boa prática denominada USE, 
+na qual tem o objetivo de responder três perguntas e deve ser implementada em todos os serviços!
+
+Utilization: A média de tempo que o recurso está sendo utilizado.
+Saturation: O grau em que o recurso tem trabalho extra que não pode atender.
+Error: Quantidade de falhas no recurso.
