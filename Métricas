@@ -19,23 +19,7 @@ Métricas de utilização de um determinado produto, como por exemplo: vendas on
 
 ########################################################################################
 
-Método Red
 
-O método RED define as três principais métricas que você deve medir para cada microsserviço em sua arquitetura. 
-Essas métricas são:
-
-(Solicitação) R ate - o número de solicitações, por segundo, que seus serviços estão atendendo.
-(Solicitação) E rrors - o número de solicitações com falha por segundo.
-(Solicitação) D uração - distribuições da quantidade de tempo que cada solicitação leva.
-
-método RED é também ajuda você a pensar sobre como construir seus painéis. Você deve trazer essas três métricas à 
-frente e ao centro para cada serviço e a taxa de erro deve ser expressa como uma proporção da taxa de solicitação.
-
-Limitação: esse método só funciona para serviços orientados por solicitação - ele não funciona para serviços 
-orientados a lote ou streaming, por exemplo. Também não é abrangente. Há momentos em que você precisará monitorar 
-outras coisas - o Método USE é um ótimo exemplo quando aplicado a recursos como CPU e Memória do host ou caches.
-
-##############################################################################################
 
 
 
