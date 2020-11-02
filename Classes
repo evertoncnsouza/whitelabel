@@ -39,6 +39,8 @@ public ResponseEntity<PropostaCriada> novaProposta(@RequestBody @Valid NovaPropo
   return ResponseEntity.created(uriComponentsBuilder.path("/propostas/{id}").buildAndExpand(nova.getId()).toUri()).body(nova);
 }
 
+P código acima esta com cabeçalho Location
+
 ###########################################################################
 
 IncorrectResultSizeDataAccessException
