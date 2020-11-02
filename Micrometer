@@ -1,0 +1,164 @@
+Como uma fachada de instrumentação, o Micrometer permite que você instrumentalize seu código com métricas 
+dimensionais com uma interface neutra do fornecedor e decida sobre o sistema de monitoramento como uma última etapa.
+Instrumentar o código de sua biblioteca central com Micrometer permite que as bibliotecas sejam incluídas em 
+aplicativos que enviam métricas para diferentes back-ends.
+
+O Spring Boot Actuator fornece gerenciamento de dependência e configuração automática para o Micrometer, uma biblioteca
+de métricas de aplicativos que suporta vários sistemas de monitoramento:
+
+MeterRegistry - É a classe principal para criar métricas, no Spring, ele já vem configurado, portanto, precisamos
+somente receber no construtor:
+
+@Component
+class MinhasMetricas {
+    
+    private final MeterRegistry meterRegistry;
+
+    public MinhasMetricas(MeterRegistry meterRegistry) {
+    this.meterRegistry = meterRegistry;    
+    }
+
+}
+
+Tipos de métricas:
+
+- Métrica tipo Counter
+Contadores relatam uma única métrica, uma contagem. A interface do contador permite aumentar em um valor fixo, que 
+deve ser positivo.
+
+Se precisamos de uma métrica de números de propostas criadas, isso irá ajudar muito a identificar qual emissora,
+ou banco utilizam mais o sistema. Para isso, precisamos utilizar o MeterRegistry e o método de criação de contador,
+conforme código abaixo:
+
+public void meuContador() {
+    Collection<Tag> tags = new ArrayList<>();
+    tags.add(Tag.of("emissora", "Mastercard"));
+    tags.add(Tag.of("banco", "Itaú"));
+
+    Counter contadorDePropostasCriadas = this.meterRegistry.counter("proposta_criada", tags);
+    
+}
+
+Após criar o contador, podemos incrementar o mesmo. 
+
+contadorDePropostasCriadas.increment();
+
+###################################################################################
+
+Métrica tipo Timer
+
+Os temporizadores destinam-se a medir latências de curta duração e a frequência desses eventos.
+Todas as implementações do Timer relatam pelo menos o tempo total e a contagem de eventos como séries temporais 
+separadas.
+Método de criação de temporizadores- 
+Collection<Tag> tags = new ArrayList<>();
+tags.add(Tag.of("emissora", "Mastercard"));
+tags.add(Tag.of("banco", "Itaú"));
+
+Timer timerConsultarProposta = this.meterRegistry.timer("consultar_proposta", tags);
+timerConsultarProposta.record(() -> {
+    // Método da sua operação
+    consultarProposta();
+});
+
+o nome da métrica será consultar_proposta_seconds_count e consultar_proposta_seconds_sum.
+
+# HELP consultar_proposta_seconds  
+# TYPE consultar_proposta_seconds summary
+consultar_proposta_seconds_count{banco="Itaú",emissora="Mastercard",} 12.0
+consultar_proposta_seconds_sum{banco="Itaú",emissora="Mastercard",} 36.003066791
+
+Com as duas métricas conseguimos responder quantas consultas foram feitas (12) e quantos segundos elas demoraram
+em média (36 / 12 = 3s) no período selecionado.
+
+##########################################################################################
+
+Métrica tipo Gauge
+
+Um medidor é uma alça para obter o valor atual. Exemplos típicos de medidores seriam o tamanho de uma coleção ou
+mapa ou o número de threads em um estado de execução.
+
+Uma forma de visualizar esse tipo de métrica e fazer uma analogia com o velocímetro do carro, ele vai de zero até 
+100 e conforme você acelera ele sobe até o limite!
+
+Quando falamos de limite geralmente utilizamos Gauge, pois imagina que temos um limite de número de threads e
+gostaríamos de saber quantas estão sendo utilizadas, por que quando chegar no limite, possivelmente irá acarretar 
+alguns problemas, como perda de performance, erros, etc.
+
+Modelo:
+
+@Component
+public class MinhasMetricas {
+
+    private final MeterRegistry meterRegistry;
+
+    private final Collection<String> strings = new ArrayList<>();
+
+    private final Random random = new Random();
+
+    public MinhasMetricas(MeterRegistry meterRegistry) {
+        this.meterRegistry = meterRegistry;
+        criarGauge();
+    }
+
+    public void criarGauge() {
+        Collection<Tag> tags = new ArrayList<>();
+        tags.add(Tag.of("emissora", "Mastercard"));
+        tags.add(Tag.of("banco", "Itaú"));
+
+        this.meterRegistry.gauge("meu_gauge", tags, strings, Collection::size);
+    }
+
+}
+No codigo acima, foi criado um medidor que ira mostrar o tamanho da lista, Collection::size. 
+para isso, vamos simular uma interação na lista, criando duas situações, uma que adiciona e outra que remove
+
+public void removeString() {
+    strings.removeIf(Objects::nonNull);
+}
+
+public void addString() {
+    strings.add(UUID.randomUUID().toString());
+}
+
+Após isso, criamos uma simulação que baseada se o número é par adiciona e se for ímpar, remove
+
+public void simulandoGauge() {
+    double randomNumber = random.nextInt();
+    if (randomNumber % 2 == 0) {
+        addString();
+    } else {
+        removeString();
+    }
+}
+
+Após isso, adicionamos a anotação @Scheduled(fixedDelay = 1000) no método simulandoGauge.
+
+Para testar, é necessário subir a aplicação.
+
+Após isso, vá até actuator/prometheus e procure pelo nome meu_gauge.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
