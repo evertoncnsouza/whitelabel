@@ -9,7 +9,22 @@ com consultas flexíveis e alertas em tempo real.
 
 e habilite o endpoint /actuator/prometheus, por isso adione em Application.Properties
 
-management.endpoints.web.exposure.include=info,health,prometheus
+management.endpoints.web.exposure.include=info,health,prometheus.
+
+Sabendo o que é Name(nome da métrica) e label (diferencia as características da métrica, os dados abaixo indicam
+que a métrica vem do serviço de proposta e do ambiente de desenvolvimento.
+
+management.metrics.tags.aplicacao=${NOME_DA_APLICACAO:serviço de proposta}
+management.metrics.tags.ambiente=${AMBIENTE:desenvolvimento}
+
+
+Importante: Cuidado com a quantidade de LABELs, pois a medida que aumentam, aumentam também os dados armazenados 
+no Prometheus, causando problemas de performance e disco.
+
+
+
+
+
 
 
 
