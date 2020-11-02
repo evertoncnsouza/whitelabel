@@ -1,0 +1,17 @@
+O Prometheus é um aplicativo de software gratuito usado para monitoramento e alerta de eventos. 
+Ele grava métricas em tempo real em um banco de dados de séries temporais criado usando um modelo de recepção HTTP,
+com consultas flexíveis e alertas em tempo real.
+
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-registry-prometheus</artifactId>
+</dependency>
+
+e habilite o endpoint /actuator/prometheus, por isso adione em Application.Properties
+
+management.endpoints.web.exposure.include=info,health,prometheus
+
+
+
+
+
