@@ -19,6 +19,43 @@ Métricas de utilização de um determinado produto, como por exemplo: vendas on
 
 ########################################################################################
 
+Nomes de métricas
+
+Um nome de métrica ...
+... deve estar de acordo com o modelo de dados para caracteres válidos.
+... deve ter um prefixo de aplicativo (palavra única) relevante ao domínio ao qual a métrica pertence. O prefixo às
+vezes é conhecido como namespacepor bibliotecas cliente. Para métricas específicas de um aplicativo, o prefixo 
+geralmente é o próprio nome do aplicativo. Às vezes, no entanto, as métricas são mais genéricas, como métricas
+padronizadas exportadas por bibliotecas cliente. Exemplos:
+prometheus_notifications_total (específico para o servidor Prometheus)
+process_cpu_seconds_total (exportado por muitas bibliotecas cliente)
+http_request_duration_seconds (para todas as solicitações HTTP)
+... deve ter uma única unidade (ou seja, não misture segundos com milissegundos ou segundos com bytes).
+... deve usar unidades básicas (por exemplo, segundos, bytes, metros - não milissegundos, megabytes, quilômetros).
+Veja abaixo uma lista de unidades básicas.
+... deve ter um sufixo descrevendo a unidade, no plural. Observe que uma contagem acumulada tem totalcomo sufixo, 
+além da unidade, se aplicável.
+http_request_duration_seconds
+node_memory_usage_bytes
+http_requests_total (para uma contagem acumulativa sem unidade)
+process_cpu_seconds_total (para uma contagem acumulada com unidade)
+foobar_build_info (para uma pseudo-métrica que fornece metadados sobre o binário em execução)
+... deve representar a mesma coisa lógica sendo medida em todas as dimensões do rótulo.
+duração do pedido
+bytes de transferência de dados
+uso instantâneo de recursos como uma porcentagem
+Como uma regra de ouro, ou o sum()ou a avg()sobre todas as dimensões de uma determinada métrica deve ser 
+significativa (embora não necessariamente útil). Se não for significativo, divida os dados em várias métricas.
+Por exemplo, ter a capacidade de várias filas em uma métrica é bom, enquanto misturar a capacidade de uma fila com
+o número atual de elementos na fila não é.
+
+Etiquetas
+Use rótulos para diferenciar as características do que está sendo medido:
+
+api_http_requests_total - diferenciar tipos de solicitação: operation="create|update|delete"
+api_request_duration_seconds - diferenciar estágios de solicitação: stage="extract|transform|load"
+Não coloque os nomes dos rótulos no nome da métrica, pois isso introduz redundância e causará confusão se os
+respectivos rótulos forem agregados.
 
 
 
