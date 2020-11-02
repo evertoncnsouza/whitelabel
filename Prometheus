@@ -21,6 +21,35 @@ management.metrics.tags.ambiente=${AMBIENTE:desenvolvimento}
 Importante: Cuidado com a quantidade de LABELs, pois a medida que aumentam, aumentam também os dados armazenados 
 no Prometheus, causando problemas de performance e disco.
 
+###################################################################################################
+
+O Prometheus é um sistema de monitoramento de código aberto baseado em métricas.
+Ele possui um modelo de dados simples, porém poderoso, e uma linguagem de consulta que permite analisar o desempenho
+de seus aplicativos e infraestrutura. Ele não tenta resolver problemas fora do espaço das métricas, deixando-os para
+outras ferramentas mais apropriadas.
+
+- Funcionalidades:
+- PromQL, uma linguagem de consulta flexível para efetuar consultas.
+- Coleta de métricas ocorre por meio de um modelo pull sobre HTTP.
+- Receber métricas é suportado através de um gateway intermediário.
+
+ Existem dois modelos de coleta de métricas:
+
+- Pull model - é o mais utilizado pelo mercado, pois o Prometheus tem a responsabilidade de coletar as métricas de
+acordo com os endereços configurados em seu arquivo de configuração, ou seja, se você configurou para ele coletar
+as métricas do endereço www.prd-servico-proposta.com.br/actuator/prometheus a cada 5s o mesmo fará!
+Com este modelo a sua aplicação não tem a responsabilidade de enviar as métricas e sim de apenas fornecer no formato
+Prometheus e certamente o mesmo (Prometheus) irá coletar!
+
+
+- Push model
+O modelo push model é o menos utilizado, pois ele atende um cenário muito específico, como por exemplos operações
+de curta duração, como uma Tarefa, Função(Serverless), etc.
+Como essas operações duram pouco, seus endereços mudam bastante e fica inviável do Prometheus gerenciar isso,
+portanto a responsabilidade de enviar as métricas são da aplicação (operação de curta duração).
+Para atender esse cenário o Prometheus provê uma API para receber essas métricas!
+
+
 
 
 
