@@ -6,3 +6,27 @@ na qual tem o objetivo de responder três perguntas e deve ser implementada em t
 Utilization: A média de tempo que o recurso está sendo utilizado.
 Saturation: O grau em que o recurso tem trabalho extra que não pode atender.
 Error: Quantidade de falhas no recurso.
+
+###################################################################################################
+
+O método USE pode ser resumido como:
+
+Para cada recurso, verifique a utilização, saturação e erros.
+Ele deve ser usado no início de uma investigação de desempenho, para identificar gargalos sistêmicos.
+
+Definições de terminologia:
+
+recurso : todos os componentes funcionais do servidor físico (CPUs, discos, barramentos, ...) 
+utilização : o tempo médio que o recurso esteve ocupado atendendo ao trabalho
+saturação : o grau em que o recurso tem trabalho extra que não pode atender, muitas vezes na fila
+erros : a contagem de eventos de erro
+Também pode ser útil considerar alguns recursos de software ou limites impostos por software (controles de recursos) e ver quais métricas são possíveis.
+Há outra definição em que a utilização descreve a proporção de um recurso que é usado e, portanto, 100% de utilização significa que nenhum trabalho pode ser aceito, ao contrário da definição de "ocupado" acima.
+
+As métricas são geralmente expressas nos seguintes termos:
+
+utilização: como uma porcentagem ao longo de um intervalo de tempo. por exemplo, "um disco está sendo executado com 90% de utilização".
+saturação: como um comprimento de fila. por exemplo, "as CPUs têm um comprimento médio de fila de execução de quatro".
+erros: contagens escalares. por exemplo, "esta interface de rede teve cinquenta colisões tardias".
+Os erros devem ser investigados porque podem degradar o desempenho e podem não ser notados imediatamente quando o modo de falha for recuperável. Isso inclui operações que falham e são repetidas, e dispositivos de um pool de dispositivos redundantes que falham.
+
