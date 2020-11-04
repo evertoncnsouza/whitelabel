@@ -88,3 +88,13 @@ Commins Logging, Log4J ou SLF4J funcionem corretamente.
  Graylog - O mais novo dos três.
  Fluentd- Recomendado por AWS e Google Cloud.
  
+ #######################################################
+ 
+ O Log4j divide os logs em 5 níveis hierárquicos, sendo desde o nível mais baixo até o nível mais “severo”.
+ São eles: DEBUG, INFO, WARN, ERROR, FATAL. A vantagem de utilizar esses níveis é que você pode dizer qual nível a aplicação deve 
+ implementar.
+
+Os níveis de log estão de forma crescente por nível de severidade (DEBUG, INFO, WARN, ERROR e FATAL), sendo que se você ativar o nível 
+INFO, automaticamente todos os níveis acima de INFO e claro o próprio INFO. Se você ativar o ERROR apenas ele e o FATAL será ativado.
+
+ 
