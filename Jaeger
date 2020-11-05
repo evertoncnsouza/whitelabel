@@ -1,3 +1,115 @@
 Jaeger é um software open source para rastreamento de transações entre serviços distribuídos. 
 Ele é usado para monitorar e solucionar problemas em ambientes de microsserviços complexos.
 
+<dependencies>
+	<dependency>
+      <groupId>io.opentracing.contrib</groupId>
+      <artifactId>opentracing-spring-jaeger-web-starter</artifactId>
+      <version>3.1.2</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>io.opentracing.contrib</groupId>
+      <artifactId>opentracing-spring-cloud-starter</artifactId>
+      <version>0.5.6</version>
+    </dependency>
+</dependencies>
+
+- Configure o Application.properties
+
+# Jaeger - Habilita ou não
+opentracing.jaeger.enabled=${JAEGER_ENABLED:true}
+
+# Jaeger - Nome do serviço
+opentracing.jaeger.service-name=${spring.application.name}
+
+# Jaeger - Endereço para enviar os metadados (trace, span, etc)
+opentracing.jaeger.http-sender.url=${JAEGER_ENDPOINT:http://localhost:14268/api/traces}
+
+# Jaeger - Tipo de amostragem (probabilístico) e sua configuração (1 = 100%)
+opentracing.jaeger.probabilistic-sampler.sampling-rate=${JAEGER_SAMPLER:1}
+
+- Assim está tudo configurado, o Spring agora utiliza as configurações automáticas para 
+vários módulos, como por ex:
+
+Spring Web (RestControllers, RestTemplates, WebAsyncTask, WebClient, WebFlux)
+@Async, @Scheduled, Executors
+WebSocket STOMP
+Feign, HystrixFeign
+Hystrix
+JMS
+JDBC
+Kafka
+Mongo
+Zuul
+Reactor
+RxJava
+Redis
+Standard logging - logs are added to active span
+Spring Messaging - trace messages being sent through Messaging Channels
+RabbitMQ
+
+Cada um desses módulos tem uma configuração automática.
+
+ex:
+@Configuration
+@AutoConfigureAfter({TracerRegisterAutoConfiguration.class, org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration.class})
+@ConditionalOnBean(RedisConnectionFactory.class)
+@ConditionalOnProperty(name = "opentracing.spring.cloud.redis.enabled", havingValue = "true", matchIfMissing = true)
+@EnableConfigurationProperties(RedisTracingProperties.class)
+public class RedisAutoConfiguration {
+
+  @Bean
+  public RedisAspect openTracingRedisAspect(Tracer tracer, RedisTracingProperties properties) {
+    return new RedisAspect(tracer, properties);
+  }
+
+}
+
+Neste código, se você tiver um objeto 
+
+RedisConnectionFactory ele irá injetar no contexto de injeção de dependência do Spring o
+RedisAspect que irá executar antes e após a cada operação dessa tecnologia, adicionando as
+informações necessárias da mesma no span do OpenTracing!
+
+Agora podemos olhar o mesmo comportamento no código do Feign, que é uma biblioteca muito
+famosa para realização de integrações com outros serviços, principalmente via HTTP.
+
+@Configuration
+@ConditionalOnClass(Client.class)
+@ConditionalOnBean(Tracer.class)
+@AutoConfigureAfter(TracerAutoConfiguration.class)
+@AutoConfigureBefore(name = "org.springframework.cloud.openfeign.FeignAutoConfiguration")
+@ConditionalOnProperty(name = "opentracing.spring.cloud.feign.enabled", havingValue = "true", matchIfMissing = true)
+public class FeignTracingAutoConfiguration {
+   ...
+
+  @Bean
+  public TracingAspect tracingAspect() {
+    return new TracingAspect();
+  }
+}
+
+Neste caso, utilizamos a annotation ConditionalOnProperty para verificação
+se a implementaçãoi da open tracing está habilitada para o Feign. 
+Caso não exista nenhuma configuração explícita, o trace é habilitado por
+default por conta do argumento matchIfMissing = true presente na annotation.
+
+O sentimento de "mágica" do Spring se deve a condição, se existe ou não uma determinada classe,
+pacote, etc. Por este motivo em sua grande maioria basta adicionar uma dependência no pom.xml que
+a "mágica" acontece! Na verdade alguma classe contida na dependência, habilita certas configurações,
+funcionalidades, comportamentos, etc.
+
+Para testar, verificamos se o Jaeger foi iniciado, conforme esta no docker-compose.
+Abra o endereço: endereço http://localhost:16686/search
+
+Após iniciar a aplicação e fazer algumas operações, no caso criar uma proposta, você terá
+o nome do serviço no jaeger. Selecionando o nome do serviço e criando em Find Traces,
+irão listar os traces do lado direito.
+
+
+
+
+
+
+
