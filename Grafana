@@ -1,0 +1,10 @@
+O Grafana é uma ferramenta bastante importante em um ambiente de aplicações
+distribuídas, ele nos ajuda a mostrar nossas métricas de uma maneira mais 
+organizada e simples de visualizar.
+É necessário subir uma instância para que seja possível visualizar os gráficos.
+Em ambiente produtivo, é necessário provavelmente mais de uma instância, para
+garantir a disponibilidade e resiliência.
+
+o Grafana é uma ferramenta de Criação e Visualização de Gráficos, então ele não 
+tem nenhum dado incluído na ferramenta logo, precisamos configurar nossa fonte de 
+informação de dados, no caso o Prometheus.
