@@ -16,6 +16,12 @@ Quando utilizamos serviços HTTP esse "repasse" se dá pelos HTTP Headers.
 
 OpenTracing - OpenTracing é um padrão aberto que direciona o desenvolvimento de frameworks
 e ferramentas para Distributed Tracing.
+O rastreamento distribuído fornece uma solução para descrever e analisar as transações de 
+processo cruzado. Alguns dos casos de uso de rastreamento distribuído, conforme descrito no 
+artigo Dapper do Google, incluem detecção de anomalias, diagnóstico de problemas de estado
+estacionário, criação de perfil distribuída, atribuição de recursos e modelagem de carga 
+de trabalho de microsserviços.
+
 
 OpenTelemetry- OpenTelemetry é um projeto de observabilidade de código aberto que mescla 
 OpenTracing e OpenCensus. O projeto OpenTelemetry inclui especificação, bibliotecas,
