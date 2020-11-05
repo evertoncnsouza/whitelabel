@@ -1,0 +1,33 @@
+O conceito de tracing distribuído seria basicamente a abordagem de rastreamento entre todas as
+chamadas/aplicações envolvidas em uma requisição, ou seja, como identificar e medir os tempos de
+serviços envolvidos para executar uma determinada ação, por exemplo: Um serviço A é requisitado 
+por uma aplicação, porém esse serviço A depende de outros dois serviços, B e C, assim, o tempo
+de retorno do serviço A é a soma de tempo da execução de A + B + C.
+
+################################################################################################
+
+Trace distribuído é uma maneira bem simples de se entender, mas também muito efetiva de nos ajudar
+na tarefa de "rastrear" os passos de uma requisição dentro da nossa infraestrutura.
+A idéia consiste na criação de um ou mais identificadores externos, e repassá-lo nas chamadas
+entre todos os sistemas envolvidos. Essa técnica também ficou bastante conhecida como Correlation Id.
+Quando utilizamos serviços HTTP esse "repasse" se dá pelos HTTP Headers.
+
+############################################################################################
+
+OpenTracing - OpenTracing é um padrão aberto que direciona o desenvolvimento de frameworks
+e ferramentas para Distributed Tracing.
+
+OpenTelemetry- OpenTelemetry é um projeto de observabilidade de código aberto que mescla 
+OpenTracing e OpenCensus. O projeto OpenTelemetry inclui especificação, bibliotecas,
+agentes e outros componentes necessários para capturar telemetria dos serviços para melhor
+observá-los, gerenciar e depurá-los. Ele abrange os três pilares da observabilidade — 
+rastreamento distribuído, métricas e log (atualmente em beta) — e sua especificação conecta
+essas três partes por meio de correlações. Portanto, você pode usar metrics para identificar
+um problema, localizar traces correspondentes para descobrir onde o problema ocorreu e,
+finalmente, estudar os logs correspondentes para encontrar a causa raiz exata. Os componentes
+OpenTelemetry podem ser conectados a sistemas de observabilidade de backend como Prometheus e Jaeger, 
+entre outros. A formação do OpenTracing é um passo positivo em direção à convergência da 
+padronização e à simplificação das ferramentas.
+
+
+
