@@ -153,6 +153,82 @@ filtra todas as operações que o everton@gmail.com fez
 Dica: Use com parcimônia as tags, pois é um código de infraestrutura(trace) em
 conjunto com o código de negócio, portanto tente segmentar.
 
+#################################################################################
+
+Jaeger - Baggage Item
+Tem como objetivo carregar e propagar informações importantes do Span e dos próximos Spans.
+Caso deseje retornar um baggage item específico, como por exemplo email do usuário, é necessário
+instrumentar no código.
+
+É necessario injetar o Tracer no código
+
+public class PropostaController {
+
+  private final Tracer tracer;
+
+  public PropostaController(Tracer tracer) {
+    this.tracer = tracer;
+  }
+
+}
+
+Com o objeto, é necessário pegar o span ativo, conforme código abaixo.
+Span activeSpan = tracer.activeSpan();
+
+... e definir o baggage item desejado, para isso o objetivo Span
+tem o método setBaggageItem
+
+activeSpan.setBaggageItem("user.email", "luram.archanjo@zup.com.br");
+
+Para testar
+http://localhost:16686/search
+
+Após iniciar a aplicação e fazer algumas operações, como criar proposta...
+entre no trace da operação que está o código e verifique se o baggage item
+consta.
+- código completo
+Span activeSpan = tracer.activeSpan();
+String userEmail = activeSpan.getBaggageItem("user.email");
+activeSpan.setBaggageItem("user.email", userEmail);
+
+#####################################################################
+
+Jaeger-Log
+
+Caso deseje reportar um log específico, como por exemplo, email do usuário, 
+é necessário instrumentar no código.
+O Spring provê uma classe denominada Tracer na qual você fazer operações
+relacionadas ao OpenTracing.
+
+public class PropostaController {
+
+  private final Tracer tracer;
+
+  public PropostaController(Tracer tracer) {
+    this.tracer = tracer;
+  }
+
+}
+
+- Agora com objeto, é necessário pegar o span ativo, conforme código abaixo
+Span activeSpan = tracer.activeSpan();
+
+É necessário definir o log desejado, para isso, tem o método log, conforme
+código abaixo
+activeSpan.log("Meu log");
+
+Para testar http://localhost:16686/search
+
+Agora basta entrar no trace da operação, que está o código e verifique
+se o log consta.
+
+Dica: O Spring já cadastra todos os logs no Jaeger, portanto, não há 
+necessidade de instrumentar no código
+
+
+
+
+
 
 
 
