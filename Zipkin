@@ -1,0 +1,8 @@
+Zipkin é um sistema de rastreamento distribuído. Ele ajuda a reunir dados de tempo necessários
+para solucionar problemas de latência em arquiteturas de serviço. Os recursos incluem a coleta
+e a consulta desses dados.
+
+Se você tiver um ID de rastreamento em um arquivo de log, poderá pular diretamente para ele. 
+Caso contrário, você pode consultar com base em atributos como serviço, nome da operação,
+tags e duração. Alguns dados interessantes serão resumidos para você, como a porcentagem 
+de tempo gasto em um serviço e se as operações falharam ou não.
