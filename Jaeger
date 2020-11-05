@@ -107,6 +107,56 @@ Após iniciar a aplicação e fazer algumas operações, no caso criar uma propo
 o nome do serviço no jaeger. Selecionando o nome do serviço e criando em Find Traces,
 irão listar os traces do lado direito.
 
+###################################################################################
+Jaeger - Tags
+
+Em OpenTracing existe o conceito de Span, que é um período que representa uma operação, 
+como por exemplo, uma requisição HTTP, na qual contém metadados extremamente importantes,
+como a tag, que tem como objetivo carregar informações importantes do Span, como por exemplo:
+
+component
+http.method
+http.status_code
+http.url
+Essas informações são importantes para o troubleshooting de problemas e graças ao Spring 
+elas são reportadas automaticamente!
+
+Caso deseje reportar uma tag específica, como por exemplo, email do usuário,
+precisaremos instrumentar no código!
+
+O Spring provê uma classe denominada Tracer na qual você consegue fazer operações relacionadas ao OpenTracing!
+
+1º Precisamos injetar o objeto Tracer, conforme código abaixo:
+
+public class PropostaController {
+
+  private final Tracer tracer;
+
+  public PropostaController(Tracer tracer) {
+    this.tracer = tracer;
+  }
+
+}
+2º Agora que temos o objeto, precisamos pegar o span ativo, conforme código abaixo:
+
+Span activeSpan = tracer.activeSpan();
+3º Precisamos definir a tag desejada, para isso o objetivo Span tem o método setTag, conforme código abaixo:
+
+activeSpan.setTag("user.email", "everton@gmail.com.br");
+
+*Atenção aos pacotes
+
+Após fazer algumas operações, já dá para testar, basta procurar o user.email.
+Assim podemos melhorar nosso processo de troubleshooting, como por exemplo,
+filtra todas as operações que o everton@gmail.com fez
+
+Dica: Use com parcimônia as tags, pois é um código de infraestrutura(trace) em
+conjunto com o código de negócio, portanto tente segmentar.
+
+
+
+
+
 
 
 
