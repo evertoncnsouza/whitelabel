@@ -105,3 +105,15 @@ pode capturar todas as alterações em um conjunto de tabelas. No entanto, na pr
 você normalmente não precisa implementar seus próprios conectores porque a comunidade
 Kafka já fornece centenas de conectores prontos para uso.
 
+###############################################################
+O Apache Kafka optou pelo uso do pull model, pois, provê algumas vantagens bem 
+interessantes, por exemplo:
+
+Consumidores conseguem controlar a quantidade de eventos que buscam, reduzindo as 
+operações na rede.
+Consumidores conseguem controlar quais mensagens querem consumir, por exemplo,
+todas da última semana, ano, mês.
+Apache Kafka não precisa controlar os envios de eventos.
+
+
+
