@@ -236,6 +236,19 @@ Dica: Leve sempre em consideração os pontos
 - Quantidade de retry
 - Idempotência
 
+##############################################
+
+Spring para Apacher Kafka
+
+O projeto Spring for Apache Kafka (spring-kafka) aplica os conceitos básicos do
+Spring ao desenvolvimento de soluções de mensagens baseadas em Kafka. Ele fornece um
+"modelo" como uma abstração de alto nível para o envio de mensagens. Ele também
+fornece suporte para POJOs orientados por mensagem com @KafkaListeneranotações e um 
+"contêiner de ouvinte". Essas bibliotecas promovem o uso de injeção de dependência e
+declarativa. Em todos esses casos, você verá semelhanças com o suporte JMS no Spring
+Framework e o suporte RabbitMQ no Spring AMQP.
+
+
 
 
 
