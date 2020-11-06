@@ -1,0 +1,36 @@
+O streaming de eventos é o equivalente digital do sistema nervoso central do corpo
+humano. É a base tecnológica para o mundo "sempre ativo", onde as empresas são cada
+vez mais definidas e automatizadas por software e onde o usuário de software é mais 
+software.
+
+Tecnicamente falando, o streaming de eventos é a prática de capturar dados em tempo
+real de fontes de eventos como bancos de dados, sensores, dispositivos móveis, 
+serviços em nuvem e aplicativos de software na forma de fluxos de eventos; armazenar
+esses fluxos de eventos de forma duradoura para recuperação posterior; manipular,
+processar e reagir aos fluxos de eventos em tempo real e também retrospectivamente;
+e encaminhar os fluxos de eventos para diferentes tecnologias de destino, conforme 
+necessário. O streaming de eventos, portanto, garante um fluxo contínuo e 
+interpretação dos dados para que as informações certas estejam no lugar certo, na hora
+certa.
+
+########################################################################
+
+Uso do streaming de eventos
+
+- Para processar pagamentos e transações financeiras em tempo real, como em bolsas de
+valores, bancos e seguros.
+- Rastrear e monitorar carros, caminhões, frotas e remessas em tempo real, como na 
+logística e na indústria automotiva.
+- Para capturar e analisar continuamente os dados do sensor de dispositivos IoT ou 
+outros equipamentos, como fábricas e parques eólicos.
+- Para coletar e reagir imediatamente às interações e pedidos do cliente, como no
+varejo, no setor de hotéis e viagens e em aplicativos móveis.
+- Para monitorar pacientes em cuidados hospitalares e prever mudanças nas condições
+para garantir o tratamento oportuno em emergências.
+- Conectar, armazenar e disponibilizar dados produzidos por diferentes divisões de uma
+empresa.
+- Para servir como base para plataformas de dados, arquiteturas orientadas a eventos e
+microsserviços.
+
+O Apache Kafka é uma plataforma de streaming de eventos!
+
