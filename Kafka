@@ -115,5 +115,142 @@ Consumidores conseguem controlar quais mensagens querem consumir, por exemplo,
 todas da última semana, ano, mês.
 Apache Kafka não precisa controlar os envios de eventos.
 
+#############################################################
+
+A Zup utiliza sistema baseado em Pull.
+
+#############################################################
+- Tópico
+Na arquitetura do Apache Kafka existem vários componentes, como por exemplo, o Tópico
+que tem a responsabilidade de representar um stream de evento, como por exemplo,
+um tópico de transações!
+
+Uma analogia para a gente entender o que é um Tópico é dizer que o mesmo é uma tabela
+no banco de dados, onde contém todos os registros e a ordem de cadastro dos mesmos!
+
+Portanto, caso um determinado consumidor queira consumir as transações, basta o mesmo
+se conectar e começar operar no Tópico.
+
+O Tópico no Apache Kafka tem uma característica bastante importante, a partição,
+no qual permite ser distribuído em vários brokers do Kafka via Replication Factor.
+
+###############################################################################
+Partição 
+Na arquitetura do Apache Kafka existem vários componentes, como por exemplo, o Tópico
+que tem a responsabilidade de representar um stream de evento, como por exemplo, 
+um tópico de transações!
+
+O tópico é consistido por várias partições, de acordo com o configurado.
+
+A partição é uma maneira de prover redundância e escalabilidade, pois, cada partição 
+pode estar em um broker (máquina) diferente.
+
+Além dos pontos citados acima temos a possibilidade de segmentar os eventos de acordo
+com uma determinada chave!
+
+Quando enviamos um evento sem chave, o tópico seleciona aleatoriamente a partição que
+irá o evento, porém quando enviamos com uma chave, todos os eventos com a mesma chave
+irá somente para aquela partição e de forma ordenada.
+
+Dica: Aprenda sobre eventos ordenados, eventos não ordenados e recuperar eventos restrospectivamente.
+
+#####################################################################################
+Consumidor - 
+Na arquitetura do Apache Kafka existem vários componentes, como por exemplo, o 
+Consumidor que tem a responsabilidade de processar os eventos de um determinado 
+tópico.
+
+O consumidor se escreve em um ou mais partições de um determinado tópico e processa 
+os eventos conforme eles vão sendo gerados!
+
+A cada processamento o consumidor tem a responsabilidade de gravar em qual ponto ele
+parou de ler e em qual partição.
+
+Um ponto bastante interessante é que se houver a necessidade de processar novamente
+os eventos, basta o consumidor zerar seu histórico de processamento (offset), pois,
+o Apache Kafka armazena os eventos de cada partição de acordo com o configurado 
+1 dia, mês, ano, etc.
+
+Para que isso seja possível o consumidor precisa configurar qual modelo ele quer
+fazer de coletar de eventos:
+
+latest: Processa a partir do último processado.
+earliest: Zera o offset e processa desde o início.
+none: Não processa nenhum evento e lança uma exceção em sua aplicação.
+
+Consumer group -  Tem a responsabilidade de prover grupos de consumidores e balancear
+a carga de trabalho de acordo com a quantidade de partições!
+
+Todo consumidor no Apache Kafka deve pertencer a um grupo, e o controle de histórico
+de processamento é por grupo e partição.
+
+O modelo de escalabilidade do consumidor está atrelado a quantidade de consumidor x 
+partições.
+
+Dica: Sempre que utilizar Kafka pense em idempotência nos consumidores, pois, pode ser
+que um dia seja utilizada a funcionalidade de processar todos os eventos. Tenha cuidado
+com o modelo de commit períodico(Auto commit). 
+Se seu consumidor processou 10 eventos e por algum motivo caiu e não foi executado o 
+commit periódico, ao subir novamente, seu consumidor irá processar novamente os 10
+eventos.
+################################################################################
+
+Produtor - 
+Tem a responsabilidade de enviar os eventos de um determinado tópico.
+
+O produtor envia os eventos para o broker líder, ou seja, em um conjunto de máquinas 
+(brokers) que formam o cluster Kafka, é eleito um líder que irá receber os eventos de
+acordo com o tópico e partição! Portanto, no Apache Kafka não existe um líder geral e
+sim um líder específico por partição.
+
+Para que seja possível saber os líderes o Apache Kafka informa para os produtores
+quais brokers estão aptos a receber eventos, por isso, é de extrema importância ter 
+replicações das partições, pois, se uma máquina (broker) cai a outra assume a
+liderança da(s) partição(ões)!
+
+Para enviar um evento é preciso enviar as seguintes informações:
+- Nome do tópico.
+- Corpo do evento, geralmente enviado no formato JSON.
+- Chave (Opcional), caso deseje que todas as mensagens sejam enviadas para uma mesma
+ partição e de forma ordenada.
+
+Ciclo de vida do Retry - (Pesquisar)
+
+Além do ciclo de vida do Retry, é possível configurar o modelo de reconhecimento do 
+envio do evento. Isto pode ser útil para garantir de fato que o evento foi replicado.
+
+Para que seja possível, o produtor deve informar qual modelo de reconhecimento(acks) 
+ele quer. 
+Ex: : 
+- O produtor não irá esperar pelo reconhecimento do recebimento do evento pelo 
+Apache Kafka.
+- 1: O produtor somente irá esperar pelo reconhecimento do recebimento do evento pelo
+líder.
+- all: O produtor irá esperar pelo reconhecimento do recebimento do evento por todos
+os brokers que tenha a partição!
+
+Portanto para não perder mensagens é melhor utilizar o modelo do tipo all.
+
+Dica: Leve sempre em consideração os pontos
+- Modelo de reconhecimento
+- Quantidade de retry
+- Idempotência
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
