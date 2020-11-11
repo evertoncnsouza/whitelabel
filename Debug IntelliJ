@@ -1,0 +1,57 @@
+- Primeiro certifique-se que Generate debugging info, esteja ativado.
+Settings/Preferences | Build, Execution, Deployment | Compiler | Java Compiler.
+
+A configuração presente em 
+Settings/Preferences | Build, Execution, Deployment | Debugger.
+é suficiente para o debug, porem você pode personaliza-la.
+
+- Defina onde o programa deve ser interrompido - breakpoints. 
+- Execute o programa em modo de depuração;
+- Após a pausa, use o debugger para informações sobre o estado do programa.
+
+#############################################################################
+
+Tipos de breakpoints
+Line breakpoints - Suspende o programa ao atingir a linha de código onde o ponto de 
+interrupção foi definido.
+Clique na linha de código e pressione CTRL + F8
+
+Method breakpoints - Suspende o programa ao entrar ou sair do método especificado ou
+uma de suas implementações, permitindo que sejam verificadas as condições de entrada
+e saída do método.
+- Clique onde o metodo foi declarado. Ex: void print(){
+- Para suspender quando o construtor padrão da classe for chamado, clique na linha
+onde a classe esta declarada. Ex: class Printer{
+- Para corresponder a várias classes ou métodos, clique em view breakpoints
+na parte esquerda da janela da ferramenta de debbug e clique em Add(Alt+insert)
+e especifique a classe e o método. Use * para corresponder ao inicio, final ou 
+a todo o identificador. 
+Ex:
+Classe = * / Método = print / Resultado = print() - método em todas as classes com
+qualquer lista de parâmetros.
+Classe = Printer / Método= * / Resultado = qualquer método na classe printer.
+Classe = Printer / Método= set*/ Todos os sets da classe printer.
+
+Field watchpoints- Suspende o programa quando o campo especifico é lido ou gravado.
+Permite que você reaja a interações com variáveis de instância específicas.
+Ex: No final de um processo complicado, você pode terminar com um valor obviamente errado
+em um de seus campos, definir um field watchpoint ajuda encontrar a falha.
+Clicar ou CTRL + F8.
+Ex: private boolean ready;
+
+Exception breakpoints- Suspende o programa quando o throwable ou suas subclasses são
+lançadas. Se aplicam globalmente à condição de exceção e não requerem uma referência
+de código-fonte especifica.
+Clica na parte esquerda da janela da ferramenta de debug ou pressione Ctrl + shift + f8.
+
+###################################################################
+
+Remove Breakpoints- Remove.
+Mute breakpoints - Silencia o breakpoint.
+Enable/ disable breakpoints- Desliga temporariamente, sem perder os parametros.
+
+
+
+
+
+
