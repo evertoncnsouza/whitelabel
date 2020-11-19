@@ -7,3 +7,5 @@ Por exemplo, seu código pode ler os locais de rede de um arquivo de configuraç
 ocasionalmente.
 
 https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/
+
+https://kubernetes.io/docs/concepts/services-networking/service/#cloud-native-service-discovery
