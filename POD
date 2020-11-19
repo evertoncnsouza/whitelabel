@@ -1,0 +1,28 @@
+Pods
+Os pods são as menores unidades de computação implantáveis que você pode criar e gerenciar no
+Kubernetes.
+
+Um pod (como em um vagem de baleias ou vagem de ervilha) é um grupo de um ou mais recipientes, 
+com recursos de armazenamento / rede compartilhados e uma especificação de como executar os 
+contêineres. O conteúdo de um pod é sempre colocado e programado conjuntamente e executado em um
+contexto compartilhado. Um pod modela um "host lógico" específico do aplicativo: ele contém um ou
+mais contêineres de aplicativo que são acoplados de forma relativamente forte. Em contextos fora
+da nuvem, os aplicativos executados na mesma máquina física ou virtual são análogos aos aplicativos
+da nuvem executados no mesmo host lógico.
+
+Assim como contêineres de aplicativo, um pod pode conter contêineres init que são executados durante
+a inicialização do pod. Você também pode injetar contêineres efêmeros para depuração se seu cluster
+oferecer isso.
+
+O que é um pod?
+Observação: embora o Kubernetes ofereça suporte a mais tempos de execução do contêiner do que apenas
+Docker, Docker é o runtime mais conhecido e ajuda a descrever Pods usando alguma terminologia do 
+Docker.
+O contexto compartilhado de um Pod é um conjunto de namespaces, cgroups e potencialmente outras 
+facetas de isolamento do Linux - as mesmas coisas que isolam um contêiner Docker. Dentro do contexto
+de um pod, os aplicativos individuais podem ter outros subisolamentos aplicados.
+
+Em termos de conceitos do Docker, um Pod é semelhante a um grupo de contêineres do Docker com 
+namespaces compartilhados e volumes de sistema de arquivos compartilhados.
+
+https://kubernetes.io/docs/concepts/workloads/pods/
