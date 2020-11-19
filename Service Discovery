@@ -9,3 +9,5 @@ ocasionalmente.
 https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/
 
 https://kubernetes.io/docs/concepts/services-networking/service/#cloud-native-service-discovery
+
+https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
