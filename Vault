@@ -1,0 +1,214 @@
+O Vault é uma ferramenta para acessar segredos com segurança . Um segredo é tudo o que
+você deseja controlar rigidamente o acesso, como chaves de API, senhas ou certificados. 
+O Vault fornece uma interface unificada para qualquer segredo, enquanto fornece controle de 
+acesso rígido e registra um registro de auditoria detalhado.
+
+Um sistema moderno requer acesso a uma infinidade de segredos: credenciais de banco de dados, 
+chaves de API para serviços externos, credenciais para comunicação de arquitetura orientada a 
+serviços, etc. Compreender quem está acessando quais segredos já é muito difícil e específico da 
+plataforma. Adicionar rolagem de chaves, armazenamento seguro e registros de auditoria detalhados
+é quase impossível sem uma solução personalizada. É aqui que o Vault entra em ação.
+
+ - Armazenamento de segredo seguro : segredos de chave / valor arbitrários podem ser armazenados 
+ no Vault. O Vault criptografa esses segredos antes de gravá-los no armazenamento persistente, 
+ portanto, obter acesso ao armazenamento bruto não é suficiente para acessar seus segredos. 
+ O Vault pode gravar em disco, Consul e muito mais.
+
+- Segredos dinâmicos : o Vault pode gerar segredos sob demanda para alguns sistemas, como bancos de
+dados AWS ou SQL. Por exemplo, quando um aplicativo precisa acessar um bucket S3, ele pede ao Vault 
+as credenciais, e o Vault irá gerar um par de chaves AWS com permissões válidas sob demanda. 
+Depois de criar esses segredos dinâmicos, o Vault também os revogará automaticamente após o término
+do lease.
+
+- Criptografia de dados : o Vault pode criptografar e descriptografar dados sem armazená-los. Isso
+permite que as equipes de segurança definam parâmetros de criptografia e os desenvolvedores 
+armazenem dados criptografados em um local como SQL, sem ter que projetar seus próprios métodos de
+criptografia.
+
+- Leasing e renovação : todos os segredos no Vault têm um lease associado a eles. No final do
+aluguel, o Vault revogará automaticamente esse segredo. Os clientes podem renovar concessões por
+meio de APIs de renovação incorporadas.
+
+- Revogação : o Vault tem suporte integrado para revogação de segredo. O Vault pode revogar não 
+apenas segredos únicos, mas uma árvore de segredos, por exemplo, todos os segredos lidos por um 
+usuário específico ou todos os segredos de um tipo específico. A revogação auxilia na rolagem da
+chave, bem como no bloqueio dos sistemas no caso de uma intrusão.
+
+#######################################################################################
+
+- Secrets Engines
+Os mecanismos de segredos são componentes que armazenam, geram ou criptografam dados. Os mecanismos
+de segredos são incrivelmente flexíveis, então é mais fácil pensar neles em termos de suas funções.
+Os mecanismos de segredos operam recebendo chamadas de API que atendem a essa interface . 
+As chamadas recebem dados do chamador, realizam alguma ação sobre esses dados e retornam um
+resultado.
+
+Alguns mecanismos de segredos simplesmente armazenam e lêem dados - como Redis / Memcached
+criptografado. Outros mecanismos de segredos se conectam a outros serviços e geram credenciais 
+dinâmicas sob demanda. Outros mecanismos de segredos fornecem criptografia como serviço, geração 
+de totp, certificados e muito mais.
+
+Os motores de segredos são ativados em um "caminho" no Vault. Quando uma solicitação chega ao 
+Vault, o roteador roteia automaticamente qualquer coisa com o prefixo de rota para o mecanismo 
+secrets. Dessa forma, cada mecanismo de segredos define seus próprios caminhos e propriedades.
+Para o usuário, os mecanismos secrets se comportam de forma semelhante a um sistema de arquivos 
+virtual, suportando operações como leitura, gravação e exclusão.
+
+- Ciclo de vida do Secrets Engines
+A maioria dos mecanismos de segredo pode ser habilitada, desabilitada, ajustada e movida por
+meio da CLI ou API. As versões anteriores do Vault chamavam essas "montagens", mas esse termo 
+estava sobrecarregado.
+
+Habilitar - habilita um mecanismo de segredos em um determinado caminho. Com poucas exceções, os 
+mecanismos de segredos podem ser ativados em vários caminhos. Cada mecanismo de segredos é isolado
+em seu caminho. Por padrão, eles são habilitados em seu "tipo" (por exemplo, "aws" habilita em 
+"aws /").
+
+Desativar - Isso desativa um mecanismo de secrets existente. Quando um mecanismo de segredos é 
+desabilitado, todos os seus segredos são revogados (se forem compatíveis) e todos os dados
+armazenados para esse mecanismo na camada de armazenamento físico são excluídos.
+
+Mover - move o caminho para um mecanismo de secrets existente. Este processo revoga todos os 
+segredos, uma vez que as concessões secretas estão vinculadas ao caminho em que foram criadas. 
+Os dados de configuração armazenados para o mecanismo persistem durante a movimentação.
+
+Tune - Isso ajusta a configuração global para o mecanismo de segredos, como os TTLs.
+
+Depois que um mecanismo de segredos é habilitado, você pode interagir com ele diretamente em seu 
+caminho de acordo com sua própria API. Use vault path-helppara determinar os caminhos aos quais
+ele responde.
+
+Observe que os pontos de montagem não podem entrar em conflito uns com os outros no Vault. 
+Existem duas amplas implicações desse fato. A primeira é que você não pode ter uma montagem 
+prefixada com uma montagem existente. A segunda é que você não pode criar um ponto de montagem
+nomeado como um prefixo de uma montagem existente. Por exemplo, as montagens foo/bar e foo/baz 
+podem coexistir pacificamente entre si, enquanto fooe foo/baz não podem
+
+###########################################################################
+Policies
+
+Tudo no Vault é baseado em caminhos e as políticas (policies) não são exceção. As políticas
+fornecem uma forma declarativa de conceder ou proibir o acesso a determinados caminhos e operações
+no Vault. Esta seção discute fluxos de trabalho e sintaxes de política.
+
+As políticas são negadas por padrão , portanto, uma política vazia não concede permissão no 
+sistema.
+
+»Fluxo de trabalho de autorização de política
+Antes que uma pessoa ou máquina possa obter acesso, um administrador deve configurar o Vault com
+um método de autenticação . A autenticação é o processo pelo qual as informações fornecidas por
+humanos ou por máquina são verificadas em um sistema interno ou externo.
+
+Considere o diagrama a seguir, que ilustra as etapas que uma equipe de segurança executaria para 
+configurar o Vault para autenticar usando um LDAP corporativo ou instalação do ActiveDirectory.
+
+https://www.vaultproject.io/docs/concepts/policies
+
+################################################################################################
+
+- Secrets 
+O secretscomando agrupa subcomandos para interagir com os motores de segredos do Vault.
+Cada mecanismo de segredos se comporta de maneira diferente. Consulte a documentação para obter
+mais informações.
+
+Alguns mecanismos secretos persistem dados, alguns agem como passagem de dados e alguns geram 
+credenciais dinâmicas. O mecanismo de segredos provavelmente exigirá configuração após ser montado.
+Para obter detalhes sobre as opções de configuração específicas, consulte a documentação do 
+mecanismo secrets .
+https://www.vaultproject.io/docs/commands/secrets
+
+##############################################################################################
+
+Instalando Vault
+https://learn.hashicorp.com/tutorials/vault/getting-started-first-secret
+
+Precisamos armazenar nossas credenciais ou strings que contém valores sensíveis dentro de um "cofre",
+algum lugar que estes dados seja passível de algum modelo de criptografia.
+
+O Hashicorp Vault possui uma feature para isso, a Secret Engine.
+A Secret Engine é capaz de armazenar valores, utilizando o conceito de chave valor. Então isso
+se traduz uma chave "secret/minhapp", tem um valor, e esse valor pode ser composto por uma ou mais
+strings.
+################################################################################################
+
+Spring cloud Vault
+https://cloud.spring.io/spring-cloud-vault/reference/html/
+
+- Vault no Spring
+
+<properties>
+    <!-- Omitidas outras propriedades -->
+     <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+</properties>
+
+- Após adicionar propriedades, adicione um gerenciador de dependências
+<dependencyManagement>
+
+    <dependencies>
+
+        <!-- Omitidas outras dependências -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
+    </dependencies>
+
+</dependencyManagement>
+
+- Após isso
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-vault-config</artifactId>
+    </dependency>
+</dependencies>
+
+- Após estar tudo configurado, adicione as propriedades no arquivo bootstrap.properties 
+# Vault Enabled - Must be true in production
+spring.cloud.vault.enabled=${VAULT_ENABLED:true}
+
+# Vault Address
+spring.cloud.vault.port=${VAULT_PORT:8200}
+spring.cloud.vault.host=${VAULT_HOST:localhost}
+
+# Vault secret name - Spring will use the prefix secret e.g: secret/my-secret
+spring.cloud.vault.application-name=${VAULT_SECRET_NAME:my-secret}
+
+# Vault token - Must be one per application context
+spring.cloud.vault.token=${VAULT_TOKEN:13d5a277-23d8-4c59-bb23-5c214883112f}
+
+# Vault Scheme - http (local development) or https (production)
+spring.cloud.vault.scheme=${VAULT_SCHEME:http}
+
+- Com tudo configurado, basta testar. 
+database.username="Vault irá substituir esse valor"
+database.password="Vault irá substituir esse valor"
+database.platform=${DATABASE_PLATFORM:MySQL}
+
+- Agora basta cadastrar as mesmas propriedades no Vault de acordo com o secret configurado
+na propriedade spring.cloud.vault.application-name que está em bootstrap.properties
+
+$ vault kv put secret/my-secret database.username=luramarchanjo database.password=1234567890
+
+- Em tempo de inicialização, o Spring irá carregar as propriedades cadastradas no Vault na secret my-secret
+e irá subistituir os valores, caso as propriedades existam no arquivo application.properties, pelo 
+valor configurado no vault.
+
+Caso a propriedade esteja mapeada no arquivo application.propeties e não no Vault, será considerado
+o valor do arquivo ou da variável de ambiente, caso configurado, como por exemplo, a propriedade
+database.platform na qual não foi configurada no Vault, portanto, o Spring irá considerar o valor
+MySQL, caso a variável de ambiente DATABASE_PLATFORM não existir!
+
+###########################################################################################
+
+Apoio 
+https://www.vaultproject.io/
+
+
+
+
+
