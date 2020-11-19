@@ -133,5 +133,36 @@ https://kubernetes.io/docs/reference/kubectl/overview/
 Configurando o acesso de Cluster para Kubernetes
 https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl?hl=pt-br
 
+- Tenha a linha de comando do Google instalada no seu computador. Use a infraestrutura do Google
+para servir o cluster de Kubernetes. 
+- O serviço se chama GKE (Google Kubernetes Engine) e é um serviço que provê de maneira bastante
+efetiva um cluster de Kubernetes com alta disponibilidade, elasticidade e confiabilidade.
+para conectar é necessário, primeiramente, autenticar-se usando a ferramenta de linha de comando.
+Faça isso usando o comando 
+
+gcloud auth login
+
+Você será redirecionado via browser para o servidor de autenticação do Google.
+
+Leia atentamente as instruções e conclua o processo!
+
+Há qualquer momento você pode acessar o help usando o seguinte comando:
+
+gcloud --help
+
+Uma vez conectado à conta do Google podemos nos conectar ao nosso cluster, onde o Kubernetes está
+instalado e operando.
+
+Você pode se conectar ao cluster usando o seguinte comando:
+
+gcloud container clusters get-credentials development-bootcamp --zone us-central1-c --project 
+zup-academy
+Esse comando nos conecta ao nosso cluster. Vamos realizar um pequeno teste para para garantir que
+nossa conectividade está funcionando 100%. Utilize o seguinte comando
+
+kubectl get namespaces
+Se o resultado for uma lista de namespaces, aqui não importa o valor deles, sua ferramenta está 
+configurado com sucesso.
+
 
 
