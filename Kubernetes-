@@ -123,6 +123,11 @@ Váriavel de ambiente segura, que não pode ser armazenada aberta no Kubernetes
 
 https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/#define-container-environment-variables-using-secret-data
 
+######################################################################################
+Instalação
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+https://kubernetes.io/docs/reference/kubectl/overview/
 
 
 
