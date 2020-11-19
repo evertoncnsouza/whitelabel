@@ -1,0 +1,89 @@
+O Kubernetes é uma plataforma portátil, extensível e de código aberto para o gerenciamento de
+cargas de trabalho e serviços em contêineres, que facilita a configuração declarativa e a automação.
+Tem um grande ecossistema de crescimento rápido. Os serviços, suporte e ferramentas do Kubernetes
+estão amplamente disponíveis.
+
+O nome Kubernetes se origina do grego, significando timoneiro ou piloto. O Google abriu o código do
+projeto Kubernetes em 2014. O Kubernetes combina mais de 15 anos de experiência do Google
+executando cargas de trabalho de produção em escala com as melhores ideias e práticas da comunidade.
+
+##########################################################################
+
+Por que você precisa do Kubernets e o que ele pode fazer
+
+Os contêineres são uma boa maneira de agrupar e executar seus aplicativos. Em um ambiente de 
+produção, você precisa gerenciar os contêineres que executam os aplicativos e garantir que não haja
+tempo de inatividade. Por exemplo, se um contêiner cair, outro contêiner precisa ser iniciado. 
+Não seria mais fácil se esse comportamento fosse controlado por um sistema?
+
+É assim que o Kubernetes vem ao resgate! O Kubernetes oferece uma estrutura para executar sistemas
+distribuídos de forma resiliente. Ele cuida do dimensionamento e do failover de seu aplicativo,
+fornece padrões de implantação e muito mais. Por exemplo, o Kubernetes pode gerenciar facilmente
+uma implantação canário para seu sistema.
+
+O Kubernetes oferece a você:
+
+- Descoberta de serviço e balanceamento de carga O Kubernetes pode expor um contêiner usando o nome
+DNS ou o próprio endereço IP. Se o tráfego para um contêiner for alto, o Kubernetes pode balancear
+a carga e distribuir o tráfego de rede para que a implantação seja estável.
+
+- Orquestração de armazenamento O Kubernetes permite que você monte automaticamente um sistema de
+armazenamento de sua escolha, como armazenamentos locais, provedores de nuvem pública e muito mais.
+
+- Implementações e reversões automatizadas Você pode descrever o estado desejado para seus contêineres
+implantados usando o Kubernetes, e ele pode alterar o estado real para o estado desejado em uma 
+taxa controlada. Por exemplo, você pode automatizar o Kubernetes para criar novos contêineres para
+sua implantação, remover os contêineres existentes e adotar todos os seus recursos para o novo
+contêiner.
+
+- Empacotamento automático de lixeiras Você fornece ao Kubernetes um cluster de nós que pode ser 
+usado para executar tarefas em contêineres. Você informa ao Kubernetes de quanta CPU e memória 
+(RAM) cada contêiner precisa. O Kubernetes pode encaixar contêineres em seus nós para fazer o
+melhor uso de seus recursos.
+
+- O Kubernetes de autocorreção reinicia os contêineres que falham, substitui os contêineres, 
+elimina os contêineres que não respondem à verificação de integridade definida pelo usuário e não
+os anuncia aos clientes até que estejam prontos para servir.
+
+- Gerenciamento de segredo e configuração O Kubernetes permite armazenar e gerenciar informações
+confidenciais, como senhas, tokens OAuth e chaves SSH. Você pode implantar e atualizar segredos e
+configuração de aplicativo sem reconstruir suas imagens de contêiner e sem expor segredos em sua 
+configuração de pilha.
+##################################################################################
+
+O que o Kubernetes não é
+
+O Kubernetes não é um sistema PaaS (plataforma como serviço) tradicional e completo. Como o Kubernetes opera no nível do contêiner, e não no nível do hardware, ele fornece alguns recursos geralmente aplicáveis ​​comuns às ofertas de PaaS, como implantação, escalonamento, balanceamento de carga e permite que os usuários integrem suas soluções de registro, monitoramento e alerta. No entanto, o Kubernetes não é monolítico, e essas soluções padrão são opcionais e conectáveis. O Kubernetes fornece os blocos de construção para a construção de plataformas de desenvolvedor, mas preserva a escolha e flexibilidade do usuário onde é importante.
+
+Kubernetes:
+
+Não limita os tipos de aplicativos suportados. O Kubernetes visa oferecer suporte a uma variedade
+extremamente diversa de cargas de trabalho, incluindo cargas de trabalho sem estado, com estado e
+de processamento de dados. Se um aplicativo puder ser executado em um contêiner, ele deve ser 
+executado perfeitamente no Kubernetes.
+Não implanta código-fonte e não constrói seu aplicativo. Os fluxos de trabalho de integração 
+contínua, entrega e implantação (CI / CD) são determinados pelas culturas e preferências da 
+organização, bem como pelos requisitos técnicos.
+Não fornece serviços de nível de aplicativo, como middleware (por exemplo, barramentos de mensagem),
+estruturas de processamento de dados (por exemplo, Spark), bancos de dados (por exemplo, MySQL),
+caches, nem sistemas de armazenamento em cluster (por exemplo, Ceph) como serviços integrados. 
+Esses componentes podem ser executados no Kubernetes e / ou podem ser acessados por aplicativos 
+executados no Kubernetes por meio de mecanismos portáteis, como o Open Service Broker .
+Não dita soluções de registro, monitoramento ou alerta. Ele fornece algumas integrações como prova
+de conceito e mecanismos para coletar e exportar métricas.
+Não fornece nem exige um idioma / sistema de configuração (por exemplo, Jsonnet). Ele fornece uma
+API declarativa que pode ser direcionada por formas arbitrárias de especificações declarativas.
+Não fornece nem adota sistemas abrangentes de configuração, manutenção, gerenciamento ou 
+autocorreção de máquinas.
+Além disso, o Kubernetes não é um mero sistema de orquestração. Na verdade, elimina a necessidade 
+de orquestração. A definição técnica de orquestração é a execução de um fluxo de trabalho definido:
+primeiro faça A, depois B e depois C. Em contraste, o Kubernetes compreende um conjunto de
+processos de controle independentes e combináveis que conduzem continuamente o estado atual em
+direção ao estado desejado fornecido. Não deve importar como você vai de A para C. O controle 
+centralizado também não é necessário. Isso resulta em um sistema que é mais fácil de usar e mais 
+poderoso, robusto, resiliente e extensível.
+
+
+
+
+
