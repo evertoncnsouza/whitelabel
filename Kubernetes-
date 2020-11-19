@@ -128,7 +128,10 @@ Instalação
 https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
 https://kubernetes.io/docs/reference/kubectl/overview/
+##################################################################################
 
+Configurando o acesso de Cluster para Kubernetes
+https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl?hl=pt-br
 
 
 
