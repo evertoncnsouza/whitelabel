@@ -1,0 +1,47 @@
+Declarando um ConfigMap
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  LOG_LEVEL: "INFO"
+  SERVER_PORT: "8888"
+  
+  Você pode salvar um arquivo com qualquer nome com extensão .yaml e então ele está apto à ser
+  declarado no Kubernetes!
+  
+  Note que temos um nó data, qualquer entrada desse nó pode se tornar uma variável de ambiente a 
+  ser injetada no Pod que for utilizá-la. Dessa maneira se tivermos um sistema que utilize a 
+  variável de ambiente SERVER_PORT ela será preenchida com o valor 8888.
+  
+- Para criar o ConfigMap no Kubernetes, precisamos executar o seguinte comando:
+$ kubectl apply -f <NOME DO SEU ARQUIVO>.yaml -n <NAMESPACE>
+
+- Associando ConfigMap ao PODs
+Uma vez que declaramos nossas variáveis de ambiente no ConfigMap, podemos utilizá-la em nossos 
+PODs, onde efetivamente rodam nossas aplicações. Para fazer isso devemos adicionar a seguinte 
+configuração no arquivo de configuração de deployments, conforme exemplo abaixo:
+
+## restante omitido
+spec:
+  containers:
+    - image: zupacademy/contas
+      imagePullPolicy: Always
+      envFrom:
+        - configMapRef:
+            name: my-config
+## restante omitido
+
+A associação acontece pela configuração do nó envFrom perceba que referenciamos o ConfigMap pelo
+atributo configMapRef, o elemento ConfigMap deve ter sido configurado previamente.
+
+Observação: ConfigMap deve ser utilizado para armazenar configurações não confidenciais, ou seja,
+não há algum mecanismo de criptografia associado. Este modelo NÃO deve ser utilizado para 
+armazenar senhas ou informações sigilosas.
+
+
+
+
+
+  
