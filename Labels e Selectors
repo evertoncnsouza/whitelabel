@@ -7,3 +7,9 @@ Cada objeto pode ter um conjunto de rótulos de chave / valor definidos. Cada ch
 exclusiva para um determinado objeto.
 
 https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+
+https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#motivation
+
+https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
+
+
