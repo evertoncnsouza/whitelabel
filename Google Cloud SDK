@@ -1,0 +1,22 @@
+Principais recursos
+Ferramenta de linha de comando gcloud
+A CLI da gcloud gerencia autenticação, configuração local, fluxo de trabalho do desenvolvedor e 
+interações com APIs do Google Cloud. Com a ferramenta de linha de comando gcloud, é fácil realizar 
+várias tarefas de nuvem comuns, como criar uma instância de VM do Compute Engine, gerenciar um
+cluster do Google Kubernetes Engine e implantar um aplicativo do App Engine, seja na linha de 
+comando ou em scripts e outras automações.
+
+Bibliotecas de cliente
+O SDK do Cloud vem com bibliotecas de cliente instaláveis do Cloud com linguagens específicas e a
+API Client Libraries do Google. Cada uma dessas bibliotecas usa estilos e convenções naturais da 
+linguagem compatível, o que permite processar autenticação, reduzir a quantidade de códigos de
+texto clichê necessários e otimizar o fluxo de trabalho do desenvolvedor.
+
+Ferramentas de linha de comando específicas do produto
+O SDK do Cloud tem um conjunto de ferramentas de linha de comando que inclui gsutil, bq e kubectl.
+A ferramenta gsutil permite que você gerencie buckets do Cloud Storage e objetos com a linha de
+comando. Execute consultas e manipule conjuntos de dados, tabelas e entidades no BigQuery usando a
+linha de comando com bq. Com a kubectl, é possível implantar e gerenciar clusters de contêiner do 
+Kubernetes usando a linha de comando.
+
+https://cloud.google.com/sdk
