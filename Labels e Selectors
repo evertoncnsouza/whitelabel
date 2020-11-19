@@ -1,0 +1,9 @@
+Rótulos são pares de chave / valor anexados a objetos, como pods. Os rótulos devem ser usados 
+para especificar a identificação de atributos de objetos que são significativos e relevantes para
+os usuários, mas não implicam diretamente em semântica para o sistema central. Os rótulos podem ser
+usados para organizar e selecionar subconjuntos de objetos. Os rótulos podem ser anexados aos
+objetos no momento da criação e subsequentemente adicionados e modificados a qualquer momento. 
+Cada objeto pode ter um conjunto de rótulos de chave / valor definidos. Cada chave deve ser
+exclusiva para um determinado objeto.
+
+https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
