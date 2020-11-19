@@ -1,0 +1,22 @@
+Você precisa instalar um tempo de execução do contêiner em cada node do cluster para que os pods 
+possam ser executados lá.
+
+Drivers Cgroup
+Os grupos de controle são usados para restringir os recursos alocados aos processos.
+
+Quando o systemd é escolhido como o sistema init para uma distribuição Linux, o processo init gera
+e consome um grupo de controle raiz ( cgroup) e atua como um gerenciador cgroup. Systemd tem uma 
+integração estreita com cgroups e aloca um cgroup por unidade do systemd. É possível configurar o
+tempo de execução do contêiner e o kubelet a ser usado cgroupfs. Usar cgroupfsjunto com o systemd 
+significa que haverá dois gerenciadores de cgroup diferentes.
+
+Um único gerenciador de cgroup simplifica a visão de quais recursos estão sendo alocados e, por 
+padrão, terá uma visão mais consistente dos recursos disponíveis e em uso. Quando há dois gerentes
+de cgroup em um sistema, você acaba com duas visualizações desses recursos. No campo, as pessoas
+relataram casos em que os nós configurados para uso cgroupfs para o kubelet e Docker, mas 
+systemdpara o restante dos processos, tornam-se instáveis sob pressão de recursos.
+
+Alterar as configurações para que o tempo de execução do contêiner e o kubelet sejam usados
+systemdcomo driver cgroup estabilizou o sistema. Para configurar isso para Docker, defina 
+native.cgroupdriver=systemd.
+
