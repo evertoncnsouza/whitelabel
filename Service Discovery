@@ -1,0 +1,9 @@
+Por que usar o Service Discovery?
+Vamos imaginar que você está escrevendo algum código que invoca um serviço que possui uma API REST
+ou API Thrift. Para fazer uma solicitação, seu código precisa saber a localização da rede
+(endereço IP e porta) de uma instância de serviço. Em um aplicativo tradicional executado em
+hardware físico, os locais de rede das instâncias de serviço são relativamente estáticos. 
+Por exemplo, seu código pode ler os locais de rede de um arquivo de configuração que é atualizado 
+ocasionalmente.
+
+https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/
