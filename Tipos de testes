@@ -1,0 +1,19 @@
+- Teste de unidade-  é aquele que testa uma única unidade do sistema. Ele a testa de maneira 
+isolada, geralmente simulando as prováveis dependências que aquela unidade tem. Em sistemas 
+orientados a objetos, é comum que a unidade seja uma classe. Ou seja, quando queremos escrever
+testes de unidade para a classe Pedido, essa bateria de testes testará o funcionamento da classe
+Pedido, isolada, sem interações com outras classes.
+
+- Teste de integração- é aquele que testa a integração entre duas partes do seu sistema.
+Os testes que você escreve para a sua classe PedidoDao, por exemplo, onde seu teste vai até o
+banco de dados, é um teste de integração. Afinal, você está testando a integração do seu sistema 
+com o sistema externo, que é o banco de dados. Testes que garantem que suas classes
+comunicam-se bem com serviços web, escrevem arquivos texto, ou mesmo mandam mensagens via socket 
+são considerados testes de integração.
+
+- Teste de sistema- é aquele que garante que o sistema funciona como um todo. Este nível de teste
+está interessado se o sistema funciona como um todo, com todas as unidades trabalhando juntas.
+Ele é comumente chamado de teste de caixa preta, já que o sistema é testado “com tudo ligado”:
+banco de dados, serviços web, batch jobs, e etc. Os testes de aceitação, famosos com a onda ágil,
+são, no fim, testes de sistema. Testes de aceitação são aqueles onde as equipes ágeis dizem se 
+uma determinada funcionalidade está “aceita” ou não.
