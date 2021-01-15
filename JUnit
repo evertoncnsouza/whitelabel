@@ -51,8 +51,102 @@ AssertThat - "Verifique que". Deixa o método mais fluido.
 Crie um teste para cada assertiva, pois o teste deve ser isolado.
 
 
+#############################################################################################333
+
+Testes - Curso de 5 horas
+
+Quando testar - Se fala em niveis de teste - O primeiro teste é o teste de unidade. 
+O teste de unidade testa a menor parte do sistema. 
+
+Teste de unidade- metodo, classe, função. 
+
+Sempre coloca o nome Test. Classe pessoa - TestPessoa
+
+Teste de integração - Componentes e recursos de classes, testa dois componentes. Ex: Boleto e metodo calcula juros. Ele validade o
+envio e recebimento de informações. É feito pelo programador. 
+
+Teste de sistema - Testa o software a partir do seu usuario final. Quem faz é o testador. 
+
+Teste de aceitação - Tambem é executado pelo olhar do usuario e nao utiliza programação. 
+
+Teste Alfa - É semelhante ao teste de integração, composto pelos clientes. Visa a identificação de erros não detectados
+ate o momento. 
+
+Teste Beta- Realizado por grande numero de pessoas. Testes não planejados e pessoas desconhecidas. É como um pré-lançamento
+
+Testes de Regressão - Consiste em reexecutar testes criados anteriormente a partir de alguma mudança do sistema. 
+
+##################################################################################
+
+Técnicas de Teste
+
+Caixa Branca - Teste métodos e classe, testes de comandos de repetição, teste de condições. Vê a parte interna. (teste de unidade, testes estáticos).
+Caixa preta- Teste baseado em entradas e cenarios de saída macro. Não olha o interior do sistema. (Testes de integração, teste de sistema, teste
+de aceitação, teste alfa, teste beta.)
 
 
+################################################################################################
 
+Existem testes manuais e automaticos. 
+Automaticos - execução rapida, nao cansam, exige dominio de algumas tecnologias, alto custo apenas na criação, permite testar situações impossiveis
+de testar manualmente, faz o programado, não avaliam questoes visuais, não avaliam usabilidade.
+
+Manuais - execução baixa, repetitivo, nao existe tecnologias, possui limitações, ve questoes visuais. 
+
+###################################################################################################3
+
+Teste Estatico - Tem o objetivo de analisar o codigo sem executa-lo e verificar se boas práticas foram obedecidas.(caixa branca).
+Ex de verificações -
+codigo está documentado?
+-variaveis e constantes possuem boa nomenclatura?
+-código está organizado e com boa legibilidade?
+-existem possiveis nullpointers não tratados?
+-o programador obedeceu a arquitetura do sistema para codificar?
+-as consultas ao banco de dados estão sendo fechadas após utilizadas?
+
+Planilha 
+Item - Status - Artefato com erro - Correções a serem realizadas. 
+
+Teste dinâmico - valida o sistema atraves da execução. É o método tradicional, insere uma entrada, executa o sistema e confere a saída.
+As análises estáticas e dinâmicas se complementam. 
+
+##########################################################33
+
+O que testar? -
+
+Teste de funcionalidade- Validar que as funcionalidadesdo sistema estão funcionando.
+Teste de desempenho- validar o tempo de resposta do sistema no que diz respeito ao seu tempo de resposta (existe um jMeter para executar
+testes de desempenho)
+para determinadas operações. 
+Teste de Usabilidade - validam aspectos que envolvem o usuario. Filmam as reações do usuario. 
+Teste de segurança - validam a proteção do sistema contra invasões ou acesso não autorizado a informações. 
+Teste de portabilidade - valida o funcionamento do sistema em diferentes plataformas e dispositivos, nos quais o sistema esta disposto
+a funcionar. 
+Teste de stress - testar o sistema em condições extremas. Ex: Varios usuarios logados ao mesmo tempo. 
+
+#######################################################################################################
+
+@Test 
+1- Testar o metodo. Ex: PEsquisa Cliente, TestPesquisaClient.
+
+Criou um cliente 1 e cliente 2. 
+
+cliente 1 = new cliente (id, nome, email)
+
+Criou uma lista e inseriu os clientes na lista.
+
+Instancia o classe que tem o metodo que queremos testar. 
+
+Invoca o metodo que quer testar.
+
+Verificação assertThat(cliente.getId(), is(1)); Esta verificando se o id do cliente esta certo mesmo. 
+
+Este foi o primeiro metodo de teste.
+___________________________________________________________________________________________
+
+Testou remover cliente. 
+
+* AssertThat - booleano
+* AssertNull - Verifica se é nulo.
 
 
